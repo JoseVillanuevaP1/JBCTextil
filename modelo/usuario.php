@@ -34,12 +34,6 @@ class usuario
                      WHERE U.username = '$username'";
 
 		$resultado = mysqli_query($conexion, $consulta);
-		if (!$resultado) {
-			// Manejo de errores en caso de que la consulta falle
-			mysqli_close($conexion);
-			return [];
-		}
-
 		$privilegios = [];
 		while ($fila = mysqli_fetch_assoc($resultado)) {
 			$privilegios[] = $fila;

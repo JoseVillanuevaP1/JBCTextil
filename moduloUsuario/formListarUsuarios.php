@@ -39,39 +39,43 @@ class formListarUsuarios extends Pantalla
                                     <div class="max-w-full overflow-x-auto">
                                         <div class="row mb-4">
                                             <!-- Filtros y botones en una sola fila -->
-                                            <form class="flex gap-4 mb-4 items-center">
-                                                <!-- Filtro 1 -->
-                                                <div class="flex items-center gap-2 w-1/2">
-                                                    <label for="txtBuscarUsuario" class="text-lg font-medium text-gray-700">Usuario</label>
-                                                    <input type="text" id="txtBuscarUsuario" name="txtBuscarUsuario" placeholder="Usuario" class="ml-3 px-4 py-2 border rounded-lg w-full" />
-                                                </div>
+                                            <div class="flex gap-2 mb-4 items-center">
+                                                <form action="#" method="post" class="flex gap-3 mb-4 items-center w-full">
+                                                    <div class="flex items-center gap-2 w-1/2">
+                                                        <label for="txtBuscarUsuario" class="text-lg font-medium text-gray-700">Usuario</label>
+                                                        <input type="text" id="txtBuscarUsuario" name="txtBuscarUsuario" placeholder="Usuario" class="ml-3 px-4 py-2 border rounded-lg w-full" />
+                                                    </div>
 
-                                                <!-- Filtro 2 -->
-                                                <div class="flex items-center gap-2 w-1/2">
-                                                    <label for="txtBuscarUsername" class="text-lg font-medium text-gray-700">Username</label>
-                                                    <input type="text" id="txtBuscarUsername" name="txtBuscarUsername" placeholder="Username" class="ml-3 px-4 py-2 border rounded-lg w-full" />
-                                                </div>
+                                                    <!-- Filtro 2 -->
+                                                    <div class="flex items-center gap-2 w-1/2">
+                                                        <label for="txtBuscarUsername" class="text-lg font-medium text-gray-700">Username</label>
+                                                        <input type="text" id="txtBuscarUsername" name="txtBuscarUsername" placeholder="Username" class="ml-3 px-4 py-2 border rounded-lg w-full" />
+                                                    </div>
 
-                                                <!-- Botón de Buscar -->
-                                                <div class="flex items-center gap-2 w-1/6">
-                                                    <button type="submit" class="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-200 flex items-center w-full text-center">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                                                            <circle cx="11" cy="11" r="8" />
-                                                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35" />
-                                                        </svg>
-                                                        Buscar
-                                                    </button>
-                                                </div>
+                                                    <!-- Botón de Buscar -->
+                                                    <div class="flex items-center gap-2 w-1/6">
+                                                        <button type="submit" class="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-200 flex items-center w-full text-center">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                                                                <circle cx="11" cy="11" r="8" />
+                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35" />
+                                                            </svg>
+                                                            Buscar
+                                                        </button>
+                                                    </div>
+                                                </form>
 
-                                                <div class="flex items-center gap-2 w-1/6">
-                                                    <button type="submit" class="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-200 flex items-center w-full text-center">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14m7-7H5" />
-                                                        </svg>
-                                                        Agregar
-                                                    </button>
-                                                </div>
-                                            </form>
+                                                <form action="../moduloUsuario/getVerificarRegistrarUsuario.php" method="post" class="flex gap-1 mb-4 items-center">
+                                                    <div class="flex items-center gap-2 w-full">
+                                                        <button name="btnRegistrarUsuario" type="submit" class="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-200 flex items-center w-full text-center">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14m7-7H5" />
+                                                            </svg>
+                                                            Agregar
+                                                        </button>
+                                                    </div>
+                                                </form>
+
+                                            </div>
                                         </div>
                                         <table class="w-full table-auto h-[70vh]">
                                             <thead>

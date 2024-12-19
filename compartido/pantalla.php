@@ -28,7 +28,7 @@ class Pantalla
         $ids = array_column($privilegios, 'id_privilegio');
     ?>
         <!-- ===== Sidebar  ===== -->
-        <div class="-translate-x-full absolute left-0 top-0 z-9999 flex h-screen w-72.5 flex-col bg-gray-950 duration-300 ease-linear lg:static lg:translate-x-0">
+        <div class="-translate-x-full absolute left-0 top-0 z-9999 flex h-screen w-72.5 flex-col bg-gray-950 ease-linear lg:static lg:translate-x-0 ">
             <!-- SIDEBAR HEADER -->
             <div class="flex items-center gap-4 px-7 py-5.5 select-none">
                 <div class="flex items-center mt-3 w-60">
@@ -39,7 +39,7 @@ class Pantalla
             </div>
             <!-- SIDEBAR HEADER -->
 
-            <div class="mt-2 no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear select-none">
+            <div class="mt-2 no-scrollbar flex flex-col overflow-y-auto duration-100 ease-linear select-none">
                 <!-- Sidebar Menu -->
                 <nav class="mt-5 px-4 py-4 lg:mt-9 lg:px-6">
                     <div>
