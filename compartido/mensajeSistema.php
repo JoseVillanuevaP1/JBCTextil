@@ -1,6 +1,6 @@
 <?php
-include_once("../incClass/pageGeneral.php");
-class formMensajeSistema extends pageGeneral
+include_once("../compartido/pantalla.php");
+class MensajeSistema extends pantalla
 {
 	public function mensajeExitShow($mensaje, $link)
 	{
@@ -14,7 +14,7 @@ class formMensajeSistema extends pageGeneral
 			<link href="../css/style.css" rel="stylesheet" type="text/css" />
 			<link href="./css/style.css" rel="stylesheet" type="text/css" />
 		</head>
-		<?php include_once("../incClass/scripts.inc"); ?>
+		<?php include_once("../compartido/scripts.inc"); ?>
 
 		<body>
 			<p>

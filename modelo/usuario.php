@@ -1,10 +1,10 @@
 <?php
-class userEntity
+class usuario
 {
 	private function EjecutarConexion()
 	{
-		include_once('Conecta.php');
-		$OBJConexion = new Conecta;
+		include_once('conexion.php');
+		$OBJConexion = new conexion;
 		return $OBJConexion->ConectaBD();
 	}
 
@@ -14,7 +14,7 @@ class userEntity
 		$conexion = $this->EjecutarConexion();
 		//$password = md5($password);  // Aunque usar MD5 no es seguro, sigue usándolo por tu lógica
 
-		$consulta = "SELECT * FROM usuarios WHERE username = '$username' AND password = '$password' AND estado = 1";
+		$consulta = "SELECT * FROM usuarios WHERE username = '$username' AND password = '$password'";
 		$resultado = mysqli_query($conexion, $consulta);
 		$aciertos = mysqli_num_rows($resultado);
 		mysqli_close($conexion);

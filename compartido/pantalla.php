@@ -1,5 +1,5 @@
 <?php
-class pageGeneral
+class Pantalla
 {
   protected function formHeadShow()
   {

@@ -1,6 +1,6 @@
 <?php
-include_once("../incClass/pageGeneral.php");
-class formMenuUser extends pageGeneral
+include_once("../compartido/pantalla.php");
+class formMenuUser extends pantalla
 {
 	public function formMenuUserShow($login, $privilegios)
 	{
@@ -25,12 +25,15 @@ class formMenuUser extends pageGeneral
 				<!-- ===== Content  ===== -->
 				<div class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
 					<?php $this->formHeadShow_2(); ?>
+					
 					<!-- ===== Main  ===== -->
 					<main class="min-h-screen bg-gray-900 select-none">
 						<div class="mx-auto max-w-screen-2xl p-4 h-full text-white">
-						</div>
+					asd	
+					</div>
 					</main>
 					<!-- ===== Main ===== -->
+				
 				</div>
 				<!-- ===== Content  ===== -->
 			</div>

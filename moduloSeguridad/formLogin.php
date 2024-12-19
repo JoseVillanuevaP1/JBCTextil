@@ -1,6 +1,6 @@
 <?php
-include_once("./incClass/pageGeneral.php");
-class formLogIn extends pageGeneral
+include_once("./compartido/pantalla.php");
+class formLogIn extends pantalla
 {
 	public function formLogInShow()
 	{
@@ -15,7 +15,7 @@ class formLogIn extends pageGeneral
 			<link rel="icon" type="image/png" href="./images/JBCTEXTIL.png">
 			<!-- CDN de Tailwind CSS -->
 			<script src="https://cdn.tailwindcss.com"></script>
-			<?php include_once("./incClass/scripts.inc"); ?>
+			<?php include_once("./compartido/scripts.inc"); ?>
 		</head>
 
 		<body class="bg-gray-950 select-none min-h-screen flex flex-col">
@@ -29,7 +29,7 @@ class formLogIn extends pageGeneral
 
 						<div class="p-8 rounded-2xl bg-slate-850 shadow-md shadow-yellow-500">
 							<h2 class="text-white text-center text-2xl font-bold">Iniciar Sesion</h2>
-							<form class="mt-8 space-y-4" name="form1" method="post" action="./securityModule/getLogIn.php">
+							<form class="mt-8 space-y-4" name="form1" method="post" action="./moduloSeguridad/getLogIn.php">
 								<div>
 									<label class="text-white text-sm mb-2 block">Usuario</label>
 									<div class="relative flex items-center">
