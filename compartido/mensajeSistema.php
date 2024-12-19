@@ -13,6 +13,7 @@ class MensajeSistema extends pantalla
 			<title>Mensaje del sistema</title>
 			<link href="../css/style.css" rel="stylesheet" type="text/css" />
 			<link href="./css/style.css" rel="stylesheet" type="text/css" />
+			<script src="https://cdn.tailwindcss.com"></script>
 		</head>
 		<?php include_once("../compartido/scripts.inc"); ?>
 

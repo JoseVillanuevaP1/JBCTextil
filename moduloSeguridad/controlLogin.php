@@ -8,7 +8,9 @@ class controlLogin
 		$validacion = $OBJUser->verificarUser($login, $password);
 		if ($validacion == 1) {
 			$privilegios =  $OBJUser->ObtenerPrivilegiosUsuario($login);
-			if ($privilegios != 0) { //llama a menu
+			if (count($privilegios) != 0) {
+				session_start();
+				$_SESSION["privilegios"] = $privilegios;
 				include_once('formMenuUser.php');
 				$OBJMenu = new formMenuUser;
 				$OBJMenu->formMenuUserShow($login, $privilegios);

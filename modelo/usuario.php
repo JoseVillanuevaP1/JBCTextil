@@ -34,19 +34,20 @@ class usuario
                      WHERE U.username = '$username'";
 
 		$resultado = mysqli_query($conexion, $consulta);
+		if (!$resultado) {
+			// Manejo de errores en caso de que la consulta falle
+			mysqli_close($conexion);
+			return [];
+		}
 
-		$aciertos = mysqli_num_rows($resultado);
+		$privilegios = [];
+		while ($fila = mysqli_fetch_assoc($resultado)) {
+			$privilegios[] = $fila;
+		}
+
 		mysqli_close($conexion);
 
-		if ($aciertos >= 1) {
-			$filaEncontrada = [];
-			while ($fila = mysqli_fetch_array($resultado)) {
-				$filaEncontrada[] = $fila;
-			}
-			return $filaEncontrada;
-		} else {
-			return 0;
-		}
+		return $privilegios;
 	}
 	/****************************************************/
 	/****************************************************/
@@ -65,22 +66,22 @@ class usuario
 	// }
 	// /****************************************************/
 	// /****************************************************/
-	// public function obtenerAllUsers()
-	// {
-	// 	$this->EjecutarConexion();
-	// 	$consulta = " 	SELECT * FROM usuario ORDER BY apaterno,amaterno";
-	// 	$resultado = mysql_query($consulta);
-	// 	mysql_close();
-	// 	$aciertos = mysql_num_rows($resultado);
-	// 	if ($aciertos >= 1) {
-	// 		for ($i = 0; $i < $aciertos; $i++) {
-	// 			$filaEncontrada[$i] = mysql_fetch_array($resultado);
-	// 		}
-	// 		return ($filaEncontrada);
-	// 	} else {
-	// 		return (0);
-	// 	}
-	// }
+	public function obtenerAllUsers()
+	{
+		$conexion = $this->EjecutarConexion();
+		$consulta = " 	SELECT * FROM usuario ORDER BY apaterno,amaterno";
+		$resultado = mysqli_query($conexion, $consulta);
+		mysqli_close($conexion);
+		$aciertos = mysqli_num_rows($resultado);
+		if ($aciertos >= 1) {
+			for ($i = 0; $i < $aciertos; $i++) {
+				$filaEncontrada[$i] = mysqli_fetch_array($resultado);
+			}
+			return ($filaEncontrada);
+		} else {
+			return (0);
+		}
+	}
 	// /****************************************************/
 	// /****************************************************/
 	// public function  obtenerDataUser($login)
