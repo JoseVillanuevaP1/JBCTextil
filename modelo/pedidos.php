@@ -75,4 +75,31 @@ class pedidos
             return [];
         }
     }
+    public function obtenerPedidoPreventa($id_pedido)
+    {
+        // Establecer la conexión a la base de datos
+        $conexion = $this->EjecutarConexion();
+        $consulta = "SELECT
+                        CONCAT(c.nombre, ' ' ,c.apellido) AS cliente,
+                        c.documento,
+                        c.correo_electronico,
+                        c.direccion,
+                        c.telefono 
+                     FROM
+                        pedidos p
+                     JOIN 
+                        clientes c ON c.id_cliente = p.id_cliente
+                     WHERE 
+                        p.id_pedido = $id_pedido";
+
+        // Ejecutar la consulta
+        $resultado = mysqli_query($conexion, $consulta);
+        $pedidoPreventa = [];
+        if ($resultado && mysqli_num_rows($resultado) > 0) {
+            // Obtener el resultado como un array asociativo
+            $pedidoPreventa = mysqli_fetch_assoc($resultado);
+        }
+        mysqli_close($conexion);
+        return $pedidoPreventa;
+    }
 }

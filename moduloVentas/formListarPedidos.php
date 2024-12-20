@@ -96,6 +96,9 @@ class formListarPedidos extends Pantalla
                                                         Acciones
                                                     </th>
                                                     <th class="px-4 py-4 font-medium text-black">
+                                                        Informe Preventa
+                                                    </th>
+                                                    <th class="px-4 py-4 font-medium text-black">
                                                         Estado
                                                     </th>
                                                 </tr>
@@ -117,6 +120,18 @@ class formListarPedidos extends Pantalla
                                                                         <button name="btnEditarPedido" type="submit" class="hover:text-blue-700">
                                                                             <svg xmlns="http://www.w3.org/2000/svg" class="fill-current" width="20" height="20" viewBox="0 0 576 512">
                                                                                 <path fill="" d="M402.6 83.2l90.2 90.2c3.8 3.8 3.8 10 0 13.8L274.4 405.6l-92.8 10.3c-12.4 1.4-22.9-9.1-21.5-21.5l10.3-92.8L388.8 83.2c3.8-3.8 10-3.8 13.8 0zm162-22.9l-48.8-48.8c-15.2-15.2-39.9-15.2-55.2 0l-35.4 35.4c-3.8 3.8-3.8 10 0 13.8l90.2 90.2c3.8 3.8 10 3.8 13.8 0l35.4-35.4c15.2-15.3 15.2-40 0-55.2zM384 346.2V448H64V128h229.8c3.2 0 6.2-1.3 8.5-3.5l40-40c7.6-7.6 2.2-20.5-8.5-20.5H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V306.2c0-10.7-12.9-16-20.5-8.5l-40 40c-2.2 2.3-3.5 5.3-3.5 8.5z" />
+                                                                            </svg>
+                                                                        </button>
+                                                                    </form>
+                                                                </div>
+                                                            </td>
+                                                            <td class="border-b border-[#eee] px-4 py-4 dark:border-strokedark">
+                                                                <div class="flex items-center space-x-3">
+                                                                    <form action="../moduloVentas/getVerificarEmitirInformePreventa.php" method="post">
+                                                                        <input name="idPedido" value="<?= $pedido['id_pedido'] ?>" type="text" hidden>
+                                                                        <button name="btnEmitirInformePreventa" type="submit" class="hover:text-blue-700">
+                                                                            <svg xmlns="http://www.w3.org/2000/svg" class="fill-current" width="20" height="20" viewBox="0 0 384 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                                                                                <path d="M64 0C28.7 0 0 28.7 0 64L0 448c0 35.3 28.7 64 64 64l256 0c35.3 0 64-28.7 64-64l0-288-128 0c-17.7 0-32-14.3-32-32L224 0 64 0zM256 0l0 128 128 0L256 0zM112 256l160 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-160 0c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64l160 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-160 0c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64l160 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-160 0c-8.8 0-16-7.2-16-16s7.2-16 16-16z" />
                                                                             </svg>
                                                                         </button>
                                                                     </form>
