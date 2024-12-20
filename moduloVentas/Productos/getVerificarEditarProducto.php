@@ -17,20 +17,21 @@ function validarCamposProducto($txtNombre)
 }
 
 $btnBuscarProducto = $_POST['btnBuscarProducto'] ?? null;
-$btnRegistrarProducto = $_POST['btnRegistrarProducto'] ?? null;
+$btnEditarProducto = $_POST['btnEditarProducto'] ?? null;
 $btnConfirmarRegistrarProducto = $_POST['btnConfirmarRegistrarProducto'] ?? null;
 $btnRegresar = $_POST['btnRegresar'] ?? null;
 
 if (validarBoton($btnBuscarProducto)) {
-    include_once('./controlVerificarEditarProductos.php');
+    include_once('./controlVerificarEditarProducto.php');
     $objForm = new controlVerificarEditarProducto;
     $objForm = $objForm->mostrarListarProducto();
-} else if (validarBoton($btnRegistrarProducto) || validarBoton($btnRegresar)) {
-    include_once('./controlVerificarRegistrarProducto.php');
-    $objForm = new controlVerificarRegistrarProducto;
-    $objForm = $objForm->mostrarRegistrarProducto();
+} else if (validarBoton($btnEditarrProducto) || validarBoton($btnRegresar)) {
+    $idProducto = $_POST['idProducto'];
+    include_once('./controlVerificarEditarProducto.php');
+    $objForm = new controlVerificarREditarProducto;
+    $objForm = $objForm->mostrarEditarProducto();
 } else if (validarBoton($btnConfirmarRegistrarProducto)) {
-
+    $idProducto = $_POST['idProducto'];
     $txtNombre = $_POST['txtNombre'];
 
     if (validarCamposProducto($txtNombre)) {
@@ -40,7 +41,7 @@ if (validarBoton($btnBuscarProducto)) {
     } else {
         include_once($_SERVER['DOCUMENT_ROOT'] . '/JBCTextil/compartido/MensajeSistema.php');
         $objMsj = new MensajeSistema;
-        $objMsj->mensajeSistemaShow("Error: Datos no validos<br>", "../moduloUsuario/getVerificarRegistrarUsuario.php");
+        $objMsj->mensajeSistemaShow("Error: Datos no validos<br>", "../moduloProducto/Productos/getVerificarEditarProducto.php");
     }
 } else {
     include_once($_SERVER['DOCUMENT_ROOT'] . '/JBCTextil/compartido/MensajeSistema.php');

@@ -23,7 +23,7 @@ class productos
 			$conexion = $this->EjecutarConexion();
 			// Consulta con filtro OR para nombre y username
 			$consulta = "SELECT id_producto, nombre
-						FROM productos ORDER BY nombre";
+						FROM productos";
 			// Ejecutar la consulta
 			$resultado = mysqli_query($conexion, $consulta);
 	
@@ -33,9 +33,45 @@ class productos
 					$productos[] = $fila;
 				}
 			}
-	
 			// Cerrar la conexión
 			mysqli_close($conexion);
 			return $productos;
 		}
+
+	public function obtenerProducto($idProducto)
+	{
+		$conexion = $this->EjecutarConexion();
+		$consulta = "SELECT id_producto, nombre
+					FROM productos WHERE id_producto = $idProducto";
+		$resultado = mysqli_query($conexion, $consulta);
+
+		$productos = [];
+		if ($resultado && mysqli_num_rows($resultado) > 0) {
+			while ($fila = mysqli_fetch_assoc($resultado)) {
+				$productos[] = $fila;
+			}
+		}
+
+		// Cerrar la conexión
+		mysqli_close($conexion);
+
+		return $productos;
+	}
+
+	public function actualizarProducto($idProducto, $nombre)
+	{
+		$conexion = $this->EjecutarConexion();
+
+		// Construir la consulta
+		$consulta = "UPDATE productos 
+					 SET nombre = '$nombre',
+				
+						WHERE id_producto = $idProducto";
+		// Ejecutar la consulta
+		$resultado = mysqli_query($conexion, $consulta);
+		// Cerrar la conexión
+		mysqli_close($conexion);
+
+		return $resultado ? true : false;
+	}
 }
