@@ -42,6 +42,8 @@ class MensajeSistema extends pantalla
 		</html>
 	<?php
 	}
+
+	
 	public function mensajeConfirmacionShow($mensaje, $link)
 	{
 	?>

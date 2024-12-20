@@ -58,7 +58,7 @@ class formListarClientes extends Pantalla
                                                     </div>
                                                 </form>
 
-                                                <form action="../clientes/getVerificarRegistrarCliente.php" method="post" class="flex gap-1 mb-4 items-center">
+                                                <form action="../../moduloVentas/clientes/getVerificarRegistrarCliente.php" method="post" class="flex gap-1 mb-4 items-center">
                                                     <div class="flex items-center gap-2 w-full">
                                                         <button name="btnRegistrarCliente" type="submit" class="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-200 flex items-center w-full text-center">
                                                             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">

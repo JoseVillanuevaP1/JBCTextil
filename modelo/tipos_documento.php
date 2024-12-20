@@ -1,12 +1,12 @@
 <?php
 class tipos_documento
 {
-//    private function EjecutarConexion()
-//    {
-//     include_once('conexion.php');
-//     $OBJConexion = new conexion;
-//       return $OBJConexion->ConectaBD();
-//    }
+    private function EjecutarConexion()
+    {
+     include_once('conexion.php');
+     $OBJConexion = new conexion;
+       return $OBJConexion->ConectaBD();
+    }
 
     // public function obtenerTiposDocumento()
     //     {
