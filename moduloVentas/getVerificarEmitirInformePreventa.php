@@ -17,15 +17,16 @@ function validarCamposPedido($txtCliente, $txtFechaEntrega, $txtLugarEntrega, $a
         return 0;
 }
 
-$btnRegistrarPedido = $_POST['btnRegistrarPedido'] ?? null;
-$btnConfirmarRegistrarPedido = $_POST['btnConfirmarRegistrarPedido'] ?? null;
+$btnEmitirInformePreventa = $_POST['btnEmitirInformePreventa'] ?? null;
+$btnConfirmarEmitirPreventa = $_POST['btnConfirmarEmitirPreventa'] ?? null;
 $btnRegresar = $_POST['btnRegresar'] ?? null;
 
-if (validarBoton($btnRegistrarPedido) || validarBoton($btnRegresar)) {
-    include_once('./controlVerificarRegistrarPedido.php');
-    $objForm = new controlVerificarRegistrarPedido;
-    $objForm = $objForm->mostrarRegistrarPedido();
-} else if (validarBoton($btnConfirmarRegistrarPedido)) {
+if (validarBoton($btnEmitirInformePreventa) || validarBoton($btnRegresar)) {
+    $idPedido = $_POST['idPedido'] ?? null;
+    include_once('./controlVerificarEmitirInformePreventa.php');
+    $objForm = new controlVerificarEmitirInformePreventa;
+    $objForm = $objForm->mostrarEmitirInformePreventa($idPedido);
+} else if (validarBoton($btnConfirmarEmitirPreventa)) {
 
     $txtCliente = $_POST['txtCliente'];
     $txtFechaEntrega = $_POST['txtFechaEntrega'];

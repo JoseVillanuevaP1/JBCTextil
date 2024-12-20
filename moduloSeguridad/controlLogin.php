@@ -5,12 +5,13 @@ class controlLogin
 	{
 		include_once('../modelo/usuarios.php');
 		$OBJUser = new usuarios;
-		$validacion = $OBJUser->verificarUser($login, $password);
-		if ($validacion == 1) {
+		$idUsuario = $OBJUser->verificarUser($login, $password);
+		if ($idUsuario != 0) {
 			$privilegios =  $OBJUser->ObtenerPrivilegiosUsuario($login);
 			if (count($privilegios) != 0) {
 				session_start();
 				$_SESSION["privilegios"] = $privilegios;
+				$_SESSION["idUsuario"] = $idUsuario;
 				include_once('formMenuUser.php');
 				$OBJMenu = new formMenuUser;
 				$OBJMenu->formMenuUserShow($login, $privilegios);

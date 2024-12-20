@@ -11,15 +11,19 @@ class usuarios
 	/********************************************/
 	public function verificarUser($username, $password)
 	{
+		// Realizar la conexión
 		$conexion = $this->EjecutarConexion();
-		//$password = md5($password);  // Aunque usar MD5 no es seguro, sigue usándolo por tu lógica
-
-		$consulta = "SELECT * FROM usuarios WHERE username = '$username' AND password = '$password'";
+		$consulta = "SELECT id_usuario FROM usuarios WHERE username = '$username' AND password = '$password'";
 		$resultado = mysqli_query($conexion, $consulta);
-		$aciertos = mysqli_num_rows($resultado);
-		mysqli_close($conexion);
 
-		return ($aciertos == 1) ? 1 : 0;
+		// Comprobar si se encontraron resultados
+		if ($acierto = mysqli_fetch_assoc($resultado)) {
+			$id_usuario = $acierto['id_usuario'];
+		} else {
+			$id_usuario = 0;
+		}
+		mysqli_close($conexion);
+		return $id_usuario;
 	}
 	/****************************************************/
 	/****************************************************/
