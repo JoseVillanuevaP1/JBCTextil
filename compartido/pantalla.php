@@ -33,7 +33,7 @@ class Pantalla
             <div class="flex items-center gap-4 px-7 py-5.5 select-none">
                 <div class="flex items-center mt-3 w-60">
                     <!-- Logo -->
-                    <img src="../images/JBCTEXTIL.png" alt="Logo" class="w-14 h-14">
+                    <img src="../../images/JBCTEXTIL.png" alt="Logo" class="w-14 h-14">
                     <h1 class="text-2xl font-semibold text-gray-50 ml-4">JBC Textil</h1>
                 </div>
             </div>
@@ -80,17 +80,19 @@ class Pantalla
                                 <?php } ?>
                                 <?php if (in_array(7, $ids)) { ?>
                                     <li>
-                                        <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-white hover:text-yellow-300 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4" href="#">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 512 512" class="fill-current"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                                                <path d="M234.5 5.7c13.9-5 29.1-5 43.1 0l192 68.6C495 83.4 512 107.5 512 134.6l0 242.9c0 27-17 51.2-42.5 60.3l-192 68.6c-13.9 5-29.1 5-43.1 0l-192-68.6C17 428.6 0 404.5 0 377.4L0 134.6c0-27 17-51.2 42.5-60.3l192-68.6zM256 66L82.3 128 256 190l173.7-62L256 66zm32 368.6l160-57.1 0-188L288 246.6l0 188z" />
-                                            </svg>
-                                            Productos
-                                        </a>
+                                    <form action="/jbctextil/moduloVentas/Productos/getEnlaceProductos.php" method="post">
+                                            <button name="btnProductos" type="submit" class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white hover:text-yellow-300 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 448 512" class="fill-current"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                                                    <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z" />
+                                                </svg>
+                                                Productos
+                                            </button>
+                                        </form>
                                     </li>
                                 <?php } ?>
                                 <?php if (in_array(1, $ids)) { ?>
                                     <li>
-                                        <form action="../moduloVentas/getEnlacePedido.php" method="post">
+                                        <form action="jbctextil/moduloVentas/getEnlacePedido.php" method="post">
                                             <button type="submit" name="btnPedido" class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-white hover:text-yellow-300 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4" href="#" @click="selected = (selected === 'Profile' ? '':'Profile')" :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Profile') &amp;&amp; (page === 'profile') }">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 576 512" class="fill-current"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                                                     <path d="M0 24C0 10.7 10.7 0 24 0L69.5 0c22 0 41.5 12.8 50.6 32l411 0c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3l-288.5 0 5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5L488 336c13.3 0 24 10.7 24 24s-10.7 24-24 24l-288.3 0c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5L24 48C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" />
@@ -102,25 +104,25 @@ class Pantalla
                                     </li>
                                 <?php } ?>
                                 <?php if (in_array(6, $ids)) { ?>
-                                    <li>
-                                        <a class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-white hover:text-yellow-300 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4" href="#" @click.prevent="selected = (selected === 'Forms' ? '':'Forms')" :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Forms') || (page === 'formElements' || page === 'formLayout') }">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 576 512" class="fill-current"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                                                <path d="M64 32C46.3 32 32 46.3 32 64l0 240 0 48 0 80c0 26.5 21.5 48 48 48l416 0c26.5 0 48-21.5 48-48l0-128 0-151.8c0-18.2-19.4-29.7-35.4-21.1L352 215.4l0-63.2c0-18.2-19.4-29.7-35.4-21.1L160 215.4 160 64c0-17.7-14.3-32-32-32L64 32z" />
-                                            </svg>
-
-                                            Distribuidores
-                                        </a>
-                                    </li>
+                                    <form action="/jbctextil/moduloVentas/Distribuidores/getEnlaceDistribuidores.php" method="post">
+                                            <button name="btnDistribuidores" type="submit" class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white hover:text-yellow-300 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 448 512" class="fill-current"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                                                    <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z" />
+                                                </svg>
+                                                Distribuidores
+                                            </button>
+                                        </form>
                                 <?php } ?>
                                 <?php if (in_array(8, $ids)) { ?>
                                     <li>
-                                        <a class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white hover:text-yellow-300 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4" href="#" @click="selected = (selected === 'Tables' ? '':'Tables')" :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Tables') &amp;&amp; (page === 'tables') }">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 384 512" class="fill-current"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                                                <path d="M64 0C28.7 0 0 28.7 0 64L0 448c0 35.3 28.7 64 64 64l256 0c35.3 0 64-28.7 64-64l0-288-128 0c-17.7 0-32-14.3-32-32L224 0 64 0zM256 0l0 128 128 0L256 0zM64 80c0-8.8 7.2-16 16-16l64 0c8.8 0 16 7.2 16 16s-7.2 16-16 16L80 96c-8.8 0-16-7.2-16-16zm0 64c0-8.8 7.2-16 16-16l64 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-64 0c-8.8 0-16-7.2-16-16zm128 72c8.8 0 16 7.2 16 16l0 17.3c8.5 1.2 16.7 3.1 24.1 5.1c8.5 2.3 13.6 11 11.3 19.6s-11 13.6-19.6 11.3c-11.1-3-22-5.2-32.1-5.3c-8.4-.1-17.4 1.8-23.6 5.5c-5.7 3.4-8.1 7.3-8.1 12.8c0 3.7 1.3 6.5 7.3 10.1c6.9 4.1 16.6 7.1 29.2 10.9l.5 .1s0 0 0 0s0 0 0 0c11.3 3.4 25.3 7.6 36.3 14.6c12.1 7.6 22.4 19.7 22.7 38.2c.3 19.3-9.6 33.3-22.9 41.6c-7.7 4.8-16.4 7.6-25.1 9.1l0 17.1c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-17.8c-11.2-2.1-21.7-5.7-30.9-8.9c0 0 0 0 0 0c-2.1-.7-4.2-1.4-6.2-2.1c-8.4-2.8-12.9-11.9-10.1-20.2s11.9-12.9 20.2-10.1c2.5 .8 4.8 1.6 7.1 2.4c0 0 0 0 0 0s0 0 0 0s0 0 0 0c13.6 4.6 24.6 8.4 36.3 8.7c9.1 .3 17.9-1.7 23.7-5.3c5.1-3.2 7.9-7.3 7.8-14c-.1-4.6-1.8-7.8-7.7-11.6c-6.8-4.3-16.5-7.4-29-11.2l-1.6-.5s0 0 0 0c-11-3.3-24.3-7.3-34.8-13.7c-12-7.2-22.6-18.9-22.7-37.3c-.1-19.4 10.8-32.8 23.8-40.5c7.5-4.4 15.8-7.2 24.1-8.7l0-17.3c0-8.8 7.2-16 16-16z" />
-                                            </svg>
-
-                                            Comprobantes de Pago
-                                        </a>
+                                    <form action="/jbctextil/moduloVentas/ComprobantesPago/getEnlaceComprobantesPago.php" method="post">
+                                            <button name="btnComprobantesDePago" type="submit" class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white hover:text-yellow-300 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 448 512" class="fill-current"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                                                    <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z" />
+                                                </svg>
+                                                Comprobantes De Pago
+                                            </button>
+                                        </form>
                                     </li>
                                 <?php } ?>
                             </ul>
