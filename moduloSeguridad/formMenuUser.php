@@ -27,9 +27,9 @@ class formMenuUser extends pantalla
 					<?php $this->formHeadShow_2(); ?>
 
 					<!-- ===== Main  ===== -->
-					<main class="min-h-screen bg-gray-900 select-none">
+					<main class="h-full bg-gray-900 select-none">
 						<div class="mx-auto max-w-screen-2xl p-4 h-full text-white">
-							Hola
+							Bienvenido...
 						</div>
 					</main>
 					<!-- ===== Main ===== -->
