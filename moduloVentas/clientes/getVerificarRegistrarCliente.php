@@ -3,9 +3,9 @@ function validarBoton($boton)
 {
     return isset($boton);    
 }
-$btnClientes = $_POST['btnClientes'] ?? null;
-if(validarBoton($btnClientes)){
-    include_once('../../moduloVentas/clientes/formListarClientes.php');
+$btnRegistrarCliente = $_POST['btnRegistrarCliente'] ?? null;
+if(validarBoton($btnRegistrarCliente)){
+    include_once('../../moduloVentas/clientes/controlVerificarRegistrarCliente.php');
     $objForm = new formListarClientes;
     $objForm = $objForm->formListarClientesShow();
 } else {
