@@ -6,11 +6,11 @@ function validarBoton($boton)
     else
         return FALSE;
 }
-function validarCamposPedido($txtUsuario, $txtContrasenia, $txtNombre, $txtCorreo, $arrayPrivilegios)
+function validarCamposPedido($txtCliente, $txtFechaEntrega, $txtLugarEntrega, $arrayIdProductos, $arrayDescripcion, $arrayCantidad)
 {
     if (
-        strlen(trim($txtUsuario)) > 3  && strlen(trim($txtContrasenia)) > 3 &&
-        strlen(trim($txtNombre)) > 3 && strlen(trim($txtCorreo)) > 3 && isset($arrayPrivilegios) && count($arrayPrivilegios) > 0
+        isset($txtCliente) && isset($txtFechaEntrega) &&
+        isset($txtLugarEntrega) && isset($arrayIdProductos) && isset($arrayDescripcion) && isset($arrayCantidad)
     )
         return 1;
     else
@@ -27,16 +27,31 @@ if (validarBoton($btnRegistrarPedido) || validarBoton($btnRegresar)) {
     $objForm = $objForm->mostrarRegistrarPedido();
 } else if (validarBoton($btnConfirmarRegistrarPedido)) {
 
-    $txtUsuario = $_POST['txtUsuario'];
-    $txtContrasenia = $_POST['txtContrasenia'];
-    $txtNombre = $_POST['txtNombre'];
-    $txtCorreo = $_POST['txtCorreo'];
-    $arrayPrivilegios = $_POST['arrayPrivilegios'] ?? null;
+    $txtCliente = $_POST['txtCliente'];
+    $txtFechaEntrega = $_POST['txtFechaEntrega'];
+    $txtLugarEntrega = $_POST['txtLugarEntrega'];
+    $arrayIdProductos = $_POST['arrayIdProductos'] ?? null;
+    $arrayDescripcion = $_POST['arrayDescripcion'] ?? null;
+    $arrayCantidad = $_POST['arrayCantidad'] ?? null;
 
-    if (validarCamposUsuario($txtUsuario, $txtContrasenia, $txtNombre, $txtCorreo, $arrayPrivilegios)) {
-        include_once('../moduloUsuario/controlVerificarRegistrarUsuario.php');
-        $objForm = new controlVerificarRegistrarUsuario;
-        $objForm = $objForm->registrarUsuario($txtUsuario, $txtContrasenia, $txtNombre, $txtCorreo, $arrayPrivilegios);
+    if (validarCamposPedido($txtCliente, $txtFechaEntrega, $txtLugarEntrega, $arrayIdProductos, $arrayDescripcion, $arrayCantidad)) {
+
+        $arrayProductos = [];
+        foreach ($arrayIdProductos as $index => $idProducto) {
+            $arrayProductos[] = [
+                'idProducto' => ($idProducto),
+                'descripcion' => ($arrayDescripcion[$index]),
+                'cantidad' => (int)$arrayCantidad[$index]
+            ];
+        }
+        session_start();
+        $txtIdUsuario = $_SESSION["idUsuario"];
+        $txtEstado = 'pedido';
+        $txtFechaEmision = date('Y-m-d');
+
+        include_once('../moduloVentas/controlVerificarRegistrarPedido.php');
+        $objForm = new controlVerificarRegistrarPedido;
+        $objForm = $objForm->registrarPedido($txtCliente, $txtFechaEntrega, $txtLugarEntrega, $arrayProductos, $txtFechaEmision, $txtEstado, $txtIdUsuario);
     } else {
         include_once('../compartido/mensajeSistema.php');
         $objMsj = new MensajeSistema;

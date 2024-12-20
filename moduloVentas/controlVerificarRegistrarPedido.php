@@ -13,14 +13,14 @@ class controlVerificarRegistrarPedido
         $OBJForm = new formRegistrarPedido;
         $OBJForm = $OBJForm->formRegistrarPedidoShow($productos, $clientes);
     }
-    public function registrarPedido($nombre, $password, $username, $correo, $arrayPrivilegios)
+    public function registrarPedido($txtCliente, $txtFechaEntrega, $txtLugarEntrega,  $arrayProductos, $txtFechaEmision, $txtEstado, $txtIdUsuario)
     {
-        include_once('../modelo/usuarios.php');
-        $OBJTipos = new usuarios;
-        $idUsuario = $OBJTipos->registrarUsuario($nombre, $password, $username, $correo);
-        include_once('../modelo/usuario_privilegios.php');
-        $OBJpriv = new usuario_privilegios;
-        $OBJpriv->registrarPrivilegios($idUsuario, $arrayPrivilegios);
+        include_once('../modelo/pedidos.php');
+        $OBJpriv = new pedidos;
+        $idPedido = $OBJpriv->registrarPedido($txtCliente, $txtFechaEntrega, $txtLugarEntrega, $txtFechaEmision, $txtEstado, $txtIdUsuario);
+        include_once('../modelo/detalles_pedido.php');
+        $OBJTipos = new detalles_pedido;
+        $OBJTipos = $OBJTipos->registrarDetallesPedido($idPedido, $arrayProductos);
         include_once('../compartido/mensajeSistema.php');
         $OBJ = new MensajeSistema;
         $OBJ = $OBJ->mensajeConfirmacionShow("Se registró exitosamente", "../moduloUsuario/getEnlaceUsuario.php");
