@@ -6,14 +6,14 @@ function validarBoton($boton)
     else
         return FALSE;
 }
-function validarCamposDistribuidor($txtNombre, $txtRUC, $txtDireccion, $txtCorreo,$txtTelefono1,$txtTelefono2,$txtTelefono3)
+function validarCamposDistribuidor($txtNombre, $intRUC, $txtDireccion, $txtCorreo,$intTelefono1,$intTelefono2,$intTelefono3)
 {
     if (
-        strlen(trim($txtNombre)) > 3  && strlen(trim($txtRUC)) == 11 &&
+        strlen(trim($txtNombre)) > 3  && strlen(trim($intRUC)) == 11 &&
         strlen(trim($txtDireccion)) > 3 && strlen(trim($txtCorreo)) > 3 &&
-        (strlen(trim($txtTelefono1)) == 0 OR strlen(trim($txtTelefono1))== 9) &&
-        (strlen(trim($txtTelefono2)) == 0 OR strlen(trim($txtTelefono2)) == 9) &&
-        (strlen(trim($txtTelefono3)) == 0 OR strlen(trim($txtTelefono3)) == 9)
+        (strlen(trim($intTelefono1)) == 0 OR strlen(trim($intTelefono1))== 9) &&
+        (strlen(trim($intTelefono2)) == 0 OR strlen(trim($intTelefono2)) == 9) &&
+        (strlen(trim($intTelefono3)) == 0 OR strlen(trim($intTelefono3)) == 9)
     )
         return 1;
     else
@@ -31,17 +31,17 @@ if (validarBoton($btnRegistrarDistribuidor) || validarBoton($btnRegresar)) {
 } else if (validarBoton($btnConfirmarRegistrarDistribuidor)) {
 
     $txtNombre = $_POST['txtNombre'];
-    $txtRUC = $_POST['txtRUC'];
+    $intRUC = $_POST['intRUC'];
     $txtDireccion = $_POST['txtDireccion'];
     $txtCorreo = $_POST['txtCorreo'];
-    $txtTelefono1 = $_POST['txtTelefono1'];
-    $txtTelefono2  = $_POST['txtTelefono2'];
-    $txtTelefono3  = $_POST['txtTelefono3'];
+    $intTelefono1 = $_POST['intTelefono1'];
+    $intTelefono2  = $_POST['intTelefono2'];
+    $intTelefono3  = $_POST['intTelefono3'];
 
-    if (validarCamposDistribuidor($txtNombre, $txtRUC, $txtDireccion, $txtCorreo,$txtTelefono1,$txtTelefono2,$txtTelefono3)) {
+    if (validarCamposDistribuidor($txtNombre, $intRUC, $txtDireccion, $txtCorreo,$intTelefono1,$intTelefono2,$intTelefono3)) {
         include_once('./controlVerificarRegistrarDistribuidor.php');
         $objForm = new controlVerificarRegistrarDistribuidor;
-        $objForm = $objForm->registrarDistribuidor($txtNombre, $txtRUC, $txtDireccion, $txtCorreo,$txtTelefono1,$txtTelefono2,$txtTelefono3);
+        $objForm = $objForm->registrarDistribuidor($txtNombre, $intRUC, $txtDireccion, $txtCorreo,$intTelefono1,$intTelefono2,$intTelefono3);
     } else {
         include_once($_SERVER['DOCUMENT_ROOT'] . '/JBCTextil/compartido/MensajeSistema.php');
         $objMsj = new MensajeSistema;

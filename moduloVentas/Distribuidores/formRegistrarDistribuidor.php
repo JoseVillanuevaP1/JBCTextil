@@ -60,7 +60,7 @@ class formRegistrarDistribuidor extends Pantalla
                                                         <label class="mb-3 block text-lg font-medium text-black dark:text-black">
                                                             RUC
                                                         </label>
-                                                        <input name="txtRUC" type="text" placeholder="" class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+                                                        <input name="intRUC" type="text" placeholder="" class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
                                                     </div>
                                                     <div class="w-full xl:w-1/2">
                                                         <label class="mb-3 block text-lg font-medium text-black dark:text-black">
@@ -78,19 +78,19 @@ class formRegistrarDistribuidor extends Pantalla
                                                         <label class="mb-3 block text-lg font-medium text-black dark:text-black">
                                                             Telefono1
                                                         </label>
-                                                        <input name="txtTelefono1" type="text" placeholder="" class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+                                                        <input name="intTelefono1" type="text" placeholder="" class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
                                                     </div>
                                                     <div class="w-full xl:w-1/2">
                                                         <label class="mb-3 block text-lg font-medium text-black dark:text-black">
                                                             Telefono2
                                                         </label>
-                                                        <input name="txtTelefono2" type="text" placeholder="" class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+                                                        <input name="intTelefono2" type="text" placeholder="" class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
                                                     </div>
                                                     <div class="w-full xl:w-1/2">
                                                         <label class="mb-3 block text-lg font-medium text-black dark:text-black">
                                                             Telefono3
                                                         </label>
-                                                        <input name="txtTelefono3" type="text" placeholder="" class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+                                                        <input name="intTelefono3" type="text" placeholder="" class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
                                                     </div>
                                                 </div>
                                                                            
