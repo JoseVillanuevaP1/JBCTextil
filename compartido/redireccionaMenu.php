@@ -16,5 +16,5 @@ if (isset($_POST['retrocede']) and strcmp($_POST['login'], "") != 0) {
 } else {
 	include_once('../compartido/mensajeSistema.php');
 	$objMsj = new mensajeSistema;
-	$objMsj->mensajeSistemaShow("Error: Se ha detectado un acceso no autorizado<br>", "<p><a href='../index.php'>Ir al inicio</a></p>");
+	$objMsj->mensajeSistemaShow("Error: Se ha detectado un acceso no autorizado<br>", '../index.php');
 }

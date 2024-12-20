@@ -17,12 +17,12 @@ class controlLogin
 			} else {
 				include_once('../compartido/mensajeSistema.php');
 				$objMsj = new mensajeSistema;
-				$objMsj->mensajeSistemaShow("Error: Usuario sin privilegios o es un intento de acceso no permitido <br>", "<p><a href='../index.php'>Ir al inicio</a></p>");
+				$objMsj->mensajeSistemaShow("Error: Usuario sin privilegios o es un intento de acceso no permitido <br>",'../index.php');
 			}
 		} else {
 			include_once('../compartido/mensajeSistema.php');
 			$objMsj = new mensajeSistema;
-			$objMsj->mensajeSistemaShow("Error: Se ha detectado un acceso no autorizado<br>", "<p><a href='../index.php'>Ir al inicio</a></p>");
+			$objMsj->mensajeSistemaShow("Error: Se ha detectado un acceso no autorizado<br>", '../index.php');
 		}
 	}
 }
