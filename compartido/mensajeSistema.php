@@ -1,5 +1,5 @@
 <?php
-include_once("../compartido/pantalla.php");
+include_once("pantalla.php");
 class MensajeSistema extends pantalla
 {
 	public function mensajeExitShow($mensaje, $link)
