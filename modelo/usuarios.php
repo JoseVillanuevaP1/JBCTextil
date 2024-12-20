@@ -80,7 +80,7 @@ class usuarios
 	{
 		$conexion = $this->EjecutarConexion();
 		$consulta = "SELECT id_usuario, nombre, correo, username, password
-					FROM usuarios WHERE  id_usuario = $idUsuario";
+					FROM usuarios WHERE id_usuario = $idUsuario";
 		$resultado = mysqli_query($conexion, $consulta);
 
 		$usuarios = [];
