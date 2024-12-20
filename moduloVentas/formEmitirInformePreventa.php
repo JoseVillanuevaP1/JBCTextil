@@ -60,57 +60,70 @@ class formEmitirInformePreventa extends Pantalla
                                                 <div class="flex flex-wrap mb-5 w-full">
                                                     <div class="mb-5 w-full">
                                                         <!-- Cliente -->
-                                                        <div class="flex flex- mb-4 gap-2 w-full">
+                                                        <div class="flex items-center mb-4 gap-2 w-full">
                                                             <label class="mb-3 block text-lg font-medium text-black">
                                                                 Cliente
                                                             </label>
-                                                            <input value="<?= $pedido["cliente"] ?>" id="txtCliente" name="txtCliente" type="text" placeholder="" class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" readonly>
+                                                            <input value="<?= $pedido["cliente"] ?>" id="txtCliente" name="txtCliente" type="text" placeholder="" class="w-full ml-4 rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" readonly>
                                                         </div>
 
                                                         <!-- Correo -->
-                                                        <div class="mb-4 w-full">
+                                                        <div class="flex items-center mb-4 w-full">
                                                             <label class="mb-3 block text-lg font-medium text-black">
                                                                 Correo
                                                             </label>
-                                                            <input value="<?= $pedido["correo_electronico"] ?>" id="txtCorreo" name="txtCorreo" type="txt" placeholder="" class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" readonly>
+                                                            <input value="<?= $pedido["correo_electronico"] ?>" id="txtCorreo" name="txtCorreo" type="txt" placeholder="" class="w-full ml-6 rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" readonly>
                                                         </div>
 
                                                         <!-- Lugar de Entrega -->
-                                                        <div class="mb-4 w-full">
+                                                        <div class="flex items-center w-full">
                                                             <label class="mb-3 block text-lg font-medium text-black">
                                                                 Telefono
                                                             </label>
-                                                            <input value="<?= $pedido["telefono"] ?>" name="txtTelefono" type="text" placeholder="Ingrese lugar" class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary " readonly>
+                                                            <input value="<?= $pedido["telefono"] ?>" name="txtTelefono" type="text" placeholder="Ingrese lugar" class="w-full ml-3 rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary " readonly>
                                                         </div>
                                                     </div>
                                                 </div>
 
-                                                <div class="overflow-x-auto">
+                                                <h2 class="text-title-md2 font-bold text-black mb-3">
+                                                    DETALLES DE PEDIDO
+                                                </h2>
+                                                <div class="overflow-x-auto mb-5">
                                                     <table class="min-w-full table-auto border-collapse">
                                                         <thead>
                                                             <tr class="bg-gray-200">
                                                                 <th class="px-4 py-2 text-left">Producto</th>
-                                                                <th class="px-4 py-2 text-left">Costo Unitario</th>
+                                                                <th class="px-4 py-2 text-left">Descripcion</th>
                                                                 <th class="px-4 py-2 text-left">Cantidad</th>
+                                                                <th class="px-4 py-2 text-left">Costo Unitario</th>
                                                                 <th class="px-4 py-2 text-left">Costo</th>
                                                                 <th class="px-4 py-2 text-left">Acciones</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr class="bg-white border-b hover:bg-gray-50">
-                                                                <td class="px-4 py-2">Producto 1</td>
-                                                                <td class="px-4 py-2 text-right"><span class="text-green-500">$10.00</span></td>
-                                                                <td class="px-4 py-2 text-right">5</td>
-                                                                <td class="px-4 py-2 text-right"><span class="text-green-500">$50.00</span></td>
-                                                                <td class="px-4 py-2 text-center">
-                                                                    <button class="text-blue-500 hover:text-blue-700">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" class="fill-current" width="20" height="20" viewBox="0 0 384 512">
-                                                                            <path d="M64 0C28.7 0 0 28.7 0 64L0 448c0 35.3 28.7 64 64 64l256 0c35.3 0 64-28.7 64-64l0-288-128 0c-17.7 0-32-14.3-32-32L224 0 64 0zM256 0l0 128 128 0L256 0zM112 256l160 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-160 0c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64l160 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-160 0c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64l160 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-160 0c-8.8 0-16-7.2-16-16s7.2-16 16-16z" />
-                                                                        </svg>
-                                                                    </button>
-                                                                </td>
-                                                            </tr>
-                                                            <!-- Puedes agregar más filas aquí -->
+                                                            <?php foreach ($detallesPedido as $producto):
+                                                            ?>
+                                                                <tr class="bg-white border-b hover:bg-gray-50">
+                                                                    <td class="px-4 py-2"><?php echo ucwords(htmlspecialchars($producto['producto_nombre'])); ?></td>
+                                                                    <td class="px-4 py-2">
+                                                                        <span><?php echo $producto['detalle_descripcion']; ?></span>
+                                                                    </td>
+                                                                    <td class="px-4 py-2"><?php echo $producto['detalle_cantidad']; ?></td>
+                                                                    <td class="px-4 py-2">
+                                                                        <span>0.00</span>
+                                                                    </td>
+                                                                    <td class="px-4 py-2">
+                                                                        <span>0.00</span>
+                                                                    </td>
+                                                                    <td class="px-4 py-2">
+                                                                        <button type="button" class="btnModalRecursos text-blue-500 hover:text-blue-700">
+                                                                            <svg xmlns="http://www.w3.org/2000/svg" class="fill-current" width="20" height="20" viewBox="0 0 384 512">
+                                                                                <path d="M64 0C28.7 0 0 28.7 0 64L0 448c0 35.3 28.7 64 64 64l256 0c35.3 0 64-28.7 64-64l0-288-128 0c-17.7 0-32-14.3-32-32L224 0 64 0zM256 0l0 128 128 0L256 0zM112 256l160 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-160 0c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64l160 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-160 0c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64l160 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-160 0c-8.8 0-16-7.2-16-16s7.2-16 16-16z" />
+                                                                            </svg>
+                                                                        </button>
+                                                                    </td>
+                                                                </tr>
+                                                            <?php endforeach; ?>
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -118,6 +131,78 @@ class formEmitirInformePreventa extends Pantalla
                                                 <button name="confirmarEmitirInformePreventa" type="submit" class="flex w-full justify-center rounded bg-blue-500 p-3 font-medium text-white hover:bg-opacity-90">
                                                     Confirmar
                                                 </button>
+
+                                                <!-- Modal -->
+                                                <div class="modalRecursos fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center hidden w-full">
+                                                    <div class="bg-white rounded-lg w-full max-w-4xl p-6 relative">
+                                                        <!-- Título -->
+                                                        <h2 class="text-xl font-semibold mb-4">Recursos requeridos</h2>
+
+                                                        <!-- Tabla -->
+                                                        <table class="w-full border-collapse border border-gray-300" id="recursosTable">
+                                                            <thead>
+                                                                <tr class="bg-gray-200">
+                                                                    <th class="border border-gray-300 px-4 py-2">N°</th>
+                                                                    <th class="border border-gray-300 px-4 py-2">Tipo</th>
+                                                                    <th class="border border-gray-300 px-4 py-2">Recurso</th>
+                                                                    <th class="border border-gray-300 px-4 py-2">Distribuidor</th>
+                                                                    <th class="border border-gray-300 px-4 py-2">Precio</th>
+                                                                    <th class="border border-gray-300 px-4 py-2">Acciones</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="border border-gray-300 px-4 py-2 text-center">1</td>
+                                                                    <td class="border border-gray-300 px-4 py-2 text-center">
+                                                                        <select class="border rounded w-full">
+                                                                            <option></option>
+                                                                            <option>Servicio</option>
+                                                                            <option>Material</option>
+                                                                        </select>
+                                                                    </td>
+                                                                    <td class="border border-gray-300 px-4 py-2 text-center">
+                                                                        <select class="border rounded w-full">
+                                                                            <option></option>
+                                                                            <option>Planchado</option>
+                                                                            <option>Tela Pique</option>
+                                                                            <option>Tela Sintética</option>
+                                                                        </select>
+                                                                    </td>
+                                                                    <td class="border border-gray-300 px-4 py-2 text-center">
+                                                                        <select class="border rounded w-full">
+                                                                            <option></option>
+                                                                            <option>TexPeru S.A.C</option>
+                                                                            <option>Nazca S.A.C</option>
+                                                                            <option>TejeExpress</option>
+                                                                            <option>Bravo's S.A.C</option>
+                                                                        </select>
+                                                                    </td>
+                                                                    <td class="border border-gray-300 px-4 py-2 text-center">
+                                                                        <input type="number" class="border rounded w-full text-center" value="0.00">
+                                                                    </td>
+                                                                    <td class="border border-gray-300 px-4 py-2 text-center">
+                                                                        <button type="button" class="text-red-500 deleteRow">🗑️</button>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+
+                                                        <!-- Botón para agregar fila -->
+                                                        <div class="mt-4">
+                                                            <button id="addRow" class="bg-blue-500 text-white px-4 py-2 rounded">Agregar Fila</button>
+                                                        </div>
+
+                                                        <!-- Total y Confirmar -->
+                                                        <div class="flex justify-between items-center mt-4">
+                                                            <span>Total: <strong id="totalPrice">0.00</strong></span>
+                                                            <button type="button" class="bg-green-500 text-white px-4 py-2 rounded">Confirmar</button>
+                                                        </div>
+
+                                                        <!-- Botón para cerrar -->
+                                                        <button type="button" class="btnCloseModal absolute top-2 right-2 text-gray-500">✖</button>
+                                                    </div>
+                                                </div>
+
                                             </div>
                                         </form>
                                     </div>
@@ -137,8 +222,7 @@ class formEmitirInformePreventa extends Pantalla
             <?php include_once("../js/toggleHeader.js"); ?>
         </script>
         <script>
-            const productos = <?= json_encode($productos); ?>;
-            <?php include_once("../js/registrarPedidos.js"); ?>
+            <?php include_once("../js/emitirPreventa.js"); ?>
         </script>
 
         </html>
