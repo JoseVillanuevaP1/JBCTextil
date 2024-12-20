@@ -33,7 +33,7 @@ class Pantalla
             <div class="flex items-center gap-4 px-7 py-5.5 select-none">
                 <div class="flex items-center mt-3 w-60">
                     <!-- Logo -->
-                    <img src="../images/JBCTEXTIL.png" alt="Logo" class="w-14 h-14">
+                    <img src="../../images/JBCTEXTIL.png" alt="Logo" class="w-14 h-14">
                     <h1 class="text-2xl font-semibold text-gray-50 ml-4">JBC Textil</h1>
                 </div>
             </div>

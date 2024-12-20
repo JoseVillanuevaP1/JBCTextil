@@ -12,7 +12,7 @@ class MensajeSistema extends pantalla
 			<meta charset="UTF-8">
 			<meta name="viewport" content="width=device-width, initial-scale=1.0">
 			<title>JBC Textil</title>
-			<link rel="icon" type="image/png" href="./images/JBCTEXTIL.png">
+			<link rel="icon" type="image/png" href="../../images/JBCTEXTIL.png">
 			<script src="https://cdn.tailwindcss.com"></script>
 		</head>
 
@@ -52,7 +52,7 @@ class MensajeSistema extends pantalla
 			<meta charset="UTF-8">
 			<meta name="viewport" content="width=device-width, initial-scale=1.0">
 			<title>JBC Textil</title>
-			<link rel="icon" type="image/png" href="./images/JBCTEXTIL.png">
+			<link rel="icon" type="image/png" href="../../images/JBCTEXTIL.png">
 			<script src="https://cdn.tailwindcss.com"></script>
 		</head>
 
