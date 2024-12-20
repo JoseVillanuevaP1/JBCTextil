@@ -1,8 +1,8 @@
 <?php
 include_once("../compartido/pantalla.php");
-class formListarUsuarios extends Pantalla
+class formListarPedidos extends Pantalla
 {
-    public function formListarUsuariosShow($usuarioArray = [])
+    public function formListarPedidosShow($pedidoArray = [])
     {
         session_start();
         $privilegios = $_SESSION["privilegios"];
@@ -40,21 +40,27 @@ class formListarUsuarios extends Pantalla
                                         <div class="row mb-4">
                                             <!-- Filtros y botones en una sola fila -->
                                             <div class="flex gap-2 mb-4 items-center">
-                                                <form action="../moduloUsuario/getVerificarEditarUsuario.php" method="post" class="flex gap-3 mb-4 items-center w-full">
+                                                <form action="../moduloVentas/getVerificarEditarPedido.php" method="post" class="flex gap-3 mb-4 items-center w-full">
                                                     <div class="flex items-center gap-2 w-1/2">
-                                                        <label for="txtBuscarNombre" class="text-lg font-medium text-gray-700">Nombre</label>
+                                                        <label for="txtBuscarNombre" class="text-lg font-medium text-gray-700">Cliente</label>
                                                         <input type="text" id="txtBuscarUsuario" name="txtBuscarNombre" placeholder="Nombre" class="ml-3 px-4 py-2 border rounded-lg w-full" />
                                                     </div>
 
                                                     <!-- Filtro 2 -->
                                                     <div class="flex items-center gap-2 w-1/2">
-                                                        <label for="txtBuscarUsername" class="text-lg font-medium text-gray-700">Username</label>
-                                                        <input type="text" id="txtBuscarUsername" name="txtBuscarUsername" placeholder="Username" class="ml-3 px-4 py-2 border rounded-lg w-full" />
+                                                        <label for="txtBuscarUsername" class="text-lg font-medium text-gray-700">De</label>
+                                                        <input type="date" id="txtBuscarDesde" name="txtBuscarUsername" placeholder="Username" class="ml-3 px-4 py-2 border rounded-lg w-full" />
+                                                    </div>
+
+                                                    <!-- Filtro 3 -->
+                                                    <div class="flex items-center gap-2 w-1/2">
+                                                        <label for="txtBuscarUsername" class="text-lg font-medium text-gray-700">Hasta</label>
+                                                        <input type="date" id="txtBuscarHasta" name="txtBuscarUsername" placeholder="Username" class="ml-3 px-4 py-2 border rounded-lg w-full" />
                                                     </div>
 
                                                     <!-- Botón de Buscar -->
                                                     <div class="flex items-center gap-2 w-1/6">
-                                                        <button name="btnBuscarUsuario" type="submit" class="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-200 flex items-center w-full text-center">
+                                                        <button name="btnBuscarPedido" type="submit" class="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-200 flex items-center w-full text-center">
                                                             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                                                                 <circle cx="11" cy="11" r="8" />
                                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35" />
@@ -64,9 +70,9 @@ class formListarUsuarios extends Pantalla
                                                     </div>
                                                 </form>
 
-                                                <form action="../moduloUsuario/getVerificarRegistrarUsuario.php" method="post" class="flex gap-1 mb-4 items-center">
+                                                <form action="../moduloVentas/getVerificarRegistrarPedido.php" method="post" class="flex gap-1 mb-4 items-center">
                                                     <div class="flex items-center gap-2 w-full">
-                                                        <button name="btnRegistrarUsuario" type="submit" class="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-200 flex items-center w-full text-center">
+                                                        <button name="btnRegistrarPedido" type="submit" class="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-200 flex items-center w-full text-center">
                                                             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14m7-7H5" />
                                                             </svg>
@@ -84,16 +90,13 @@ class formListarUsuarios extends Pantalla
                                                         ID
                                                     </th>
                                                     <th class="min-w-[150px] px-4 py-4 font-medium text-black">
-                                                        Usuario
-                                                    </th>
-                                                    <th class="min-w-[120px] px-4 py-4 font-medium text-black">
-                                                        Correo Electrónico
-                                                    </th>
-                                                    <th class="px-4 py-4 font-medium text-black">
-                                                        Username
+                                                        Cliente
                                                     </th>
                                                     <th class="px-4 py-4 font-medium text-black">
                                                         Acciones
+                                                    </th>
+                                                    <th class="px-4 py-4 font-medium text-black">
+                                                        Estado
                                                     </th>
                                                 </tr>
                                             </thead>
@@ -108,12 +111,6 @@ class formListarUsuarios extends Pantalla
                                                                 <h5 class="font-medium text-black"><?= htmlspecialchars($usuario['nombre']); ?></h5>
                                                             </td>
                                                             <td class="border-b border-[#eee] px-4 py-4 dark:border-strokedark">
-                                                                <h5 class="font-medium text-black"><?= htmlspecialchars($usuario['correo']); ?></h5>
-                                                            </td>
-                                                            <td class="border-b border-[#eee] px-4 py-4 dark:border-strokedark">
-                                                                <h5 class="font-medium text-black"><?= htmlspecialchars($usuario['username']); ?></h5>
-                                                            </td>
-                                                            <td class="border-b border-[#eee] px-4 py-4 dark:border-strokedark">
                                                                 <div class="flex items-center space-x-3">
                                                                     <form action="../moduloUsuario/getVerificarEditarUsuario.php" method="post">
                                                                         <input name="idUsuario" value="<?= $usuario['id_usuario'] ?>" type="text" hidden>
@@ -124,6 +121,9 @@ class formListarUsuarios extends Pantalla
                                                                         </button>
                                                                     </form>
                                                                 </div>
+                                                            </td>
+                                                            <td class="border-b border-[#eee] px-4 py-4 dark:border-strokedark">
+                                                                <h5 class="font-medium text-black"><?= htmlspecialchars($usuario['correo']); ?></h5>
                                                             </td>
                                                         </tr>
                                                     <?php endforeach; ?>
@@ -147,6 +147,9 @@ class formListarUsuarios extends Pantalla
         </body>
         <script>
             <?php include_once("../js/toggleHeader.js"); ?>
+        </script>
+        <script>
+            <?php include_once("../js/listarPedidosScript.js"); ?>
         </script>
 
         </html>

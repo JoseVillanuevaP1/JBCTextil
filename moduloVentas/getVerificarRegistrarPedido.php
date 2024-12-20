@@ -6,7 +6,7 @@ function validarBoton($boton)
     else
         return FALSE;
 }
-function validarCamposUsuario($txtUsuario, $txtContrasenia, $txtNombre, $txtCorreo, $arrayPrivilegios)
+function validarCamposPedido($txtUsuario, $txtContrasenia, $txtNombre, $txtCorreo, $arrayPrivilegios)
 {
     if (
         strlen(trim($txtUsuario)) > 3  && strlen(trim($txtContrasenia)) > 3 &&
@@ -17,23 +17,16 @@ function validarCamposUsuario($txtUsuario, $txtContrasenia, $txtNombre, $txtCorr
         return 0;
 }
 
-$btnBuscarUsuario = $_POST['btnBuscarUsuario'] ?? null;
-$btnEditarUsuario = $_POST['btnEditarUsuario'] ?? null;
-$btnConfirmarEditarUsuario = $_POST['btnConfirmarEditarUsuario'] ?? null;
+$btnRegistrarPedido = $_POST['btnRegistrarPedido'] ?? null;
+$btnConfirmarRegistrarPedido = $_POST['btnConfirmarRegistrarPedido'] ?? null;
 $btnRegresar = $_POST['btnRegresar'] ?? null;
 
-if (validarBoton($btnBuscarUsuario)) {
-    include_once('../moduloUsuario/controlVerificarEditarUsuario.php');
-    $objForm = new controlVerificarEditarUsuario;
-    $objForm = $objForm->mostrarListarUsuario();
-} else if (validarBoton($btnEditarUsuario) || validarBoton($btnRegresar)) {
-    $idUsuario = $_POST['idUsuario'];
-    include_once('./controlVerificarEditarUsuario.php');
-    $objForm = new controlVerificarEditarUsuario;
-    $objForm = $objForm->mostrarEditarUsuario($idUsuario);
-} else if (validarBoton($btnConfirmarEditarUsuario)) {
+if (validarBoton($btnRegistrarPedido) || validarBoton($btnRegresar)) {
+    include_once('./controlVerificarRegistrarPedido.php');
+    $objForm = new controlVerificarRegistrarPedido;
+    $objForm = $objForm->mostrarRegistrarPedido();
+} else if (validarBoton($btnConfirmarRegistrarPedido)) {
 
-    $idUsuario = $_POST['idUsuario'];
     $txtUsuario = $_POST['txtUsuario'];
     $txtContrasenia = $_POST['txtContrasenia'];
     $txtNombre = $_POST['txtNombre'];
@@ -41,9 +34,9 @@ if (validarBoton($btnBuscarUsuario)) {
     $arrayPrivilegios = $_POST['arrayPrivilegios'] ?? null;
 
     if (validarCamposUsuario($txtUsuario, $txtContrasenia, $txtNombre, $txtCorreo, $arrayPrivilegios)) {
-        include_once('../moduloUsuario/controlVerificarEditarUsuario.php');
-        $objForm = new controlVerificarEditarUsuario;
-        $objForm = $objForm->actualizarUsuario($idUsuario, $txtUsuario, $txtContrasenia, $txtNombre, $txtCorreo, $arrayPrivilegios);
+        include_once('../moduloUsuario/controlVerificarRegistrarUsuario.php');
+        $objForm = new controlVerificarRegistrarUsuario;
+        $objForm = $objForm->registrarUsuario($txtUsuario, $txtContrasenia, $txtNombre, $txtCorreo, $arrayPrivilegios);
     } else {
         include_once('../compartido/mensajeSistema.php');
         $objMsj = new MensajeSistema;

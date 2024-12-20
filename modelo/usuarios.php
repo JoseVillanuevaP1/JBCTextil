@@ -75,6 +75,45 @@ class usuarios
 		mysqli_close($conexion);
 		return $usuarios;
 	}
+
+	public function obtenerUsuario($idUsuario)
+	{
+		$conexion = $this->EjecutarConexion();
+		$consulta = "SELECT id_usuario, nombre, correo, username, password
+					FROM usuarios WHERE id_usuario = $idUsuario";
+		$resultado = mysqli_query($conexion, $consulta);
+
+		$usuarios = [];
+		if ($resultado && mysqli_num_rows($resultado) > 0) {
+			while ($fila = mysqli_fetch_assoc($resultado)) {
+				$usuarios[] = $fila;
+			}
+		}
+
+		// Cerrar la conexión
+		mysqli_close($conexion);
+
+		return $usuarios;
+	}
+
+	public function actualizarUsuario($idUsuario, $username, $password, $nombre, $correo)
+	{
+		$conexion = $this->EjecutarConexion();
+
+		// Construir la consulta
+		$consulta = "UPDATE usuarios 
+					 SET nombre = '$nombre',
+						 username = '$username',
+						 correo = '$correo',
+						 password = '$password'
+						WHERE id_usuario = $idUsuario";
+		// Ejecutar la consulta
+		$resultado = mysqli_query($conexion, $consulta);
+		// Cerrar la conexión
+		mysqli_close($conexion);
+
+		return $resultado ? true : false;
+	}
 	// /****************************************************/
 	// /****************************************************/
 }
