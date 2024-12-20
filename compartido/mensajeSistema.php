@@ -1,5 +1,5 @@
 <?php
-include_once("pantalla.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . '/JBCTextil/compartido/pantalla.php');
 class MensajeSistema extends pantalla
 {
 	public function mensajeExitShow($mensaje, $link)
