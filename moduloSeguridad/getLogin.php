@@ -10,5 +10,5 @@ if (isset($_POST['b_login']) and strlen($_POST['txt_user']) >= 5 and strlen($_PO
 } else {
 	include_once('../compartido/mensajeSistema.php');
 	$objMsj = new mensajeSistema;
-	$objMsj->mensajeErrorShow("Error: Se ha detectado un acceso no autorizado<br>o los valores ingresados en la autenticacion no son validos <br>", "<p><a href='../index.php'>Ir al inicio</a></p>");
+	$objMsj->mensajeSistemaShow("Error: Se ha detectado un acceso no autorizado<br>o los valores ingresados en la autenticacion no son validos <br>", "<p><a href='../index.php'>Ir al inicio</a></p>");
 }

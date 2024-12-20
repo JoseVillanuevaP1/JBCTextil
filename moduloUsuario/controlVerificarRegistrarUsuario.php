@@ -1,13 +1,22 @@
 <?php
 class controlVerificarRegistrarUsuario
 {
-    public function verificarDatosRegistrarUsuario()
+    public function mostrarRegistrarUsuario()
     {
-        include_once('../modelo/tipos_documento.php');
-        $OBJTipos = new tipos_documento;
-        $TiposDocumento = $OBJTipos->obtenerTiposDocumento();
+        include_once('../modelo/privilegios.php');
+        $OBJTipos = new privilegios;
+        $privilegios = $OBJTipos->obtenerPrivilegios();
         include_once('../moduloUsuario/formRegistrarUsuario.php');
         $OBJForm = new formRegistrarUsuario;
-        $OBJForm = $OBJForm->formRegistrarUsuarioShow($TiposDocumento);
+        $OBJForm = $OBJForm->formRegistrarUsuarioShow($privilegios);
+    }
+    public function registrarUsuario($nombre, $password, $username, $correo)
+    {
+        include_once('../modelo/usuarios.php');
+        $OBJTipos = new usuarios;
+        $OBJTipos->registrarUsuario($nombre, $password, $username, $correo);
+        include_once('../compartido/mensajeSistema.php');
+        $OBJ = new MensajeSistema;
+        $OBJ = $OBJ->mensajeConfirmacionShow("Se registró exitosamente", "../moduloUsuario/getEnlaceUsuario.php");
     }
 }
