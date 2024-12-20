@@ -41,4 +41,38 @@ class pedidos
 
         return $privilegios;
     }
+    public function obtenerPedidos()
+    {
+        // Establecer la conexión a la base de datos
+        $conexion = $this->EjecutarConexion();
+
+        // Consulta SQL para obtener los pedidos
+        $consulta = "SELECT 
+                        p.id_pedido,
+                        CONCAT(c.nombre, ' ', c.apellido) AS cliente,
+                        p.estado
+                     FROM 
+                        pedidos p
+                     JOIN
+                        clientes c ON p.id_cliente = c.id_cliente";
+
+        // Ejecutar la consulta
+        $resultado = mysqli_query($conexion, $consulta);
+        if ($resultado) {
+            // Crear un array para almacenar los resultados
+            $pedidos = [];
+
+            // Recorrer los resultados y agregarlos al array
+            while ($row = mysqli_fetch_assoc($resultado)) {
+                $pedidos[] = $row;
+            }
+
+            // Cerrar la conexión
+            mysqli_close($conexion);
+            return $pedidos;
+        } else {
+            mysqli_close($conexion);
+            return [];
+        }
+    }
 }

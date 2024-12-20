@@ -102,7 +102,7 @@ class formListarUsuarios extends Pantalla
                                                     <?php foreach ($usuarioArray as $key => $usuario): ?>
                                                         <tr>
                                                             <td class="border-b border-[#eee] px-4 py-4 dark:border-strokedark">
-                                                                <h5 class="font-medium text-black"><?= $key ?></h5>
+                                                                <h5 class="font-medium text-black"><?= $key + 1 ?></h5>
                                                             </td>
                                                             <td class="border-b border-[#eee] px-4 py-4 dark:border-strokedark">
                                                                 <h5 class="font-medium text-black"><?= htmlspecialchars($usuario['nombre']); ?></h5>

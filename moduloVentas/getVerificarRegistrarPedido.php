@@ -55,7 +55,7 @@ if (validarBoton($btnRegistrarPedido) || validarBoton($btnRegresar)) {
     } else {
         include_once('../compartido/mensajeSistema.php');
         $objMsj = new MensajeSistema;
-        $objMsj->mensajeSistemaShow("Error: Datos no validos<br>", "../moduloUsuario/getVerificarRegistrarUsuario.php");
+        $objMsj->mensajeSistemaShow("Error: Datos no validos<br>", "../moduloVentas/getVerificarRegistrarPedido.php");
     }
 } else {
     include_once('../compartido/mensajeSistema.php');
