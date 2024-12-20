@@ -1,14 +1,17 @@
 <?php
-class controlVerificarAgregarPedido
+class controlVerificarRegistrarPedido
 {
     public function mostrarRegistrarPedido()
     {
         include_once('../modelo/productos.php');
         $OBJTipos = new productos;
-        $privilegios = $OBJTipos->obtenerProductos();
-        // include_once('../moduloUsuario/formRegistrarProductos.php');
-        // $OBJForm = new formRegistrarProductos;
-        // $OBJForm = $OBJForm->formRegistrarProductosShow($privilegios);
+        $productos = $OBJTipos->obtenerProductos();
+        include_once('../modelo/clientes.php');
+        $OBJTipos = new clientes;
+        $clientes = $OBJTipos->obtenerClientes();
+        include_once('../moduloVentas/formRegistrarPedido.php');
+        $OBJForm = new formRegistrarPedido;
+        $OBJForm = $OBJForm->formRegistrarPedidoShow($productos, $clientes);
     }
     public function registrarPedido($nombre, $password, $username, $correo, $arrayPrivilegios)
     {

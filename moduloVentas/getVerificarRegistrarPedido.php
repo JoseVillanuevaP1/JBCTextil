@@ -17,15 +17,15 @@ function validarCamposPedido($txtUsuario, $txtContrasenia, $txtNombre, $txtCorre
         return 0;
 }
 
-$btnRegistrarUsuario = $_POST['btnRegistrarUsuario'] ?? null;
-$btnConfirmarRegistrarUsuario = $_POST['btnConfirmarRegistrarUsuario'] ?? null;
+$btnRegistrarPedido = $_POST['btnRegistrarPedido'] ?? null;
+$btnConfirmarRegistrarPedido = $_POST['btnConfirmarRegistrarPedido'] ?? null;
 $btnRegresar = $_POST['btnRegresar'] ?? null;
 
 if (validarBoton($btnRegistrarPedido) || validarBoton($btnRegresar)) {
-    include_once('./controlVerificarAgregarPedido.php');
-    $objForm = new controlVerificarAgregarPedido;
+    include_once('./controlVerificarRegistrarPedido.php');
+    $objForm = new controlVerificarRegistrarPedido;
     $objForm = $objForm->mostrarRegistrarPedido();
-} else if (validarBoton($btnConfirmarRegistrarUsuario)) {
+} else if (validarBoton($btnConfirmarRegistrarPedido)) {
 
     $txtUsuario = $_POST['txtUsuario'];
     $txtContrasenia = $_POST['txtContrasenia'];
