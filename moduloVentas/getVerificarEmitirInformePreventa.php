@@ -18,7 +18,7 @@ function validarCamposPedido($txtCliente, $txtFechaEntrega, $txtLugarEntrega, $a
 }
 
 $btnEmitirInformePreventa = $_POST['btnEmitirInformePreventa'] ?? null;
-$btnConfirmarEmitirPreventa = $_POST['btnConfirmarEmitirPreventa'] ?? null;
+$confirmarEmitirInformePreventa = $_POST['confirmarEmitirInformePreventa'] ?? null;
 $btnRegresar = $_POST['btnRegresar'] ?? null;
 
 if (validarBoton($btnEmitirInformePreventa) || validarBoton($btnRegresar)) {
@@ -26,38 +26,10 @@ if (validarBoton($btnEmitirInformePreventa) || validarBoton($btnRegresar)) {
     include_once('./controlVerificarEmitirInformePreventa.php');
     $objForm = new controlVerificarEmitirInformePreventa;
     $objForm = $objForm->mostrarEmitirInformePreventa($idPedido);
-} else if (validarBoton($btnConfirmarEmitirPreventa)) {
-
-    $txtCliente = $_POST['txtCliente'];
-    $txtFechaEntrega = $_POST['txtFechaEntrega'];
-    $txtLugarEntrega = $_POST['txtLugarEntrega'];
-    $arrayIdProductos = $_POST['arrayIdProductos'] ?? null;
-    $arrayDescripcion = $_POST['arrayDescripcion'] ?? null;
-    $arrayCantidad = $_POST['arrayCantidad'] ?? null;
-
-    if (validarCamposPedido($txtCliente, $txtFechaEntrega, $txtLugarEntrega, $arrayIdProductos, $arrayDescripcion, $arrayCantidad)) {
-
-        $arrayProductos = [];
-        foreach ($arrayIdProductos as $index => $idProducto) {
-            $arrayProductos[] = [
-                'idProducto' => ($idProducto),
-                'descripcion' => ($arrayDescripcion[$index]),
-                'cantidad' => (int)$arrayCantidad[$index]
-            ];
-        }
-        session_start();
-        $txtIdUsuario = $_SESSION["idUsuario"];
-        $txtEstado = 'pedido';
-        $txtFechaEmision = date('Y-m-d');
-
-        include_once('../moduloVentas/controlVerificarRegistrarPedido.php');
-        $objForm = new controlVerificarRegistrarPedido;
-        $objForm = $objForm->registrarPedido($txtCliente, $txtFechaEntrega, $txtLugarEntrega, $arrayProductos, $txtFechaEmision, $txtEstado, $txtIdUsuario);
-    } else {
-        include_once('../compartido/mensajeSistema.php');
-        $objMsj = new MensajeSistema;
-        $objMsj->mensajeSistemaShow("Error: Datos no validos<br>", "../moduloVentas/getVerificarRegistrarPedido.php");
-    }
+} else if (validarBoton($confirmarEmitirInformePreventa)) {
+    include_once('../compartido/mensajeSistema.php');
+    $objForm = new MensajeSistema;
+    $objForm = $objForm->mensajeConfirmacionShow("Se registró correctamente", "/jbctextil/moduloVentas/getEnlacePedido.php");
 } else {
     include_once('../compartido/mensajeSistema.php');
     $objMsj = new MensajeSistema;

@@ -116,7 +116,7 @@ class formEmitirInformePreventa extends Pantalla
                                                                         <span>0.00</span>
                                                                     </td>
                                                                     <td class="px-4 py-2">
-                                                                        <button type="button" class="btnModalRecursos text-blue-500 hover:text-blue-700">
+                                                                        <button type="button" data-id="<?= $producto['id_detalle_pedido'] ?>" class="btnModalRecursos text-blue-500 hover:text-blue-700">
                                                                             <svg xmlns="http://www.w3.org/2000/svg" class="fill-current" width="20" height="20" viewBox="0 0 384 512">
                                                                                 <path d="M64 0C28.7 0 0 28.7 0 64L0 448c0 35.3 28.7 64 64 64l256 0c35.3 0 64-28.7 64-64l0-288-128 0c-17.7 0-32-14.3-32-32L224 0 64 0zM256 0l0 128 128 0L256 0zM112 256l160 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-160 0c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64l160 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-160 0c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64l160 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-160 0c-8.8 0-16-7.2-16-16s7.2-16 16-16z" />
                                                                             </svg>
@@ -127,7 +127,7 @@ class formEmitirInformePreventa extends Pantalla
                                                         </tbody>
                                                     </table>
                                                 </div>
-
+                                                <input type="hidden" id="recursosData" name="recursos">
                                                 <button name="confirmarEmitirInformePreventa" type="submit" class="flex w-full justify-center rounded bg-blue-500 p-3 font-medium text-white hover:bg-opacity-90">
                                                     Confirmar
                                                 </button>
@@ -151,39 +151,6 @@ class formEmitirInformePreventa extends Pantalla
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr>
-                                                                    <td class="border border-gray-300 px-4 py-2 text-center">1</td>
-                                                                    <td class="border border-gray-300 px-4 py-2 text-center">
-                                                                        <select class="border rounded w-full">
-                                                                            <option></option>
-                                                                            <option>Servicio</option>
-                                                                            <option>Material</option>
-                                                                        </select>
-                                                                    </td>
-                                                                    <td class="border border-gray-300 px-4 py-2 text-center">
-                                                                        <select class="border rounded w-full">
-                                                                            <option></option>
-                                                                            <option>Planchado</option>
-                                                                            <option>Tela Pique</option>
-                                                                            <option>Tela Sintética</option>
-                                                                        </select>
-                                                                    </td>
-                                                                    <td class="border border-gray-300 px-4 py-2 text-center">
-                                                                        <select class="border rounded w-full">
-                                                                            <option></option>
-                                                                            <option>TexPeru S.A.C</option>
-                                                                            <option>Nazca S.A.C</option>
-                                                                            <option>TejeExpress</option>
-                                                                            <option>Bravo's S.A.C</option>
-                                                                        </select>
-                                                                    </td>
-                                                                    <td class="border border-gray-300 px-4 py-2 text-center">
-                                                                        <input type="number" class="border rounded w-full text-center" value="0.00">
-                                                                    </td>
-                                                                    <td class="border border-gray-300 px-4 py-2 text-center">
-                                                                        <button type="button" class="text-red-500 deleteRow">🗑️</button>
-                                                                    </td>
-                                                                </tr>
                                                             </tbody>
                                                         </table>
 
@@ -194,7 +161,7 @@ class formEmitirInformePreventa extends Pantalla
 
                                                         <!-- Total y Confirmar -->
                                                         <div class="flex justify-between items-center mt-4">
-                                                            <span>Total: <strong id="totalPrice">0.00</strong></span>
+                                                            <span class="text-white">Total: <strong class="text-white" id="totalPrice">0.00</strong></span>
                                                             <button type="button" class="bg-green-500 text-white px-4 py-2 rounded">Confirmar</button>
                                                         </div>
 

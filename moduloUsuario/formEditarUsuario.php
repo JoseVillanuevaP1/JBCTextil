@@ -36,7 +36,7 @@ class formEditarUsuario extends Pantalla
                             <!-- Breadcrumb Start -->
                             <div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                                 <h2 class="text-title-md2 font-bold text-white text-center">
-                                    REGISTRAR USUARIO
+                                    EDITAR USUARIO
                                 </h2>
 
                                 <nav>
@@ -44,7 +44,7 @@ class formEditarUsuario extends Pantalla
                                         <li>
                                             <a class="font-medium" href="index.html">Usuario / </a>
                                         </li>
-                                        <li class="font-medium text-primary">Registrar Usuario</li>
+                                        <li class="font-medium text-primary">Editar Usuario</li>
                                     </ol>
                                 </nav>
                             </div>
