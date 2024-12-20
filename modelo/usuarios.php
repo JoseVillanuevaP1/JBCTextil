@@ -49,27 +49,31 @@ class usuarios
 		$conexion = $this->EjecutarConexion();
 		$consulta = "INSERT INTO usuarios (nombre, password, username, correo) VALUES ('$nombre', '$password', '$username', '$correo')";
 		mysqli_query($conexion, $consulta);
-		$aciertos = mysqli_affected_rows($conexion);
+		$idInsertado = mysqli_insert_id($conexion);
 		mysqli_close($conexion);
-		return $aciertos > 0 ? 1 : 0;
+		return $idInsertado > 0 ? $idInsertado : 0;
 	}
 	// /****************************************************/
 	// /****************************************************/
-	public function obtenerAllUsers()
+	public function obtenerUsuarios()
 	{
 		$conexion = $this->EjecutarConexion();
-		$consulta = " 	SELECT * FROM usuario ORDER BY apaterno,amaterno";
+		// Consulta con filtro OR para nombre y username
+		$consulta = "SELECT id_usuario, nombre, correo, username 
+					FROM usuarios ORDER BY nombre";
+		// Ejecutar la consulta
 		$resultado = mysqli_query($conexion, $consulta);
-		mysqli_close($conexion);
-		$aciertos = mysqli_num_rows($resultado);
-		if ($aciertos >= 1) {
-			for ($i = 0; $i < $aciertos; $i++) {
-				$filaEncontrada[$i] = mysqli_fetch_array($resultado);
+
+		$usuarios = [];
+		if ($resultado && mysqli_num_rows($resultado) > 0) {
+			while ($fila = mysqli_fetch_assoc($resultado)) {
+				$usuarios[] = $fila;
 			}
-			return ($filaEncontrada);
-		} else {
-			return (0);
 		}
+
+		// Cerrar la conexión
+		mysqli_close($conexion);
+		return $usuarios;
 	}
 	// /****************************************************/
 	// /****************************************************/
