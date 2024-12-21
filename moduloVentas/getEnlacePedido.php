@@ -8,10 +8,10 @@ function validarBoton($boton)
         return FALSE;
 }
 
-$btnUsuarios = $_POST['btnPedido'] ?? null;
+$btnPedidos = $_POST['btnPedidos'] ?? null;
 $btnRegresar = $_POST['btnRegresar'] ?? null;
 
-if (validarBoton($btnUsuarios) || validarBoton($btnRegresar)) {
+if (validarBoton($btnPedidos) || validarBoton($btnRegresar)) {
     include_once('./controlEnlacePedido.php');
     $objForm = new controlEnlacePedido;
     $objForm = $objForm->mostrarListarPedido();

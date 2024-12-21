@@ -18,18 +18,18 @@ class clientes
         mysqli_close($conexion);
         return $aciertos > 0 ? 1 : 0;
     }
-    public function obtenerClientes()
+    public function obtenerClientes($txtBuscarNombre)
     {
         $conexion = $this->EjecutarConexion();
-        $consulta = "SELECT * FROM clientes";
+        $txtBuscarNombre = mysqli_real_escape_string($conexion, $txtBuscarNombre);
+        $consulta = "SELECT * FROM clientes 
+                 WHERE ('$txtBuscarNombre' = '' OR nombre LIKE '%$txtBuscarNombre%')";
         $resultado = mysqli_query($conexion, $consulta);
         mysqli_close($conexion);
-
-        $privilegios = [];
+        $clientes = [];
         while ($fila = mysqli_fetch_assoc($resultado)) {
-            $privilegios[] = $fila;
+            $clientes[] = $fila;
         }
-
-        return $privilegios;
+        return $clientes;
     }
 }

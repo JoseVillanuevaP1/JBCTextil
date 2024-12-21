@@ -93,7 +93,7 @@ class Pantalla
                                 <?php if (in_array(1, $ids)) { ?>
                                     <li>
                                         <form action="/jbctextil/moduloVentas/getEnlacePedido.php" method="post">
-                                            <button type="submit" name="btnPedido" class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-white hover:text-yellow-300 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4" href="#" @click="selected = (selected === 'Profile' ? '':'Profile')" :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Profile') &amp;&amp; (page === 'profile') }">
+                                            <button type="submit" name="btnPedidos" class="group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-white hover:text-yellow-300 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4" href="#" @click="selected = (selected === 'Profile' ? '':'Profile')" :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Profile') &amp;&amp; (page === 'profile') }">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 576 512" class="fill-current"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                                                     <path d="M0 24C0 10.7 10.7 0 24 0L69.5 0c22 0 41.5 12.8 50.6 32l411 0c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3l-288.5 0 5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5L488 336c13.3 0 24 10.7 24 24s-10.7 24-24 24l-288.3 0c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5L24 48C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" />
                                                 </svg>
@@ -128,39 +128,6 @@ class Pantalla
                             </ul>
                         <?php } ?>
                     </div>
-                    <?php if (in_array(4, $ids)) { ?>
-                        <h3 class="mb-4 ml-4 text-base font-medium text-white">Reclamaciones</h3>
-                        <div>
-                            <ul>
-                                <li>
-                                    <a class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white hover:text-yellow-300 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4" href="#" @click="selected = (selected === 'Settings' ? '':'Settings')" :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Settings') &amp;&amp; (page === 'settings') }">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 512 512" class="fill-current"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                                            <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24l0 112c0 13.3-10.7 24-24 24s-24-10.7-24-24l0-112c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z" />
-                                        </svg>
-
-                                        Reclamos
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    <?php } ?>
-
-                    <?php if (in_array(10, $ids)) { ?>
-                        <h3 class="my-4 ml-4 text-base font-medium text-white">Informes</h3>
-                        <div>
-                            <ul>
-                                <li>
-                                    <a class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white hover:text-yellow-300 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4" href="#" @click="selected = (selected === 'Settings' ? '':'Settings')" :class="{ 'bg-graydark dark:bg-meta-4': (selected === 'Settings') &amp;&amp; (page === 'settings') }">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 384 512" class="fill-current"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                                            <path d="M192 0c-41.8 0-77.4 26.7-90.5 64L64 64C28.7 64 0 92.7 0 128L0 448c0 35.3 28.7 64 64 64l256 0c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64l-37.5 0C269.4 26.7 233.8 0 192 0zm0 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64zM112 192l160 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-160 0c-8.8 0-16-7.2-16-16s7.2-16 16-16z" />
-                                        </svg>
-
-                                        Reportes
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    <?php } ?>
                 </nav>
                 <!-- Sidebar Menu -->
             </div>

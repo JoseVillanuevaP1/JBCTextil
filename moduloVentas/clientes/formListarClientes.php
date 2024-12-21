@@ -42,8 +42,8 @@ class formListarClientes extends Pantalla
                                             <div class="flex gap-2 mb-4 items-center">
                                                 <form action="../../moduloVentas/clientes/getVerificarEditarCliente.php" method="post" class="flex gap-3 mb-4 items-center w-full">
                                                     <div class="flex items-center gap-2 w-1/2">
-                                                        <label for="txtBuscarUsuario" class="text-lg font-medium text-gray-700">Nombre</label>
-                                                        <input type="text" id="txtBuscarUsuario" name="txtBuscarUsuario" placeholder="Usuario" class="ml-3 px-4 py-2 border rounded-lg w-full" />
+                                                        <label for="txtBuscarNombre" class="text-lg font-medium text-gray-700">Nombre</label>
+                                                        <input type="text" id="txtBuscarNombre" name="txtBuscarNombre" placeholder="Usuario" class="ml-3 px-4 py-2 border rounded-lg w-full" />
                                                     </div>
 
                                                     <!-- Botón de Buscar -->
