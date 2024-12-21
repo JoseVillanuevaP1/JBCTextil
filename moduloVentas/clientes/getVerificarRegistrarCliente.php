@@ -10,8 +10,8 @@ function validarBoton($boton)
 function validarCamposCliente($txtNombreCliente, $txtApellidoCliente, $intTipoDocumento, $intDocumento, $intTelefonoCliente, $txtCorreoCliente, $txtDireccionCliente)
 {
     if (
-        strlen(trim($txtNombreCliente)) > 0 && strlen(trim($txtNombreCliente)) <= 30 &&
-        strlen(trim($txtApellidoCliente)) > 0 && strlen(trim($txtApellidoCliente)) <= 30 &&
+        strlen(trim($txtNombreCliente)) > 0 && strlen(trim($txtNombreCliente)) <= 50 &&
+        strlen(trim($txtApellidoCliente)) > 0 && strlen(trim($txtApellidoCliente)) <= 50 &&
         (
             (trim($intTipoDocumento) == 1 && strlen(trim($intDocumento)) == 8) ||
             (trim($intTipoDocumento) == 2 && strlen(trim($intDocumento)) == 11)
@@ -33,7 +33,7 @@ $btnConfirmarRegistrarCliente = $_POST['btnConfirmarRegistrarCliente'] ?? null;
 $btnRegresar = $_POST['btnRegresar'] ?? null;
 
 if (validarBoton($btnRegistrarCliente) || validarBoton($btnRegresar)) {
-    include_once('../../moduloVentas/clientes/controlVerificarRegistrarCliente.php');
+    include_once('./controlVerificarRegistrarCliente.php');
 
     $objForm = new controlVerificarRegistrarCliente;
     $objForm = $objForm->traerTiposDocumentos();
@@ -49,16 +49,16 @@ if (validarBoton($btnRegistrarCliente) || validarBoton($btnRegresar)) {
     $txtDireccionCliente = $_POST['txtDireccionCliente'];
 
     if (validarCamposCliente($txtNombreCliente, $txtApellidoCliente, $intTipoDocumento, $intDocumento, $intTelefonoCliente, $txtCorreoCliente, $txtDireccionCliente)) {
-        include_once('../../moduloVentas/clientes/controlVerificarRegistrarCliente.php');
+        include_once('./controlVerificarRegistrarCliente.php');
         $objForm = new controlVerificarRegistrarCliente;
         $objForm = $objForm->registrarCliente($txtNombreCliente, $txtApellidoCliente, $intTipoDocumento, $intDocumento, $intTelefonoCliente, $txtCorreoCliente, $txtDireccionCliente);
     } else {
-        include_once('../../compartido/mensajeSistema.php');
+        include_once($_SERVER['DOCUMENT_ROOT'] . '/JBCTextil/compartido/MensajeSistema.php');
         $objMsj = new MensajeSistema;
-        $objMsj->mensajeSistemaShow("Error: Datos no validos<br>", "../../moduloVentas/clientes/getVerificarRegistrarCliente.php");
+        $objMsj->mensajeSistemaShow("Error: Datos no validos<br>", "../clientes/getVerificarRegistrarCliente.php");
     }
 } else {
-    include_once('../../compartido/mensajeSistema.php');
+    include_once($_SERVER['DOCUMENT_ROOT'] . '/JBCTextil/compartido/MensajeSistema.php');
     $objMsj = new MensajeSistema;
-    $objMsj->mensajeSistemaShow("Error: Se ha detectado un acceso no autorizado<br>", "../index.php");
+    $objMsj->mensajeSistemaShow("Error: Se ha detectado un acceso no autorizado<br>", "../../index.php");
 }

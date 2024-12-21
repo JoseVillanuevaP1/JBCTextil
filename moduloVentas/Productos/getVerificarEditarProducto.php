@@ -42,12 +42,12 @@ if (validarBoton($btnBuscarProducto)) {
         $objForm = new controlVerificarEditarProducto;
         $objForm = $objForm->editarProducto($idProducto, $txtNombreProducto);
     } else {
-        include_once('../compartido/mensajeSistema.php');
+        include_once($_SERVER['DOCUMENT_ROOT'] . '/JBCTextil/compartido/MensajeSistema.php');
         $objMsj = new MensajeSistema;
-        $objMsj->mensajeSistemaShow("Error: Datos no validos<br>", "../moduloVentas/Productos/getVerificarEditarProducto.php");
+        $objMsj->mensajeSistemaShow("Error: Datos no validos<br>", "../Productos/getVerificarEditarProducto.php");
     }
 } else {
-    include_once('../compartido/mensajeSistema.php');
+    include_once($_SERVER['DOCUMENT_ROOT'] . '/JBCTextil/compartido/MensajeSistema.php');
     $objMsj = new MensajeSistema;
-    $objMsj->mensajeSistemaShow("Error: Se ha detectado un acceso no autorizado<br>", "../index.php");
+    $objMsj->mensajeSistemaShow("Error: Se ha detectado un acceso no autorizado<br>", "../../index.php");
 }
