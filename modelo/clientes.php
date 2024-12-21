@@ -74,4 +74,17 @@ class clientes
 
 		return $resultado ? true : false;
 	}
+    public function obtenerClientesPedido()
+    {
+        $conexion = $this->EjecutarConexion();
+        
+        $consulta = "SELECT * FROM clientes";
+        $resultado = mysqli_query($conexion, $consulta);
+        mysqli_close($conexion);
+        $clientes = [];
+        while ($fila = mysqli_fetch_assoc($resultado)) {
+            $clientes[] = $fila;
+        }
+        return $clientes;
+    }
 }

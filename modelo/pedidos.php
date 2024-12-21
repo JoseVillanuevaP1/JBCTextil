@@ -27,20 +27,6 @@ class pedidos
         return $aciertos > 0 ? $idInsertado : 0;
     }
 
-    public function obtenerClientes()
-    {
-        $conexion = $this->EjecutarConexion();
-        $consulta = "SELECT * FROM clientes";
-        $resultado = mysqli_query($conexion, $consulta);
-        mysqli_close($conexion);
-
-        $privilegios = [];
-        while ($fila = mysqli_fetch_assoc($resultado)) {
-            $privilegios[] = $fila;
-        }
-
-        return $privilegios;
-    }
     public function obtenerPedidos()
     {
         // Establecer la conexión a la base de datos

@@ -76,4 +76,25 @@ class productos
 
 		return $resultado ? true : false;
 	}
+	public function obtenerProductosPedido()
+		{
+			$conexion = $this->EjecutarConexion();
+			
+			// Consulta con filtro OR para nombre y username
+			$consulta = "SELECT id_producto, nombre
+						FROM productos
+						";
+			// Ejecutar la consulta
+			$resultado = mysqli_query($conexion, $consulta);
+	
+			$productos = [];
+			if ($resultado && mysqli_num_rows($resultado) > 0) {
+				while ($fila = mysqli_fetch_assoc($resultado)) {
+					$productos[] = $fila;
+				}
+			}
+			// Cerrar la conexión
+			mysqli_close($conexion);
+			return $productos;
+		}
 }

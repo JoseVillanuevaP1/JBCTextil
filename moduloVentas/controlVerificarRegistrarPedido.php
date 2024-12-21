@@ -5,10 +5,10 @@ class controlVerificarRegistrarPedido
     {
         include_once('../modelo/productos.php');
         $OBJTipos = new productos;
-        $productos = $OBJTipos->obtenerProductos();
+        $productos = $OBJTipos->obtenerProductosPedido();
         include_once('../modelo/clientes.php');
         $OBJTipos = new clientes;
-        $clientes = $OBJTipos->obtenerClientes();
+        $clientes = $OBJTipos->obtenerClientesPedido();
         include_once('../moduloVentas/formRegistrarPedido.php');
         $OBJForm = new formRegistrarPedido;
         $OBJForm = $OBJForm->formRegistrarPedidoShow($productos, $clientes);
