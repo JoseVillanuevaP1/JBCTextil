@@ -30,7 +30,7 @@ if (validarBoton($btnBuscarPedido)) {
     $txtBuscarEstado = $_POST["txtBuscarEstado"] ?? null;
 
     include_once('../moduloVentas/controlVerificarEditarPedido.php');
-    $txtBuscarNombre = $_POST['txtBuscarNombreClientePedido'];
+    $txtBuscarNombre = $_POST['txtBuscarCliente'];
     $objForm = new controlVerificarEditarPedido;
     $objForm = $objForm->mostrarListarPedidos($txtBuscarCliente, $txtBuscarDesde, $txtBuscarHasta, $txtBuscarEstado);
 } else if (validarBoton($btnEditarUsuario) || validarBoton($btnRegresar)) {
