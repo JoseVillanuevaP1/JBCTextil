@@ -42,20 +42,20 @@ class formListarPedidos extends Pantalla
                                             <div class="flex gap-2 mb-4 items-center">
                                                 <form action="../moduloVentas/getVerificarEditarPedido.php" method="post" class="flex gap-3 mb-4 items-center w-full">
                                                     <div class="flex items-center gap-2 w-1/2">
-                                                        <label for="txtBuscarNombre" class="text-lg font-medium text-gray-700">Cliente</label>
-                                                        <input type="text" id="txtBuscarUsuario" name="txtBuscarNombre" placeholder="Nombre" class="ml-3 px-4 py-2 border rounded-lg w-full" />
+                                                        <label for="txtBuscarNombreClientePedido" class="text-lg font-medium text-gray-700">Cliente</label>
+                                                        <input type="text" id="txtBuscarNombreClientePedido" name="txtBuscarNombreClientePedido" placeholder="Nombre" class="ml-3 px-4 py-2 border rounded-lg w-full" />
                                                     </div>
 
                                                     <!-- Filtro 2 -->
                                                     <div class="flex items-center gap-2 w-1/2">
-                                                        <label for="txtBuscarUsername" class="text-lg font-medium text-gray-700">De</label>
-                                                        <input type="date" id="txtBuscarDesde" name="txtBuscarUsername" placeholder="Username" class="ml-3 px-4 py-2 border rounded-lg w-full" />
+                                                        <label for="txtBuscarDe" class="text-lg font-medium text-gray-700">De</label>
+                                                        <input type="date" id="txtBuscarDesde" name="txtBuscarDesde" placeholder="Username" class="ml-3 px-4 py-2 border rounded-lg w-full" />
                                                     </div>
 
                                                     <!-- Filtro 3 -->
                                                     <div class="flex items-center gap-2 w-1/2">
-                                                        <label for="txtBuscarUsername" class="text-lg font-medium text-gray-700">Hasta</label>
-                                                        <input type="date" id="txtBuscarHasta" name="txtBuscarUsername" placeholder="Username" class="ml-3 px-4 py-2 border rounded-lg w-full" />
+                                                        <label for="txtBuscarhasta" class="text-lg font-medium text-gray-700">Hasta</label>
+                                                        <input type="date" id="txtBuscarHasta" name="txtBuscarHasta" placeholder="Username" class="ml-3 px-4 py-2 border rounded-lg w-full" />
                                                     </div>
 
                                                     <!-- Botón de Buscar -->

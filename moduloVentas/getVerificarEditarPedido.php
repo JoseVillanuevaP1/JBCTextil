@@ -24,8 +24,9 @@ $btnRegresar = $_POST['btnRegresar'] ?? null;
 
 if (validarBoton($btnBuscarPedido)) {
     include_once('../moduloVentas/controlVerificarEditarPedido.php');
+    $txtBuscarNombre = $_POST['txtBuscarNombreClientePedido'];
     $objForm = new controlVerificarEditarPedido;
-    $objForm = $objForm->mostrarListarPedidos();
+    $objForm = $objForm->mostrarListarPedidos($txtBuscarNombre);
 } else if (validarBoton($btnEditarPedido) || validarBoton($btnRegresar)) {
     $idPedido = $_POST['idPedido'];
     include_once('./controlVerificarEditarPedido.php');

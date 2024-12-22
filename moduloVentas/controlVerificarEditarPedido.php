@@ -1,14 +1,14 @@
 <?php
 class controlVerificarEditarPedido
 {
-    public function mostrarListarPedidos()
+    public function mostrarListarPedidos($txtBuscarNombre)
     {
         include_once('../modelo/pedidos.php');
         $objuser = new pedidos;
-        $usuarioArray = $objuser->obtenerPedidos();
+        $pedidosArray = $objuser->obtenerPedidos($txtBuscarNombre);
         include_once('../moduloVentas/formListarPedidos.php');
         $objForm = new formListarPedidos;
-        $objForm = $objForm->formListarPedidosShow($usuarioArray);
+        $objForm = $objForm->formListarPedidosShow($pedidosArray);
     }
     public function mostrarEditarPedido($idPedido)
     {

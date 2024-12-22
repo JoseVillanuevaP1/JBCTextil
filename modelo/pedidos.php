@@ -27,7 +27,7 @@ class pedidos
         return $aciertos > 0 ? $idInsertado : 0;
     }
 
-    public function obtenerPedidos()
+    public function obtenerPedidos($txtBuscarNombre)
     {
         // Establecer la conexión a la base de datos
         $conexion = $this->EjecutarConexion();
@@ -41,7 +41,8 @@ class pedidos
                      FROM 
                         pedidos p
                      JOIN
-                        clientes c ON p.id_cliente = c.id_cliente";
+                        clientes c ON p.id_cliente = c.id_cliente
+                    WHERE CONCAT(c.nombre, ' ', c.apellido) LIKE '%$txtBuscarNombre%'";
 
         // Ejecutar la consulta
         $resultado = mysqli_query($conexion, $consulta);
