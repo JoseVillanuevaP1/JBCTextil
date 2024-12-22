@@ -32,11 +32,12 @@ $btnRegistrarCliente = $_POST['btnRegistrarCliente'] ?? null;
 $btnConfirmarRegistrarCliente = $_POST['btnConfirmarRegistrarCliente'] ?? null;
 $btnRegresar = $_POST['btnRegresar'] ?? null;
 
+
+
 if (validarBoton($btnRegistrarCliente) || validarBoton($btnRegresar)) {
     include_once('./controlVerificarRegistrarCliente.php');
-
     $objForm = new controlVerificarRegistrarCliente;
-    $objForm = $objForm->traerTiposDocumentos();
+    $objForm = $objForm->mostrarRegistrarCliente();
 } else if (validarBoton($btnConfirmarRegistrarCliente)) {
 
 

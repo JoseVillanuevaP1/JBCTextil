@@ -1,7 +1,7 @@
 <?php
 class controlVerificarRegistrarCliente
-{
-    public function traerTiposDocumentos()
+{   
+    public function mostrarRegistrarCliente()
     {
         include_once('../../modelo/tipos_documento.php');
         include_once('../../moduloVentas/clientes/formRegistrarCliente.php');
@@ -10,6 +10,7 @@ class controlVerificarRegistrarCliente
         $listaTipoDocumento = $modeloTipoDocumento->obtenerTiposDocumento();
         $formRegistrar->formRegistrarClienteShow($listaTipoDocumento);
     }
+
     public function registrarCliente($txtNombreCliente, $txtApellidoCliente, $intTipoDocumento, $intDocumento, $intTelefonoCliente, $txtCorreoCliente, $txtDireccionCliente)
     {
         include_once('../../modelo/clientes.php');
