@@ -32,7 +32,7 @@ class controlVerificarEditarUsuario
     {
         include_once('../modelo/usuarios.php');
         $OBJTipos = new usuarios;
-        $OBJTipos->actualizarUsuario($idUsuario, $txtUsuario, $txtContrasenia, $txtNombre, $txtCorreo);
+        $OBJTipos->actualizarUsuario($idUsuario, $txtUsuario, $txtContrasenia, $txtNombre, $txtCorreo, $arrayPrivilegios);
         include_once('../compartido/mensajeConfirmacion.php');
         $OBJ = new mensajeConfirmacion;
         $OBJ = $OBJ->mensajeConfirmacionShow("Se editó exitosamente", "../moduloUsuario/getEnlaceUsuario.php");

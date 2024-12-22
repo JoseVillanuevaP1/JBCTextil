@@ -100,7 +100,7 @@ class usuarios
 		return $usuarios;
 	}
 
-	public function actualizarUsuario($idUsuario, $username, $password, $nombre, $correo)
+	public function actualizarUsuario($idUsuario, $username, $password, $nombre, $correo, $nuevosPrivilegios)
 	{
 		$conexion = $this->EjecutarConexion();
 
@@ -113,6 +113,17 @@ class usuarios
 						WHERE id_usuario = $idUsuario";
 		// Ejecutar la consulta
 		$resultado = mysqli_query($conexion, $consulta);
+		//privilegios
+		$consultaEliminarPrivilegios = "DELETE FROM usuario_privilegios WHERE id_usuario = $idUsuario";
+    	mysqli_query($conexion, $consultaEliminarPrivilegios);
+
+		// Insertar nuevos privilegios
+		foreach ($nuevosPrivilegios as $idprivilegio) {
+			$consultaInsertarPrivilegio = "INSERT INTO usuario_privilegios (id_usuario, id_privilegio) 
+										VALUES ($idUsuario, '$idprivilegio')";
+			mysqli_query($conexion, $consultaInsertarPrivilegio);
+		}
+
 		// Cerrar la conexión
 		mysqli_close($conexion);
 
