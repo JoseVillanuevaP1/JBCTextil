@@ -35,6 +35,7 @@ class pedidos
         // Consulta SQL para obtener los pedidos
         $consulta = "SELECT 
                         p.id_pedido,
+                        p.fecha_emision,
                         CONCAT(c.nombre, ' ', c.apellido) AS cliente,
                         p.estado
                      FROM 

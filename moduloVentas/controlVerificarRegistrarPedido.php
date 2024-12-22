@@ -22,7 +22,7 @@ class controlVerificarRegistrarPedido
         $OBJTipos = new detalles_pedido;
         $OBJTipos = $OBJTipos->registrarDetallesPedido($idPedido, $arrayProductos);
         include_once('../compartido/mensajeConfirmacion.php');
-        $OBJ = new mensajeComfirmacion;
+        $OBJ = new mensajeConfirmacion;
         $OBJ = $OBJ->mensajeConfirmacionShow("Se registró exitosamente", "../moduloVentas/getEnlacePedido.php");
     }
 }

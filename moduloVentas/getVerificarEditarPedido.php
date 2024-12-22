@@ -6,11 +6,11 @@ function validarBoton($boton)
     else
         return FALSE;
 }
-function validarCamposUsuario($txtUsuario, $txtContrasenia, $txtNombre, $txtCorreo, $arrayPrivilegios)
+function validarCamposPedido($txtCliente, $txtFechaEntrega, $txtLugarEntrega, $arrayIdProductos, $arrayDescripcion, $arrayCantidad)
 {
     if (
-        strlen(trim($txtUsuario)) > 3  && strlen(trim($txtContrasenia)) > 3 &&
-        strlen(trim($txtNombre)) > 3 && strlen(trim($txtCorreo)) > 3 && isset($arrayPrivilegios) && count($arrayPrivilegios) > 0
+        isset($txtCliente) && isset($txtFechaEntrega) &&
+        isset($txtLugarEntrega) && isset($arrayIdProductos) && isset($arrayDescripcion) && isset($arrayCantidad)
     )
         return 1;
     else
@@ -18,22 +18,22 @@ function validarCamposUsuario($txtUsuario, $txtContrasenia, $txtNombre, $txtCorr
 }
 
 $btnBuscarPedido = $_POST['btnBuscarPedido'] ?? null;
-$btnEditarUsuario = $_POST['btnEditarUsuario'] ?? null;
-$btnConfirmarEditarUsuario = $_POST['btnConfirmarEditarUsuario'] ?? null;
+$btnEditarPedido= $_POST['btnEditarPedido'] ?? null;
+$btnConfirmarEditarPedido = $_POST['btnConfirmarEditarPedido'] ?? null;
 $btnRegresar = $_POST['btnRegresar'] ?? null;
 
 if (validarBoton($btnBuscarPedido)) {
     include_once('../moduloVentas/controlVerificarEditarPedido.php');
     $objForm = new controlVerificarEditarPedido;
     $objForm = $objForm->mostrarListarPedidos();
-} else if (validarBoton($btnEditarUsuario) || validarBoton($btnRegresar)) {
-    $idUsuario = $_POST['idUsuario'];
-    include_once('./controlVerificarEditarUsuario.php');
-    $objForm = new controlVerificarEditarUsuario;
-    $objForm = $objForm->mostrarEditarUsuario($idUsuario);
-} else if (validarBoton($btnConfirmarEditarUsuario)) {
+} else if (validarBoton($btnEditarPedido) || validarBoton($btnRegresar)) {
+    $idPedido = $_POST['idPedido'];
+    include_once('./controlVerificarEditarPedido.php');
+    $objForm = new controlVerificarEditarPedido;
+    $objForm = $objForm->mostrarEditarPedido($idPedido);
+} else if (validarBoton($btnConfirmarEditarPedido)) {
 
-    $idUsuario = $_POST['idUsuario'];
+    $idPedido = $_POST['idPedido'];
     $txtUsuario = $_POST['txtUsuario'];
     $txtContrasenia = $_POST['txtContrasenia'];
     $txtNombre = $_POST['txtNombre'];
