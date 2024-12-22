@@ -28,10 +28,11 @@ if (validarBoton($btnEmitirInformePreventa) || validarBoton($btnRegresar)) {
     $objForm = new controlVerificarEmitirInformePreventa;
     $objForm = $objForm->mostrarEmitirInformePreventa($idPedido);
 } else if (validarBoton($btnAgregarRecursosPreventa)) {
+    $idPedido = $_POST['idPedido'] ?? null;
     $idDetallePedido = $_POST['intIdDetallePedido'] ?? null;
     include_once('./controlVerificarEmitirInformePreventa.php');
     $objForm = new controlVerificarEmitirInformePreventa;
-    $objForm = $objForm->mostrarAgregarRecursosPreventa($idDetallePedido);
+    $objForm = $objForm->mostrarAgregarRecursosPreventa($idPedido, $idDetallePedido);
 } else if (validarBoton($confirmarEmitirInformePreventa)) {
     include_once('../compartido/mensajeSistema.php');
     $objForm = new mensajeSistema;
