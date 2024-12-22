@@ -1,6 +1,6 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'] . '/JBCTextil/compartido/pantalla.php');
-class MensajeSistema extends pantalla
+class mensajeSistema extends pantalla
 {
 	public function mensajeSistemaShow($mensaje, $link)
 	{
@@ -82,7 +82,7 @@ class MensajeSistema extends pantalla
 		</body>
 
 		</html>
-<?php
+	<?php
 	}
 }
 ?>

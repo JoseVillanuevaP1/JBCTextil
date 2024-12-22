@@ -1,7 +1,7 @@
 <?php
 class controlEnlacePedido
 {
-    public function mostrarListarPedido()
+    public function mostrarListarPedidos()
     {
         include_once('../moduloVentas/formListarPedidos.php');
         $objForm = new formListarPedidos;

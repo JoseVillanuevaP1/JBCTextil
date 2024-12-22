@@ -29,8 +29,8 @@ function validarCamposCliente($txtNombreCliente, $txtApellidoCliente, $intTipoDo
 }
 
 $btnBuscarCliente = $_POST['btnBuscarCliente'] ?? null;
-$btnEditarUsuario = $_POST['btnEditarUsuario'] ?? null;
-$btnConfirmarEditarUsuario = $_POST['btnConfirmarEditarUsuario'] ?? null;
+$btnEditarCliente = $_POST['btnEditarCliente'] ?? null;
+$btnConfirmarEditarCliente = $_POST['btnConfirmarEditarCliente'] ?? null;
 $btnRegresar = $_POST['btnRegresar'] ?? null;
 
 if (validarBoton($btnBuscarCliente)) {
@@ -38,30 +38,33 @@ if (validarBoton($btnBuscarCliente)) {
     $txtBuscarNombre = $_POST['txtBuscarNombre'];
     $objForm = new controlVerificarEditarCliente;
     $objForm = $objForm->mostrarListarCliente($txtBuscarNombre);
-} else if (validarBoton($btnEditarUsuario) || validarBoton($btnRegresar)) {
-    $idUsuario = $_POST['idUsuario'];
-    include_once('./controlVerificarEditarUsuario.php');
-    $objForm = new controlVerificarEditarUsuario;
-    $objForm = $objForm->mostrarEditarUsuario($idUsuario);
-} else if (validarBoton($btnConfirmarEditarUsuario)) {
-    $idUsuario = $_POST['idUsuario'];
-    $txtUsuario = $_POST['txtUsuario'];
-    $txtContrasenia = $_POST['txtContrasenia'];
-    $txtNombre = $_POST['txtNombre'];
-    $txtCorreo = $_POST['txtCorreo'];
-    $arrayPrivilegios = $_POST['arrayPrivilegios'] ?? null;
+} else if (validarBoton($btnEditarCliente) || validarBoton($btnRegresar)) {
+    $idCliente = $_POST['idCliente'];
+    include_once('./controlVerificarEditarCliente.php');
+    $objForm = new controlVerificarEditarCliente;
+    $objForm = $objForm->mostrarEditarCliente($idCliente);
+} else if (validarBoton($btnConfirmarEditarCliente)) {
 
-    if (validarCamposUsuario($txtUsuario, $txtContrasenia, $txtNombre, $txtCorreo, $arrayPrivilegios)) {
-        include_once('../moduloUsuario/controlVerificarEditarUsuario.php');
-        $objForm = new controlVerificarEditarUsuario;
-        $objForm = $objForm->actualizarUsuario($idUsuario, $txtUsuario, $txtContrasenia, $txtNombre, $txtCorreo, $arrayPrivilegios);
+    $idCliente = $_POST['idCliente'];
+    $txtNombreCliente = $_POST['txtNuevosNombresCliente'];
+    $txtApellidoCliente = $_POST['txtNuevosApellidosCliente'];
+    $intTipoDocumento = $_POST['intNuevoTipoDocumentoCliente'];
+    $intDocumento = $_POST['intNuevoDocumentoCliente'];
+    $intTelefonoCliente = $_POST['intNuevoTelefonoCliente'];
+    $txtCorreoCliente = $_POST['txtNuevoCorreoCliente'];
+    $txtDireccionCliente = $_POST['txtNuevaDireccionCliente'];
+
+    if (validarCamposCliente($txtNombreCliente,$txtApellidoCliente,$intTipoDocumento,$intDocumento,$intTelefonoCliente,$txtCorreoCliente,$txtDireccionCliente)) {
+        include_once('./controlVerificarEditarCliente.php');
+        $objForm = new controlVerificarEditarCliente;
+        $objForm = $objForm->editarCliente($idCliente,$txtNombreCliente,$txtApellidoCliente,$intTipoDocumento,$intDocumento,$intTelefonoCliente,$txtCorreoCliente,$txtDireccionCliente);
     } else {
-        include_once('../compartido/mensajeSistema.php');
-        $objMsj = new MensajeSistema;
-        $objMsj->mensajeSistemaShow("Error: Datos no validos<br>", "../moduloUsuario/getVerificarRegistrarUsuario.php");
+        include_once($_SERVER['DOCUMENT_ROOT'] . '/JBCTextil/compartido/mensajeSistema.php');
+        $objMsj = new mensajeSistema;
+        $objMsj->mensajeSistemaShow("Error: Datos no validos<br>", "../clientes/getEnlaceClientes.php");
     }
 } else {
-    include_once('../compartido/mensajeSistema.php');
-    $objMsj = new MensajeSistema;
-    $objMsj->mensajeSistemaShow("Error: Se ha detectado un acceso no autorizado<br>", "../index.php");
+    include_once($_SERVER['DOCUMENT_ROOT'] . '/JBCTextil/compartido/mensajeSistema.php');
+    $objMsj = new mensajeSistema;
+    $objMsj->mensajeSistemaShow("Error: Se ha detectado un acceso no autorizado<br>", "../../index.php");
 }

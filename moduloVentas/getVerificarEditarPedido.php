@@ -6,11 +6,11 @@ function validarBoton($boton)
     else
         return FALSE;
 }
-function validarCamposUsuario($txtUsuario, $txtContrasenia, $txtNombre, $txtCorreo, $arrayPrivilegios)
+function validarCamposPedido($txtCliente, $txtFechaEntrega, $txtLugarEntrega, $arrayIdProductos, $arrayDescripcion, $arrayCantidad)
 {
     if (
-        strlen(trim($txtUsuario)) > 3  && strlen(trim($txtContrasenia)) > 3 &&
-        strlen(trim($txtNombre)) > 3 && strlen(trim($txtCorreo)) > 3 && isset($arrayPrivilegios) && count($arrayPrivilegios) > 0
+        isset($txtCliente) && isset($txtFechaEntrega) &&
+        isset($txtLugarEntrega) && isset($arrayIdProductos) && isset($arrayDescripcion) && isset($arrayCantidad)
     )
         return 1;
     else
@@ -18,8 +18,8 @@ function validarCamposUsuario($txtUsuario, $txtContrasenia, $txtNombre, $txtCorr
 }
 
 $btnBuscarPedido = $_POST['btnBuscarPedido'] ?? null;
-$btnEditarUsuario = $_POST['btnEditarUsuario'] ?? null;
-$btnConfirmarEditarUsuario = $_POST['btnConfirmarEditarUsuario'] ?? null;
+$btnEditarPedido= $_POST['btnEditarPedido'] ?? null;
+$btnConfirmarEditarPedido = $_POST['btnConfirmarEditarPedido'] ?? null;
 $btnRegresar = $_POST['btnRegresar'] ?? null;
 
 if (validarBoton($btnBuscarPedido)) {
@@ -39,7 +39,7 @@ if (validarBoton($btnBuscarPedido)) {
     $objForm = $objForm->mostrarEditarUsuario($idUsuario);
 } else if (validarBoton($btnConfirmarEditarUsuario)) {
 
-    $idUsuario = $_POST['idUsuario'];
+    $idPedido = $_POST['idPedido'];
     $txtUsuario = $_POST['txtUsuario'];
     $txtContrasenia = $_POST['txtContrasenia'];
     $txtNombre = $_POST['txtNombre'];
@@ -52,11 +52,11 @@ if (validarBoton($btnBuscarPedido)) {
         $objForm = $objForm->actualizarUsuario($idUsuario, $txtUsuario, $txtContrasenia, $txtNombre, $txtCorreo, $arrayPrivilegios);
     } else {
         include_once('../compartido/mensajeSistema.php');
-        $objMsj = new MensajeSistema;
+        $objMsj = new mensajeSistema;
         $objMsj->mensajeSistemaShow("Error: Datos no validos<br>", "../moduloUsuario/getVerificarRegistrarUsuario.php");
     }
 } else {
     include_once('../compartido/mensajeSistema.php');
-    $objMsj = new MensajeSistema;
+    $objMsj = new mensajeSistema;
     $objMsj->mensajeSistemaShow("Error: Se ha detectado un acceso no autorizado<br>", "../index.php");
 }

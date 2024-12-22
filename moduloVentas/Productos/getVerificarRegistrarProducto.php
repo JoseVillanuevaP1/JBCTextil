@@ -33,12 +33,12 @@ if (validarBoton($btnRegistrarProducto) || validarBoton($btnRegresar)) {
         $objForm = new controlVerificarRegistrarProducto;
         $objForm = $objForm->registrarProducto($txtNombre);
     } else {
-        include_once($_SERVER['DOCUMENT_ROOT'] . '/JBCTextil/compartido/MensajeSistema.php');
-        $objMsj = new MensajeSistema;
-        $objMsj->mensajeSistemaShow("Error: Datos no validos<br>", "../Productos/getVerificarRegistrarProducto.php");
+        include_once($_SERVER['DOCUMENT_ROOT'] . '/JBCTextil/compartido/mensajeSistema.php');
+        $objMsj = new mensajeSistema;
+        $objMsj->mensajeSistemaShow("Error: Datos no validos<br>", "../Productos/getEnlaceProductos.php");
     }
 } else {
-    include_once($_SERVER['DOCUMENT_ROOT'] . '/JBCTextil/compartido/MensajeSistema.php');
-    $objMsj = new MensajeSistema;
+    include_once($_SERVER['DOCUMENT_ROOT'] . '/JBCTextil/compartido/mensajeSistema.php');
+    $objMsj = new mensajeSistema;
     $objMsj->mensajeSistemaShow("Error: Se ha detectado un acceso no autorizado<br>", "../../index.php");
 }

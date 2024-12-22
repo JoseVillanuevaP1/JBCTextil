@@ -15,8 +15,8 @@ class controlVerificarRegistrarProducto
         include_once('../../modelo/productos.php');
         $OBJTipos = new productos;
         $OBJTipos->registrarProducto($nombre);
-        include_once($_SERVER['DOCUMENT_ROOT'] . '/JBCTextil/compartido/MensajeSistema.php');
-        $OBJ = new MensajeSistema;
+        include_once($_SERVER['DOCUMENT_ROOT'] . '/JBCTextil/compartido/mensajeConfirmacion.php');
+        $OBJ = new mensajeConfirmacion;
         $OBJ = $OBJ->mensajeConfirmacionShow("Se registró exitosamente", "../Productos/getEnlaceProductos.php");
     }
 }

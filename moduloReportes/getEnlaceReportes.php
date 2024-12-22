@@ -8,13 +8,13 @@ function validarBoton($boton)
         return FALSE;
 }
 
-$btnComprobantesDePago = $_POST['btnComprobantesDePago'] ?? null;
+$btnReportes = $_POST['btnReportes'] ?? null;
 $btnRegresar = $_POST['btnRegresar'] ?? null;
 
-if (validarBoton($btnComprobantesDePago) || validarBoton($btnRegresar)) {
-    include_once('./controlEnlaceComprobantesPago.php');
-    $objForm = new controlEnlaceComprobantePago;
-    $objForm = $objForm->mostrarListarComprobantePago();
+if (validarBoton($btnReportes) || validarBoton($btnRegresar)) {
+    include_once('./controlEnlaceReportes.php');
+    $objForm = new controlEnlaceReportes;
+    $objForm = $objForm->mostrarListarFiltrosReportes();
 } else {
     include_once($_SERVER['DOCUMENT_ROOT'] . '/JBCTextil/compartido/mensajeSistema.php');
     $objMsj = new mensajeSistema;

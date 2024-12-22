@@ -100,7 +100,7 @@ class formRegistrarCliente extends Pantalla
                                                     <label class="mb-3 block text-lg font-medium text-black">
                                                         Direccion <span class="text-meta-1"></span>
                                                     </label>
-                                                    <input name="txtDireccionCliente" type="txt" placeholder="" class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+                                                    <input name="txtDireccionCliente" type="text" placeholder="" class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
                                                 </div>
                                                 <button name="btnConfirmarRegistrarCliente" type="submit" class="flex w-full justify-center rounded bg-blue-500 p-3 font-medium text-white hover:bg-opacity-90">
                                                     Confirmar

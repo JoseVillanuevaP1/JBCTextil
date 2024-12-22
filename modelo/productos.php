@@ -18,12 +18,14 @@ class productos
 			return $aciertos > 0 ? 1 : 0;
 		}
 	/***************************************************************************************/ 	
-		public function obtenerProductos()
+		public function obtenerProductos($txtBuscarNombreProducto)
 		{
 			$conexion = $this->EjecutarConexion();
+			$txtBuscarNombreProducto = mysqli_real_escape_string($conexion, $txtBuscarNombreProducto);
 			// Consulta con filtro OR para nombre y username
 			$consulta = "SELECT id_producto, nombre
-						FROM productos";
+						FROM productos
+						WHERE ('$txtBuscarNombreProducto' = '' OR nombre LIKE '%$txtBuscarNombreProducto%')";
 			// Ejecutar la consulta
 			$resultado = mysqli_query($conexion, $consulta);
 	
@@ -58,13 +60,13 @@ class productos
 		return $productos;
 	}
 
-	public function actualizarProducto($idProducto, $nombre)
+	public function editarProducto($idProducto, $nombre)
 	{
 		$conexion = $this->EjecutarConexion();
 
 		// Construir la consulta
 		$consulta = "UPDATE productos 
-					 SET nombre = '$nombre',
+					 SET nombre = '$nombre'
 				
 						WHERE id_producto = $idProducto";
 		// Ejecutar la consulta
@@ -74,4 +76,25 @@ class productos
 
 		return $resultado ? true : false;
 	}
+	public function obtenerProductosPedido()
+		{
+			$conexion = $this->EjecutarConexion();
+			
+			// Consulta con filtro OR para nombre y username
+			$consulta = "SELECT id_producto, nombre
+						FROM productos
+						";
+			// Ejecutar la consulta
+			$resultado = mysqli_query($conexion, $consulta);
+	
+			$productos = [];
+			if ($resultado && mysqli_num_rows($resultado) > 0) {
+				while ($fila = mysqli_fetch_assoc($resultado)) {
+					$productos[] = $fila;
+				}
+			}
+			// Cerrar la conexión
+			mysqli_close($conexion);
+			return $productos;
+		}
 }

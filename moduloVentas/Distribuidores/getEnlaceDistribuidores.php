@@ -16,7 +16,7 @@ if (validarBoton($btnDistribuidores) || validarBoton($btnRegresar)) {
     $objForm = new controlEnlaceDistribuidores;
     $objForm = $objForm->mostrarListarDistribuidores();
 } else {
-    include_once($_SERVER['DOCUMENT_ROOT'] . '/JBCTextil/compartido/MensajeSistema.php');
-    $objMsj = new MensajeSistema;
+    include_once($_SERVER['DOCUMENT_ROOT'] . '/JBCTextil/compartido/mensajeSistema.php');
+    $objMsj = new mensajeSistema;
     $objMsj->mensajeSistemaShow("Error: Se ha detectado un acceso no autorizado<br>", '../../index.php');
 }

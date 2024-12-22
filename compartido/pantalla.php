@@ -127,6 +127,44 @@ class Pantalla
                                 <?php } ?>
                             </ul>
                         <?php } ?>
+                        <?php if (in_array(9, $ids)) { ?>
+                            <div>
+                                <h3 class="mb-4 ml-4 text-base font-medium text-white">Reclamaciones</h3>
+
+                                <ul class="mb-6 flex flex-col gap-1.5">
+                                    <li>
+                                        <form action="/jbctextil/moduloReclamaciones/getEnlaceReclamos.php" method="post">
+                                            <button name="btnReclamos" type="submit" class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white hover:text-yellow-300 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 448 512" class="fill-current"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                                                    <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z" />
+                                                </svg>
+
+                                                Reclamos
+                                            </button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        <?php } ?>
+                        <?php if (in_array(9, $ids)) { ?>
+                            <div>
+                                <h3 class="mb-4 ml-4 text-base font-medium text-white">Reportes</h3>
+
+                                <ul class="mb-6 flex flex-col gap-1.5">
+                                    <li>
+                                        <form action="/jbctextil/moduloReportes/getEnlaceReportes.php" method="post">
+                                            <button name="btnReportes" type="submit" class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-white hover:text-yellow-300 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 448 512" class="fill-current"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                                                    <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z" />
+                                                </svg>
+
+                                                Reportes
+                                            </button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        <?php } ?>
                     </div>
                 </nav>
                 <!-- Sidebar Menu -->

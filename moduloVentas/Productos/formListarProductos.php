@@ -2,7 +2,7 @@
 include_once("../../compartido/pantalla.php");
 class formListarProductos extends Pantalla
 {
-    public function formListarProductosShow()
+    public function formListarProductosShow($productoArray = [])
     {
         session_start();
         $privilegios = $_SESSION["privilegios"];
@@ -43,7 +43,7 @@ class formListarProductos extends Pantalla
                                                 <form action="./getVerificarEditarProducto.php" method="post" class="flex gap-3 mb-4 items-center w-full">
                                                     <div class="flex items-center gap-2 w-1/2">
                                                         <label for="txtBuscarNombreProducto" class="text-lg font-medium text-gray-700">Nombre del Producto</label>
-                                                        <input type="text" id="txtBuscarNombreProducto" name="txtBuscarProducto" placeholder="Producto" class="ml-3 px-4 py-2 border rounded-lg w-full" />
+                                                        <input type="text" id="txtBuscarNombreProducto" name="txtBuscarNombreProducto" placeholder="Producto" class="ml-3 px-4 py-2 border rounded-lg w-full" />
                                                     </div>
 
                                                 
@@ -81,26 +81,27 @@ class formListarProductos extends Pantalla
                                                     <th class="min-w-[150px] px-4 py-4 font-medium text-black">
                                                         Nombre del Producto
                                                     </th>
+                                                    <th class="min-w-[150px] px-4 py-4 font-medium text-black">
+                                                        Acciones
+                                                    </th>
+
                                                                                           
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php if (isset($productoArray)): ?>
-                                                    <?php foreach ($productoArray as $key => $productos): ?>
+                                                    <?php foreach ($productoArray as $key => $producto): ?>
                                                         <tr>
                                                             <td class="border-b border-[#eee] px-4 py-4 dark:border-strokedark">
-                                                                <h5 class="font-medium text-black"><?= $key ?></h5>
+                                                            <h5 class="font-medium text-black"><?= htmlspecialchars($producto['id_producto']); ?></h5>
                                                             </td>
                                                             <td class="border-b border-[#eee] px-4 py-4 dark:border-strokedark">
                                                                 <h5 class="font-medium text-black"><?= htmlspecialchars($producto['nombre']); ?></h5>
-                                                            </td>
-                                                            <td class="border-b border-[#eee] px-4 py-4 dark:border-strokedark">
-                                                                <h5 class="font-medium text-black"><?= htmlspecialchars($producto['nombre']); ?></h5>
-                                                            </td>
+                                                            </td>                                                   
                                                             
                                                             <td class="border-b border-[#eee] px-4 py-4 dark:border-strokedark">
                                                                 <div class="flex items-center space-x-3">
-                                                                    <form action="../moduloVentas/Productos/getVerificarEditarProducto.php" method="post">
+                                                                    <form action="../Productos/getVerificarEditarProducto.php" method="post">
                                                                         <input name="idProducto" value="<?= $producto['id_producto'] ?>" type="text" hidden>
                                                                         <button name="btnEditarProducto" type="submit" class="hover:text-blue-700">
                                                                             <svg xmlns="http://www.w3.org/2000/svg" class="fill-current" width="20" height="20" viewBox="0 0 576 512">
