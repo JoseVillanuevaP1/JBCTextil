@@ -23,16 +23,22 @@ $btnConfirmarEditarPedido = $_POST['btnConfirmarEditarPedido'] ?? null;
 $btnRegresar = $_POST['btnRegresar'] ?? null;
 
 if (validarBoton($btnBuscarPedido)) {
+
+    $txtBuscarCliente = $_POST["txtBuscarCliente"] ?? null;
+    $txtBuscarDesde = $_POST["txtBuscarDesde"] ?? null;
+    $txtBuscarHasta = $_POST["txtBuscarHasta"] ?? null;
+    $txtBuscarEstado = $_POST["txtBuscarEstado"] ?? null;
+
     include_once('../moduloVentas/controlVerificarEditarPedido.php');
     $txtBuscarNombre = $_POST['txtBuscarNombreClientePedido'];
     $objForm = new controlVerificarEditarPedido;
-    $objForm = $objForm->mostrarListarPedidos($txtBuscarNombre);
-} else if (validarBoton($btnEditarPedido) || validarBoton($btnRegresar)) {
-    $idPedido = $_POST['idPedido'];
-    include_once('./controlVerificarEditarPedido.php');
-    $objForm = new controlVerificarEditarPedido;
-    $objForm = $objForm->mostrarEditarPedido($idPedido);
-} else if (validarBoton($btnConfirmarEditarPedido)) {
+    $objForm = $objForm->mostrarListarPedidos($txtBuscarCliente, $txtBuscarDesde, $txtBuscarHasta, $txtBuscarEstado);
+} else if (validarBoton($btnEditarUsuario) || validarBoton($btnRegresar)) {
+    $idUsuario = $_POST['idUsuario'];
+    include_once('./controlVerificarEditarUsuario.php');
+    $objForm = new controlVerificarEditarUsuario;
+    $objForm = $objForm->mostrarEditarUsuario($idUsuario);
+} else if (validarBoton($btnConfirmarEditarUsuario)) {
 
     $idPedido = $_POST['idPedido'];
     $txtUsuario = $_POST['txtUsuario'];

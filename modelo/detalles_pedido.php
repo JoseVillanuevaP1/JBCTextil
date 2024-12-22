@@ -25,27 +25,9 @@ class detalles_pedido
         mysqli_close($conexion);
         return $aciertos > 0 ? 1 : 0;
     }
-
-    public function obtenerClientes()
-    {
-        $conexion = $this->EjecutarConexion();
-        $consulta = "SELECT * FROM clientes";
-        $resultado = mysqli_query($conexion, $consulta);
-        mysqli_close($conexion);
-
-        $privilegios = [];
-        while ($fila = mysqli_fetch_assoc($resultado)) {
-            $privilegios[] = $fila;
-        }
-
-        return $privilegios;
-    }
     public function obtenerDetallesPedidoPreventa($id_pedido)
     {
-        // Establecer la conexión a la base de datos
         $conexion = $this->EjecutarConexion();
-
-        // Consulta SQL para obtener los detalles del pedido
         $consulta = "SELECT
                         dp.id_detalle_pedido, 
                         dp.descripcion AS detalle_descripcion,
@@ -59,7 +41,6 @@ class detalles_pedido
                      WHERE 
                         dp.id_pedido = $id_pedido";
 
-        // Ejecutar la consulta
         $resultado = mysqli_query($conexion, $consulta);
         $detallesPedido = [];
         if ($resultado) {
@@ -69,5 +50,31 @@ class detalles_pedido
         }
         mysqli_close($conexion);
         return $detallesPedido;
+    }
+
+    public function obtenerDetallePedidoPreventa($idDetallePedido)
+    {
+        $conexion = $this->EjecutarConexion();
+        $consulta = "SELECT
+                        dp.id_detalle_pedido,  
+                        dp.descripcion,
+                        dp.cantidad,
+                        p.nombre
+                    FROM 	
+                        detalles_pedido dp
+                    JOIN
+                        productos p ON dp.id_producto = p.id_producto
+                    WHERE dp.id_detalle_pedido = $idDetallePedido";
+        $resultado = mysqli_query($conexion, $consulta);
+
+        $detallePedido = [];
+        if ($resultado && mysqli_num_rows($resultado) > 0) {
+            while ($fila = mysqli_fetch_assoc($resultado)) {
+                $detallePedido = $fila;
+            }
+        }
+
+        mysqli_close($conexion);
+        return $detallePedido;
     }
 }

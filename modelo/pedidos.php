@@ -27,7 +27,7 @@ class pedidos
         return $aciertos > 0 ? $idInsertado : 0;
     }
 
-    public function obtenerPedidos($txtBuscarNombre)
+    public function obtenerPedidos($txtBuscarCliente, $txtBuscarDesde, $txtBuscarHasta, $txtBuscarEstado)
     {
         // Establecer la conexión a la base de datos
         $conexion = $this->EjecutarConexion();
@@ -42,8 +42,10 @@ class pedidos
                         pedidos p
                      JOIN
                         clientes c ON p.id_cliente = c.id_cliente
-                    WHERE CONCAT(c.nombre, ' ', c.apellido) LIKE '%$txtBuscarNombre%'";
-
+                    WHERE
+                        p.fecha_emision BETWEEN '$txtBuscarDesde' AND '$txtBuscarHasta'
+                        AND ('$txtBuscarCliente' = '' OR CONCAT(c.nombre, ' ', c.apellido) LIKE '%$txtBuscarCliente%')
+                        AND ('$txtBuscarEstado' = '' OR p.estado LIKE '%$txtBuscarEstado%');";
         // Ejecutar la consulta
         $resultado = mysqli_query($conexion, $consulta);
         if ($resultado) {
