@@ -44,7 +44,7 @@ if (validarBoton($btnBuscarProducto)) {
     } else {
         include_once($_SERVER['DOCUMENT_ROOT'] . '/JBCTextil/compartido/MensajeSistema.php');
         $objMsj = new MensajeSistema;
-        $objMsj->mensajeSistemaShow("Error: Datos no validos<br>", "../Productos/getVerificarEditarProducto.php");
+        $objMsj->mensajeSistemaShow("Error: Datos no validos<br>", "../Productos/getEnlaceProductos.php");
     }
 } else {
     include_once($_SERVER['DOCUMENT_ROOT'] . '/JBCTextil/compartido/MensajeSistema.php');

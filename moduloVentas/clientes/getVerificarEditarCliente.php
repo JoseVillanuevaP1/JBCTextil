@@ -61,7 +61,7 @@ if (validarBoton($btnBuscarCliente)) {
     } else {
         include_once($_SERVER['DOCUMENT_ROOT'] . '/JBCTextil/compartido/MensajeSistema.php');
         $objMsj = new MensajeSistema;
-        $objMsj->mensajeSistemaShow("Error: Datos no validos<br>", "../moduloVentas/clientes/getVerificarEditarCliente.php");
+        $objMsj->mensajeSistemaShow("Error: Datos no validos<br>", "../clientes/getEnlaceClientes.php");
     }
 } else {
     include_once($_SERVER['DOCUMENT_ROOT'] . '/JBCTextil/compartido/MensajeSistema.php');

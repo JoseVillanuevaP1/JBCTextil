@@ -82,6 +82,8 @@ class formListarClientes extends Pantalla
                                                     </th>
                                                     <th class="min-w-[120px] px-4 py-4 font-medium text-black">
                                                         Documento
+                                                    </th><th class="min-w-[120px] px-4 py-4 font-medium text-black">
+                                                        Telefono
                                                     </th>
                                                     <th class="px-4 py-4 font-medium text-black">
                                                         Correo electronico
@@ -109,6 +111,9 @@ class formListarClientes extends Pantalla
                                                                                                                                                                             
                                                             <td class="border-b border-[#eee] px-4 py-4 dark:border-strokedark">
                                                                 <h5 class="font-medium text-black"><?= htmlspecialchars($clientes['documento']); ?></h5>
+                                                            </td>
+                                                            <td class="border-b border-[#eee] px-4 py-4 dark:border-strokedark">
+                                                                <h5 class="font-medium text-black"><?= htmlspecialchars($clientes['telefono']); ?></h5>
                                                             </td>
                                                             <td class="border-b border-[#eee] px-4 py-4 dark:border-strokedark">
                                                                 <h5 class="font-medium text-black"><?= htmlspecialchars($clientes['correo_electronico']); ?></h5>

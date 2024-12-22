@@ -2,7 +2,7 @@
 include_once("../../compartido/pantalla.php");
 class formEditarCliente extends Pantalla
 {
-    public function formEditarClienteShow($clientesArray)
+    public function formEditarClienteShow($clientesArray, $listaTipoDocumento)
     {
         session_start();
         $privilegios = $_SESSION["privilegios"];
@@ -67,6 +67,23 @@ class formEditarCliente extends Pantalla
                                                             Apellidos
                                                         </label>
                                                         <input name="txtNuevosApellidosCliente" type="text" value="<?= $cliente["apellido"] ?>" class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+                                                    </div>
+                                                    <div class="w-full xl:w-1/2">
+                                                        <label class="mb-3 block text-lg font-medium text-black dark:text-black">
+                                                            Tipo de Documento
+                                                        </label>
+
+                                                        <select name="intNuevoTipoDocumentoCliente" class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+                                                            
+                                                            <?php
+                                                            foreach ($listaTipoDocumento as $tipo) {
+                                                            $selected = ($cliente["id_tipo_documento"] == $tipo['id_tipo_documento']) ? 'selected' : '';
+                                                            echo "<option value='{$cliente['id_tipo_documento']}' $selected>{$tipo['nombre']}</option>";
+                                                            //$selected = ($tipoDocumentoSeleccionado == $tipo['id_tipo_documento']) ? 'selected' : '';
+                                                        }
+                                                        ?>
+                                                        </select>
+                                                        
                                                     </div>   
                                                     <div class="w-full xl:w-1/2">
                                                         <label class="mb-3 block text-lg font-medium text-black dark:text-black">
@@ -75,12 +92,7 @@ class formEditarCliente extends Pantalla
                                                         <input name="intNuevoDocumentoCliente" type="number" value="<?= $cliente["documento"] ?>" class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
                                                     
                                                     </div>
-                                                    <div class="w-full xl:w-1/2">
-                                                        <label class="mb-3 block text-lg font-medium text-black dark:text-black">
-                                                            Tipo de Documento
-                                                        </label>
-                                                        <input name="intNuevoTipoDocumentoCliente" type="number" value="<?= $cliente["id_tipo_documento"] ?>" class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
-                                                    </div>
+                                                
                                                     <div class="w-full xl:w-1/2">
                                                         <label class="mb-3 block text-lg font-medium text-black dark:text-black">
                                                             Telefono
@@ -102,7 +114,7 @@ class formEditarCliente extends Pantalla
                                                     </div>
                                                     
                                                     
-                                                                            
+                                                                      
                                                 </div>
                                                        
                                                 <button name="btnConfirmarEditarCliente" type="submit" class="flex w-full justify-center rounded bg-blue-500 p-3 font-medium text-white hover:bg-opacity-90">

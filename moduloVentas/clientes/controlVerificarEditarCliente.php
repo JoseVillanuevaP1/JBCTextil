@@ -12,12 +12,18 @@ class controlVerificarEditarCliente
     }
     public function mostrarEditarCliente($idCliente)
     {
+        
         include_once('../../modelo/clientes.php');
         $objuser = new clientes;
         $clienteArray = $objuser->obtenerCliente($idCliente);
+
+        include_once('../../modelo/tipos_documento.php');
+        $modeloTipoDocumento = new tipos_documento();
+        $listaTipoDocumento = $modeloTipoDocumento->obtenerTiposDocumento();
+
         include_once('./formEditarCliente.php');
         $OBJForm = new formEditarCliente;
-        $OBJForm = $OBJForm->formEditarClienteShow($clienteArray);
+        $OBJForm = $OBJForm->formEditarClienteShow($clienteArray, $listaTipoDocumento);
     }
 
     public function editarCliente($idCliente,$txtNombreCliente,$txtApellidoCliente,$intTipoDocumento,$intDocumento,$intTelefonoCliente,$txtCorreoCliente,$txtDireccionCliente)
