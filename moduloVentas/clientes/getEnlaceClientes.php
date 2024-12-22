@@ -10,6 +10,6 @@ if (validarBoton($btnClientes) || validarBoton($btnRegresar)) {
     include_once('./controlEnlaceClientes.php');
 } else {
     include_once('../../compartido/mensajeSistema.php');
-    $objMsj = new MensajeSistema;
+    $objMsj = new mensajeSistema;
     $objMsj->mensajeSistemaShow("Error: Se ha detectado un acceso no autorizado<br>", "../../index.php");
 }

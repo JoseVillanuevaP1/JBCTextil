@@ -59,12 +59,12 @@ if (validarBoton($btnBuscarCliente)) {
         $objForm = new controlVerificarEditarCliente;
         $objForm = $objForm->editarCliente($idCliente,$txtNombreCliente,$txtApellidoCliente,$intTipoDocumento,$intDocumento,$intTelefonoCliente,$txtCorreoCliente,$txtDireccionCliente);
     } else {
-        include_once($_SERVER['DOCUMENT_ROOT'] . '/JBCTextil/compartido/MensajeSistema.php');
-        $objMsj = new MensajeSistema;
+        include_once($_SERVER['DOCUMENT_ROOT'] . '/JBCTextil/compartido/mensajeSistema.php');
+        $objMsj = new mensajeSistema;
         $objMsj->mensajeSistemaShow("Error: Datos no validos<br>", "../clientes/getEnlaceClientes.php");
     }
 } else {
-    include_once($_SERVER['DOCUMENT_ROOT'] . '/JBCTextil/compartido/MensajeSistema.php');
-    $objMsj = new MensajeSistema;
+    include_once($_SERVER['DOCUMENT_ROOT'] . '/JBCTextil/compartido/mensajeSistema.php');
+    $objMsj = new mensajeSistema;
     $objMsj->mensajeSistemaShow("Error: Se ha detectado un acceso no autorizado<br>", "../../index.php");
 }

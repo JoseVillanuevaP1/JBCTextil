@@ -21,8 +21,8 @@ class controlVerificarRegistrarPedido
         include_once('../modelo/detalles_pedido.php');
         $OBJTipos = new detalles_pedido;
         $OBJTipos = $OBJTipos->registrarDetallesPedido($idPedido, $arrayProductos);
-        include_once('../compartido/mensajeSistema.php');
-        $OBJ = new MensajeSistema;
+        include_once('../compartido/mensajeConfirmacion.php');
+        $OBJ = new mensajeComfirmacion;
         $OBJ = $OBJ->mensajeConfirmacionShow("Se registró exitosamente", "../moduloVentas/getEnlacePedido.php");
     }
 }

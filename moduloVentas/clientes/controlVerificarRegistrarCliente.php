@@ -15,8 +15,8 @@ class controlVerificarRegistrarCliente
         include_once('../../modelo/clientes.php');
         $OBJTipos = new clientes;
         $OBJTipos->registrarCliente($txtNombreCliente, $txtApellidoCliente, $intTipoDocumento, $intDocumento, $intTelefonoCliente, $txtCorreoCliente, $txtDireccionCliente);
-        include_once('../../compartido/mensajeSistema.php');
-        $OBJ = new MensajeSistema;
+        include_once('../../compartido/mensajeConfirmacion.php');
+        $OBJ = new mensajeConfirmacion;
         $OBJ = $OBJ->mensajeConfirmacionShow("Se registró exitosamente", "../../moduloVentas/clientes/getEnlaceClientes.php");
     }
 }

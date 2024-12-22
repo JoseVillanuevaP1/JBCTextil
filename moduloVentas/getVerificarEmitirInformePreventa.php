@@ -28,10 +28,10 @@ if (validarBoton($btnEmitirInformePreventa) || validarBoton($btnRegresar)) {
     $objForm = $objForm->mostrarEmitirInformePreventa($idPedido);
 } else if (validarBoton($confirmarEmitirInformePreventa)) {
     include_once('../compartido/mensajeSistema.php');
-    $objForm = new MensajeSistema;
+    $objForm = new mensajeSistema;
     $objForm = $objForm->mensajeConfirmacionShow("Se registró correctamente", "/jbctextil/moduloVentas/getEnlacePedido.php");
 } else {
     include_once('../compartido/mensajeSistema.php');
-    $objMsj = new MensajeSistema;
+    $objMsj = new mensajeSistema;
     $objMsj->mensajeSistemaShow("Error: Se ha detectado un acceso no autorizado<br>", "../index.php");
 }

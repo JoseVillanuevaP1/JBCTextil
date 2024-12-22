@@ -17,6 +17,6 @@ if (validarBoton($btnUsuarios) || validarBoton($btnRegresar)) {
     $objForm = $objForm->mostrarListarUsuario();
 } else {
     include_once('../compartido/mensajeSistema.php');
-    $objMsj = new MensajeSistema;
+    $objMsj = new mensajeSistema;
     $objMsj->mensajeSistemaShow("Error: Se ha detectado un acceso no autorizado<br>", '../index.php');
 }

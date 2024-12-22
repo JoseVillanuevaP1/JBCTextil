@@ -15,8 +15,8 @@ class controlVerificarEmitirComprobantePago
         include_once('../../modelo/distribuidores.php');
         $OBJTipos = new comprobantesdepago;
         $OBJTipos->emitirComprobantePago($nombre,$RUC,$Direccion,$Correo,$Telefono1,$Telefono2,$Telefono3);
-        include_once($_SERVER['DOCUMENT_ROOT'] . '/JBCTextil/compartido/MensajeSistema.php');
-        $OBJ = new MensajeSistema;
+        include_once($_SERVER['DOCUMENT_ROOT'] . '/JBCTextil/compartido/mensajeConfirmacion.php');
+        $OBJ = new mensajeConfirmacion;
         $OBJ = $OBJ->mensajeConfirmacionShow("Se registró exitosamente", "../ComprobantesPago/getEnlaceComprobantesPago.php");
     }
 }

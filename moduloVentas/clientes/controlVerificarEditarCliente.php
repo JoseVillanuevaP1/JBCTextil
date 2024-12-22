@@ -31,8 +31,8 @@ class controlVerificarEditarCliente
         include_once('../../modelo/clientes.php');
         $OBJTipos = new clientes;
         $OBJTipos->editarCliente($idCliente,$txtNombreCliente,$txtApellidoCliente,$intTipoDocumento,$intDocumento,$intTelefonoCliente,$txtCorreoCliente,$txtDireccionCliente);
-        include_once($_SERVER['DOCUMENT_ROOT'] . '/JBCTextil/compartido/MensajeSistema.php');
-        $OBJ = new MensajeSistema;
+        include_once($_SERVER['DOCUMENT_ROOT'] . '/JBCTextil/compartido/mensajeConfirmacion.php');
+        $OBJ = new mensajeConfirmacion;
         $OBJ = $OBJ->mensajeConfirmacionShow("Se editó exitosamente", "../clientes/getEnlaceClientes.php");
     }
 }

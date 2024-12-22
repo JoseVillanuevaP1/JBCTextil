@@ -54,11 +54,11 @@ if (validarBoton($btnRegistrarPedido) || validarBoton($btnRegresar)) {
         $objForm = $objForm->registrarPedido($txtCliente, $txtFechaEntrega, $txtLugarEntrega, $arrayProductos, $txtFechaEmision, $txtEstado, $txtIdUsuario);
     } else {
         include_once('../compartido/mensajeSistema.php');
-        $objMsj = new MensajeSistema;
+        $objMsj = new mensajeSistema;
         $objMsj->mensajeSistemaShow("Error: Datos no validos<br>", "../moduloVentas/getVerificarRegistrarPedido.php");
     }
 } else {
     include_once('../compartido/mensajeSistema.php');
-    $objMsj = new MensajeSistema;
+    $objMsj = new mensajeSistema;
     $objMsj->mensajeSistemaShow("Error: Se ha detectado un acceso no autorizado<br>", "../index.php");
 }

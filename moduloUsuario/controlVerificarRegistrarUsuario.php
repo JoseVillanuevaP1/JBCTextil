@@ -18,8 +18,8 @@ class controlVerificarRegistrarUsuario
         include_once('../modelo/usuario_privilegios.php');
         $OBJpriv = new usuario_privilegios;
         $OBJpriv->registrarPrivilegios($idUsuario, $arrayPrivilegios);
-        include_once('../compartido/mensajeSistema.php');
-        $OBJ = new MensajeSistema;
+        include_once('../compartido/mensajeConfirmacion.php');
+        $OBJ = new mensajeConfirmacion;
         $OBJ = $OBJ->mensajeConfirmacionShow("Se registró exitosamente", "../moduloUsuario/getEnlaceUsuario.php");
     }
 }

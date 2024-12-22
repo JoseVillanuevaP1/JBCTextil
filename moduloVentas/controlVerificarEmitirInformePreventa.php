@@ -21,8 +21,8 @@ class controlVerificarEmitirInformePreventa
         include_once('../modelo/detalles_pedido.php');
         $OBJTipos = new detalles_pedido;
         $OBJTipos = $OBJTipos->registrarDetallesPedido($idPedido, $arrayProductos);
-        include_once('../compartido/mensajeSistema.php');
-        $OBJ = new MensajeSistema;
+        include_once('../compartido/mensajeConfirmacion.php');
+        $OBJ = new mensajeConfirmacion;
         $OBJ = $OBJ->mensajeConfirmacionShow("Se registró exitosamente", "../moduloUsuario/getEnlaceUsuario.php");
     }
 }

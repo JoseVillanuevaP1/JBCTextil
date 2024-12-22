@@ -25,8 +25,8 @@ class controlVerificarEditarProducto
         include_once('../../modelo/productos.php');
         $OBJTipos = new productos;
         $OBJTipos->editarProducto($idProducto, $txtNombreProducto);
-        include_once($_SERVER['DOCUMENT_ROOT'] . '/JBCTextil/compartido/MensajeSistema.php');
-        $OBJ = new MensajeSistema;
+        include_once($_SERVER['DOCUMENT_ROOT'] . '/JBCTextil/compartido/mensajeConfirmacion.php');
+        $OBJ = new mensajeConfirmacion;
         $OBJ = $OBJ->mensajeConfirmacionShow("Se editó exitosamente", "../Productos/getEnlaceProductos.php");
     }
 }

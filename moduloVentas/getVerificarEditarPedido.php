@@ -46,11 +46,11 @@ if (validarBoton($btnBuscarPedido)) {
         $objForm = $objForm->actualizarUsuario($idUsuario, $txtUsuario, $txtContrasenia, $txtNombre, $txtCorreo, $arrayPrivilegios);
     } else {
         include_once('../compartido/mensajeSistema.php');
-        $objMsj = new MensajeSistema;
+        $objMsj = new mensajeSistema;
         $objMsj->mensajeSistemaShow("Error: Datos no validos<br>", "../moduloUsuario/getVerificarRegistrarUsuario.php");
     }
 } else {
     include_once('../compartido/mensajeSistema.php');
-    $objMsj = new MensajeSistema;
+    $objMsj = new mensajeSistema;
     $objMsj->mensajeSistemaShow("Error: Se ha detectado un acceso no autorizado<br>", "../index.php");
 }
