@@ -11,7 +11,10 @@ class tipos_documento
     public function obtenerTiposDocumento()
     {
         $conexion = $this->EjecutarConexion();
-        $consulta = "SELECT id_tipo_documento, nombre FROM tipos_documento";
+        $consulta = "SELECT 
+                    id_tipo_documento, 
+                    nombre 
+                    FROM tipos_documento";
         $resultado = mysqli_query($conexion, $consulta);
         mysqli_close($conexion);
 

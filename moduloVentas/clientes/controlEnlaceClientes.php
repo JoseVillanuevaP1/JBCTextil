@@ -1,10 +1,10 @@
 <?php
-function mostrarLista()
+function mostrarListarCliente()
 {
     include_once('../../moduloVentas/clientes/formListarClientes.php');
     $objForm = new formListarClientes;
     $objForm = $objForm->formListarClientesShow();   
 }
-mostrarLista()
+mostrarListarCliente()
 
 ?>

@@ -22,8 +22,18 @@ class clientes
     {
         $conexion = $this->EjecutarConexion();
         $txtBuscarNombre = mysqli_real_escape_string($conexion, $txtBuscarNombre);
-        $consulta = "SELECT * FROM clientes 
-                 WHERE ('$txtBuscarNombre' = '' OR nombre LIKE '%$txtBuscarNombre%')";
+        $consulta = "SELECT 
+        id_cliente, 
+        nombre, 
+        apellido,
+        documento,
+        id_tipo_documento,
+        telefono,
+        correo_electronico,
+        direccion 
+        FROM 
+        clientes 
+        WHERE ('$txtBuscarNombre' = '' OR nombre LIKE '%$txtBuscarNombre%')";
         $resultado = mysqli_query($conexion, $consulta);
         mysqli_close($conexion);
         $clientes = [];
@@ -35,8 +45,19 @@ class clientes
     public function obtenerCliente($idCliente)
 	{
 		$conexion = $this->EjecutarConexion();
-		$consulta = "SELECT id_cliente, nombre, apellido,documento,id_tipo_documento,telefono,correo_electronico,direccion
-					FROM clientes WHERE id_cliente = $idCliente";
+		$consulta = "SELECT 
+                    id_cliente, 
+                    nombre, 
+                    apellido,
+                    documento,
+                    id_tipo_documento,
+                    telefono,
+                    correo_electronico,
+                    direccion
+					FROM 
+                    clientes 
+                    WHERE 
+                    id_cliente = $idCliente";
 		$resultado = mysqli_query($conexion, $consulta);
 
 		$clientes = [];
