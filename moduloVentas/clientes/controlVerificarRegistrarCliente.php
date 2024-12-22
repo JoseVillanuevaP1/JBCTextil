@@ -7,8 +7,8 @@ class controlVerificarRegistrarCliente
         include_once('../../moduloVentas/clientes/formRegistrarCliente.php');
         $modeloTipoDocumento = new tipos_documento();
         $formRegistrar = new formRegistrarCliente();
-        $listaTipoDocumento = $modeloTipoDocumento->obtenerTiposDocumento();
-        $formRegistrar->formRegistrarClienteShow($listaTipoDocumento);
+        $TiposDocumento = $modeloTipoDocumento->obtenerTiposDocumento();
+        $formRegistrar->formRegistrarClienteShow($TiposDocumento);
     }
 
     public function registrarCliente($txtNombreCliente, $txtApellidoCliente, $intTipoDocumento, $intDocumento, $intTelefonoCliente, $txtCorreoCliente, $txtDireccionCliente)
