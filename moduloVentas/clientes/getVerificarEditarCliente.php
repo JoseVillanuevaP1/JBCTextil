@@ -44,7 +44,6 @@ if (validarBoton($btnBuscarCliente)) {
     $objForm = new controlVerificarEditarUsuario;
     $objForm = $objForm->mostrarEditarUsuario($idUsuario);
 } else if (validarBoton($btnConfirmarEditarUsuario)) {
-
     $idUsuario = $_POST['idUsuario'];
     $txtUsuario = $_POST['txtUsuario'];
     $txtContrasenia = $_POST['txtContrasenia'];

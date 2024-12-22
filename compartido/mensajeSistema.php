@@ -29,7 +29,7 @@ class MensajeSistema extends pantalla
 								</svg><i class="fa-solid fa-circle-xmark" style="color: #fcd34d;"></i>
 								<p class="text-2xl text-white"><?php echo ($mensaje); ?></p>
 								<form action="<?php echo $link ?>" method="post">
-									<button type="submit" name="btnRegresar" rel="noopener noreferrer" class="px-8 py-2 font-bold rounded bg-yellow-300">Regresar</button>
+									<button type="submit" name="btnRegresar" class="px-8 py-2 font-bold rounded bg-yellow-300">Regresar</button>
 								</form>
 							</div>
 						</section>
@@ -71,7 +71,7 @@ class MensajeSistema extends pantalla
 								</svg>
 								<p class="text-2xl text-white"><?php echo ($mensaje); ?></p>
 								<form action="<?php echo $link ?>" method="post">
-									<button type="submit" name="btnRegresar" rel="noopener noreferrer" class="px-8 py-2 font-bold rounded bg-yellow-300">Regresar</button>
+									<button type="submit" name="btnRegresar" class="px-8 py-2 font-bold rounded bg-yellow-300">Regresar</button>
 								</form>
 							</div>
 						</section>

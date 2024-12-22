@@ -25,4 +25,16 @@ class controlVerificarEmitirInformePreventa
         $OBJ = new MensajeSistema;
         $OBJ = $OBJ->mensajeConfirmacionShow("Se registró exitosamente", "../moduloUsuario/getEnlaceUsuario.php");
     }
+    public function mostrarAgregarRecursosPreventa($idDetallePedido)
+    {
+        include_once('../modelo/recursos.php');
+        $OBJRecursos = new recursos;
+        $recursos = $OBJRecursos->obtenerRecursos();
+        include_once('../modelo/tipos_recurso.php');
+        $OBJTipos = new tipos_recurso;
+        $tiposRecurso = $OBJTipos->obtenerTiposRecurso();
+        include_once('../moduloVentas/formAgregarRecursosPreventa.php');
+        $OBJForm = new formAgregarRecursosPreventa;
+        $OBJForm = $OBJForm->formAgregarRecursosPreventaShow($idDetallePedido, $recursos, $tiposRecurso, $distribuidores = []);
+    }
 }

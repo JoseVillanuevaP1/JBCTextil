@@ -23,9 +23,15 @@ $btnConfirmarEditarUsuario = $_POST['btnConfirmarEditarUsuario'] ?? null;
 $btnRegresar = $_POST['btnRegresar'] ?? null;
 
 if (validarBoton($btnBuscarPedido)) {
+
+    $txtBuscarCliente = $_POST["txtBuscarCliente"] ?? null;
+    $txtBuscarDesde = $_POST["txtBuscarDesde"] ?? null;
+    $txtBuscarHasta = $_POST["txtBuscarHasta"] ?? null;
+    $txtBuscarEstado = $_POST["txtBuscarEstado"] ?? null;
+
     include_once('../moduloVentas/controlVerificarEditarPedido.php');
     $objForm = new controlVerificarEditarPedido;
-    $objForm = $objForm->mostrarListarPedidos();
+    $objForm = $objForm->mostrarListarPedidos($txtBuscarCliente, $txtBuscarDesde, $txtBuscarHasta, $txtBuscarEstado);
 } else if (validarBoton($btnEditarUsuario) || validarBoton($btnRegresar)) {
     $idUsuario = $_POST['idUsuario'];
     include_once('./controlVerificarEditarUsuario.php');

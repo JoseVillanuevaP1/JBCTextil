@@ -131,45 +131,6 @@ class formEmitirInformePreventa extends Pantalla
                                                 <button name="confirmarEmitirInformePreventa" type="submit" class="flex w-full justify-center rounded bg-blue-500 p-3 font-medium text-white hover:bg-opacity-90">
                                                     Confirmar
                                                 </button>
-
-                                                <!-- Modal -->
-                                                <div class="modalRecursos fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center hidden w-full">
-                                                    <div class="bg-white rounded-lg w-full max-w-4xl p-6 relative">
-                                                        <!-- Título -->
-                                                        <h2 class="text-xl font-semibold mb-4">Recursos requeridos</h2>
-
-                                                        <!-- Tabla -->
-                                                        <table class="w-full border-collapse border border-gray-300" id="recursosTable">
-                                                            <thead>
-                                                                <tr class="bg-gray-200">
-                                                                    <th class="border border-gray-300 px-4 py-2">N°</th>
-                                                                    <th class="border border-gray-300 px-4 py-2">Tipo</th>
-                                                                    <th class="border border-gray-300 px-4 py-2">Recurso</th>
-                                                                    <th class="border border-gray-300 px-4 py-2">Distribuidor</th>
-                                                                    <th class="border border-gray-300 px-4 py-2">Precio</th>
-                                                                    <th class="border border-gray-300 px-4 py-2">Acciones</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                            </tbody>
-                                                        </table>
-
-                                                        <!-- Botón para agregar fila -->
-                                                        <div class="mt-4">
-                                                            <button id="addRow" class="bg-blue-500 text-white px-4 py-2 rounded">Agregar Fila</button>
-                                                        </div>
-
-                                                        <!-- Total y Confirmar -->
-                                                        <div class="flex justify-between items-center mt-4">
-                                                            <span class="text-white">Total: <strong class="text-white" id="totalPrice">0.00</strong></span>
-                                                            <button type="button" class="bg-green-500 text-white px-4 py-2 rounded">Confirmar</button>
-                                                        </div>
-
-                                                        <!-- Botón para cerrar -->
-                                                        <button type="button" class="btnCloseModal absolute top-2 right-2 text-gray-500">✖</button>
-                                                    </div>
-                                                </div>
-
                                             </div>
                                         </form>
                                     </div>
@@ -187,9 +148,6 @@ class formEmitirInformePreventa extends Pantalla
         </body>
         <script>
             <?php include_once("../js/toggleHeader.js"); ?>
-        </script>
-        <script>
-            <?php include_once("../js/emitirPreventa.js"); ?>
         </script>
 
         </html>

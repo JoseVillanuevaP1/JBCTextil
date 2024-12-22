@@ -2,7 +2,7 @@
 include_once("../compartido/pantalla.php");
 class formListarPedidos extends Pantalla
 {
-    public function formListarPedidosShow($pedidoArray = [])
+    public function formListarPedidosShow($pedidoArray = [], $txtBuscarCliente = null, $txtBuscarDesde = null, $txtBuscarHasta = null, $txtBuscarEstado = null)
     {
         session_start();
         $privilegios = $_SESSION["privilegios"];
@@ -40,23 +40,35 @@ class formListarPedidos extends Pantalla
                                         <div class="row mb-4">
                                             <!-- Filtros y botones en una sola fila -->
                                             <div class="flex gap-2 mb-4 items-center">
-                                                <form action="../moduloVentas/getVerificarEditarPedido.php" method="post" class="flex gap-3 mb-4 items-center w-full">
+                                                <form action="../moduloVentas/getVerificarEditarPedido.php" method="post" class="flex gap-4 mb-4 items-center w-full">
                                                     <div class="flex items-center gap-2 w-1/2">
-                                                        <label for="txtBuscarNombre" class="text-lg font-medium text-gray-700">Cliente</label>
-                                                        <input type="text" id="txtBuscarUsuario" name="txtBuscarNombre" placeholder="Nombre" class="ml-3 px-4 py-2 border rounded-lg w-full" />
+                                                        <label for="txtBuscarCliente" class="text-lg font-medium text-gray-700">Cliente</label>
+                                                        <input type="text" id="txtBuscarCliente" value="<?= $txtBuscarCliente ?>" name="txtBuscarCliente" placeholder="Nombre" class="ml-3 px-4 py-2 border rounded-lg w-full" />
                                                     </div>
 
                                                     <!-- Filtro 2 -->
                                                     <div class="flex items-center gap-2 w-1/2">
-                                                        <label for="txtBuscarUsername" class="text-lg font-medium text-gray-700">De</label>
-                                                        <input type="date" id="txtBuscarDesde" name="txtBuscarUsername" placeholder="Username" class="ml-3 px-4 py-2 border rounded-lg w-full" />
+                                                        <label for="dateBuscarDesde" class="text-lg font-medium text-gray-700">Desde</label>
+                                                        <input type="date" id="txtBuscarDesde" value="<?= $txtBuscarDesde ?>" name="txtBuscarDesde" placeholder="Username" class="ml-3 px-4 py-2 border rounded-lg w-full" />
                                                     </div>
 
                                                     <!-- Filtro 3 -->
                                                     <div class="flex items-center gap-2 w-1/2">
-                                                        <label for="txtBuscarUsername" class="text-lg font-medium text-gray-700">Hasta</label>
-                                                        <input type="date" id="txtBuscarHasta" name="txtBuscarUsername" placeholder="Username" class="ml-3 px-4 py-2 border rounded-lg w-full" />
+                                                        <label for="dateBuscarHasta" class="text-lg font-medium text-gray-700">Hasta</label>
+                                                        <input type="date" id="txtBuscarHasta" value="<?= $txtBuscarHasta ?>" name="txtBuscarHasta" placeholder="Username" class="ml-3 px-4 py-2 border rounded-lg w-full" />
                                                     </div>
+
+                                                    <div class="flex items-center gap-2 w-1/2">
+                                                        <label for="txtEstado" class="text-lg font-medium text-gray-700">Estado</label>
+                                                        <select id="txtEstado" name="txtEstado" value="<?= $txtBuscarEstado ?>" class="ml-3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                                                            <option value=""></option>
+                                                            <option value="pagado">Pagado</option>
+                                                            <option value="preventa">Preventa</option>
+                                                            <option value="cotizado">Cotizado</option>
+                                                            <option value="pedido">Pedido</option>
+                                                        </select>
+                                                    </div>
+
 
                                                     <!-- Botón de Buscar -->
                                                     <div class="flex items-center gap-2 w-1/6">
@@ -86,11 +98,14 @@ class formListarPedidos extends Pantalla
                                         <table class="w-full table-auto min-h-[70vh] h-full">
                                             <thead>
                                                 <tr class="bg-gray-100 text-left">
-                                                    <th class="min-w-[220px] px-4 py-4 font-medium text-black xl:pl-11">
-                                                        ID
+                                                    <th class="min-w-[220px] px-4 py-4 font-medium text-black">
+                                                        N°
                                                     </th>
                                                     <th class="min-w-[150px] px-4 py-4 font-medium text-black">
                                                         Cliente
+                                                    </th>
+                                                    <th class="min-w-[150px] px-4 py-4 font-medium text-black">
+                                                        Fecha de Emision
                                                     </th>
                                                     <th class="px-4 py-4 font-medium text-black">
                                                         Acciones
@@ -106,14 +121,33 @@ class formListarPedidos extends Pantalla
                                             <tbody>
                                                 <?php if (isset($pedidoArray)): ?>
                                                     <?php foreach ($pedidoArray as $key => $pedido): ?>
+                                                        <?php
+                                                        switch ($pedido['estado']) {
+                                                            case 'pagado':
+                                                                $clase = 'bg-red-300 text-red-600';
+                                                                break;
+                                                            case 'preventa':
+                                                                $clase = 'bg-yellow-300 text-yellow-600';
+                                                                break;
+                                                            case 'cotizado':
+                                                                $clase = 'bg-blue-300 text-blue-600';
+                                                                break;
+                                                            case 'pedido':
+                                                                $clase = 'bg-green-300 text-green-600';
+                                                                break;
+                                                        }
+                                                        ?>
                                                         <tr>
-                                                            <td class="border-b border-[#eee] px-4 py-4 dark:border-strokedark">
+                                                            <td class="border-b border-[#eee] px-4 py-4 border-strokedark">
                                                                 <h5 class="font-medium text-black"><?= $key + 1 ?></h5>
                                                             </td>
-                                                            <td class="border-b border-[#eee] px-4 py-4 dark:border-strokedark">
+                                                            <td class="border-b border-[#eee] px-4 py-4 border-strokedark">
                                                                 <h5 class="font-medium text-black"><?= htmlspecialchars($pedido['cliente']); ?></h5>
                                                             </td>
-                                                            <td class="border-b border-[#eee] px-4 py-4 dark:border-strokedark">
+                                                            <td class="border-b border-[#eee] px-4 py-4 border-strokedark">
+                                                                <h5 class="font-medium text-black"><?= htmlspecialchars($pedido['fecha_emision']); ?></h5>
+                                                            </td>
+                                                            <td class="border-b border-[#eee] px-4 py-4 border-strokedark">
                                                                 <div class="flex items-center space-x-3">
                                                                     <form action="../moduloVentas/getVerificarEditarPedido.php" method="post">
                                                                         <input name="idUsuario" value="<?= $pedido['id_pedido'] ?>" type="text" hidden>
@@ -137,8 +171,12 @@ class formListarPedidos extends Pantalla
                                                                     </form>
                                                                 </div>
                                                             </td>
-                                                            <td class="border-b border-[#eee] px-4 py-4 dark:border-strokedark">
-                                                                <h5 class="font-medium text-black"><?= htmlspecialchars($pedido['estado']); ?></h5>
+                                                            <td class="border-b border-[#eee] px-4 py-5 border-strokedark">
+                                                                <p class="inline-flex rounded-full bg-opacity-10 px-3 py-1 text-sm font-medium <?= $clase ?>">
+                                                                    <?= ucwords(
+                                                                        ($pedido['estado'])
+                                                                    ) ?>
+                                                                </p>
                                                             </td>
                                                         </tr>
                                                     <?php endforeach; ?>
