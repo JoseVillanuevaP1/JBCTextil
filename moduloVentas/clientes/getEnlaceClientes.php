@@ -8,6 +8,8 @@ $btnRegresar = $_POST['btnRegresar'] ?? null;
 
 if (validarBoton($btnClientes) || validarBoton($btnRegresar)) {
     include_once('./controlEnlaceClientes.php');
+    $objForm = new controlEnlaceClientes;
+    $objForm->mostrarListarCliente();
 } else {
     include_once('../../compartido/mensajeSistema.php');
     $objMsj = new mensajeSistema;
