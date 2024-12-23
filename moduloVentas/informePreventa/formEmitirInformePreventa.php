@@ -111,12 +111,28 @@ class formEmitirInformePreventa extends Pantalla
                                                                     <td class="px-4 py-2">
                                                                         <span><?php echo $producto['detalle_descripcion']; ?></span>
                                                                     </td>
-                                                                    <td class="px-4 py-2"><?php echo $producto['detalle_cantidad']; ?></td>
                                                                     <td class="px-4 py-2">
-                                                                        <input name="doublePrecioCosto[]" type="number" step="any" value="<?= number_format($producto['costo'] / $producto['detalle_cantidad'], 2) ?>">
+                                                                        <input
+                                                                            name="detalle_cantidad[]"
+                                                                            type="number"
+                                                                            value="<?= $producto['detalle_cantidad'] ?>"
+                                                                            step="any"
+                                                                            readonly>
                                                                     </td>
                                                                     <td class="px-4 py-2">
-                                                                        <input type="number" value="<?= $producto['costo'] ?>" readonly>
+                                                                        <input
+                                                                            name="doublePrecioCosto[]"
+                                                                            type="number"
+                                                                            step="any"
+                                                                            value="<?= number_format($producto['costo'] / $producto['detalle_cantidad'], 2) ?>"
+                                                                            onchange="updateCostoTotal(this)">
+                                                                    </td>
+                                                                    <td class="px-4 py-2">
+                                                                        <input
+                                                                            class="costo-total"
+                                                                            type="number"
+                                                                            value="<?= $producto['costo'] ?>"
+                                                                            readonly>
                                                                     </td>
                                                                     <td class="px-4 py-2">
                                                                         <form action="/jbctextil/moduloVentas/informePreventa/getVerificarEmitirInformePreventa.php" method="post">
@@ -154,7 +170,27 @@ class formEmitirInformePreventa extends Pantalla
 
         </body>
         <script>
-            <?php include_once("../js/toggleHeader.js"); ?>
+            <?php include_once("../../js/toggleHeader.js"); ?>
+
+            function updateCostoTotal(inputElement) {
+                // Encuentra la fila del input actual
+                const row = inputElement.closest('tr');
+
+                // Obtén la cantidad fija y el costo unitario modificado
+                const cantidadInput = row.querySelector('input[name="detalle_cantidad[]"]');
+                const costoUnitarioInput = row.querySelector('input[name="doublePrecioCosto[]"]');
+                const costoTotalInput = row.querySelector('.costo-total');
+
+                // Convierte los valores a números
+                const cantidad = parseFloat(cantidadInput.value) || 0;
+                const costoUnitario = parseFloat(costoUnitarioInput.value) || 0;
+
+                // Calcula el nuevo costo total
+                const costoTotal = cantidad * costoUnitario;
+
+                // Actualiza el campo del costo total
+                costoTotalInput.value = costoTotal.toFixed(2);
+            }
         </script>
 
         </html>
