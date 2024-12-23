@@ -48,10 +48,10 @@ class usuarios
 	}
 	/****************************************************/
 	/****************************************************/
-	public function registrarUsuario($nombre, $password, $username, $correo)
+	public function registrarUsuario($nombre, $password, $username, $correo, $habilitado)
 	{
 		$conexion = $this->EjecutarConexion();
-		$consulta = "INSERT INTO usuarios (nombre, password, username, correo) VALUES ('$nombre', '$password', '$username', '$correo')";
+		$consulta = "INSERT INTO usuarios (nombre, password, username, correo, status) VALUES ('$nombre', '$password', '$username', '$correo', $habilitado)";
 		mysqli_query($conexion, $consulta);
 		$idInsertado = mysqli_insert_id($conexion);
 		mysqli_close($conexion);
@@ -62,7 +62,7 @@ class usuarios
 	public function obtenerUsuarios($txtBuscarNombre, $txtBuscarUsername)
 	{
 		$conexion = $this->EjecutarConexion();
-		$consulta = "SELECT id_usuario, nombre, correo, username FROM usuarios";
+		$consulta = "SELECT id_usuario, nombre, correo, username, status FROM usuarios";
 		$filtros = [];
 		if (!empty($txtBuscarNombre)) {
 			$filtros[] = "nombre LIKE '%" . mysqli_real_escape_string($conexion, $txtBuscarNombre) . "%'";
@@ -88,7 +88,7 @@ class usuarios
 	public function obtenerUsuario($idUsuario)
 	{
 		$conexion = $this->EjecutarConexion();
-		$consulta = "SELECT id_usuario, nombre, correo, username, password
+		$consulta = "SELECT id_usuario, nombre, correo, username, password, status
 					FROM usuarios WHERE id_usuario = $idUsuario";
 		$resultado = mysqli_query($conexion, $consulta);
 
@@ -105,7 +105,7 @@ class usuarios
 		return $usuarios;
 	}
 
-	public function actualizarUsuario($idUsuario, $username, $password, $nombre, $correo, $nuevosPrivilegios)
+	public function actualizarUsuario($idUsuario, $username, $password, $nombre, $correo, $nuevosPrivilegios, $habilitado)
 	{
 		$conexion = $this->EjecutarConexion();
 
@@ -114,7 +114,8 @@ class usuarios
 					 SET nombre = '$nombre',
 						 username = '$username',
 						 correo = '$correo',
-						 password = '$password'
+						 password = '$password',
+						 status = $habilitado
 						WHERE id_usuario = $idUsuario";
 		// Ejecutar la consulta
 		$resultado = mysqli_query($conexion, $consulta);

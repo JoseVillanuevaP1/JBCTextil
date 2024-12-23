@@ -93,6 +93,9 @@ class formListarUsuarios extends Pantalla
                                                         Username
                                                     </th>
                                                     <th class="px-4 py-4 font-medium text-black">
+                                                        Habilitado
+                                                    </th>
+                                                    <th class="px-4 py-4 font-medium text-black">
                                                         Acciones
                                                     </th>
                                                 </tr>
@@ -112,6 +115,11 @@ class formListarUsuarios extends Pantalla
                                                             </td>
                                                             <td class="border-b border-[#eee] px-4 py-4 dark:border-strokedark">
                                                                 <h5 class="font-medium text-black"><?= htmlspecialchars($usuario['username']); ?></h5>
+                                                            </td>
+                                                            <td class="border-b border-[#eee] px-4 py-4 dark:border-strokedark">
+                                                                <h5 class="font-medium text-black">
+                                                                    <?= $usuario['status'] == 1 ? 'SI' : 'NO'; ?>
+                                                                </h5>
                                                             </td>
                                                             <td class="border-b border-[#eee] px-4 py-4 dark:border-strokedark">
                                                                 <div class="flex items-center space-x-3">

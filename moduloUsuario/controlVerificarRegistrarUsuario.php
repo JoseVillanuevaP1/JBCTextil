@@ -10,11 +10,11 @@ class controlVerificarRegistrarUsuario
         $OBJForm = new formRegistrarUsuario;
         $OBJForm = $OBJForm->formRegistrarUsuarioShow($privilegios);
     }
-    public function registrarUsuario($nombre, $password, $username, $correo, $arrayPrivilegios)
+    public function registrarUsuario($nombre, $password, $username, $correo, $arrayPrivilegios, $habilitado)
     {
         include_once('../modelo/usuarios.php');
         $OBJTipos = new usuarios;
-        $idUsuario = $OBJTipos->registrarUsuario($nombre, $password, $username, $correo);
+        $idUsuario = $OBJTipos->registrarUsuario($nombre, $password, $username, $correo, $habilitado);
         include_once('../modelo/usuario_privilegios.php');
         $OBJpriv = new usuario_privilegios;
         $OBJpriv->registrarPrivilegios($idUsuario, $arrayPrivilegios);

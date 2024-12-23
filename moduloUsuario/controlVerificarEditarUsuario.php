@@ -28,11 +28,11 @@ class controlVerificarEditarUsuario
         $OBJForm = $OBJForm->formEditarUsuarioShow($privilegios, $usuarioArray, $privilegiosArray);
     }
 
-    public function actualizarUsuario($idUsuario, $txtUsuario, $txtContrasenia, $txtNombre, $txtCorreo, $arrayPrivilegios)
+    public function actualizarUsuario($idUsuario, $txtUsuario, $txtContrasenia, $txtNombre, $txtCorreo, $arrayPrivilegios, $habilitado)
     {
         include_once('../modelo/usuarios.php');
         $OBJTipos = new usuarios;
-        $OBJTipos->actualizarUsuario($idUsuario, $txtUsuario, $txtContrasenia, $txtNombre, $txtCorreo, $arrayPrivilegios);
+        $OBJTipos->actualizarUsuario($idUsuario, $txtUsuario, $txtContrasenia, $txtNombre, $txtCorreo, $arrayPrivilegios, $habilitado);
         include_once('../compartido/mensajeConfirmacion.php');
         $OBJ = new mensajeConfirmacion;
         $OBJ = $OBJ->mensajeConfirmacionShow("Se editó exitosamente", "../moduloUsuario/getEnlaceUsuario.php");
