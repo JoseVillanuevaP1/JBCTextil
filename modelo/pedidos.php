@@ -113,6 +113,7 @@ class pedidos
         // Establecer la conexión a la base de datos
         $conexion = $this->EjecutarConexion();
         $consulta = "SELECT
+                        p.id_pedido,
                         CONCAT(c.nombre, ' ' ,c.apellido) AS cliente,
                         c.documento,
                         c.correo_electronico,
@@ -125,7 +126,6 @@ class pedidos
                      WHERE 
                         p.id_pedido = $id_pedido";
 
-        // Ejecutar la consulta
         $resultado = mysqli_query($conexion, $consulta);
         $pedidoPreventa = [];
         if ($resultado && mysqli_num_rows($resultado) > 0) {

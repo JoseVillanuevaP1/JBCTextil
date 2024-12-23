@@ -17,19 +17,18 @@ function validarCamposPedido($txtCliente, $txtFechaEntrega, $txtLugarEntrega, $a
         return 0;
 }
 
+$idPedido = $_POST['idPedido'] ?? null;
+$idDetallePedido = $_POST['intIdDetallePedido'] ?? null;
 $btnEmitirInformePreventa = $_POST['btnEmitirInformePreventa'] ?? null;
 $btnAgregarRecursosPreventa = $_POST['btnAgregarRecursosPreventa'] ?? null;
 $confirmarEmitirInformePreventa = $_POST['confirmarEmitirInformePreventa'] ?? null;
 $btnRegresar = $_POST['btnRegresar'] ?? null;
 
 if (validarBoton($btnEmitirInformePreventa) || validarBoton($btnRegresar)) {
-    $idPedido = $_POST['idPedido'] ?? null;
     include_once('./controlVerificarEmitirInformePreventa.php');
     $objForm = new controlVerificarEmitirInformePreventa;
     $objForm = $objForm->mostrarEmitirInformePreventa($idPedido);
 } else if (validarBoton($btnAgregarRecursosPreventa)) {
-    $idPedido = $_POST['idPedido'] ?? null;
-    $idDetallePedido = $_POST['intIdDetallePedido'] ?? null;
     include_once('./controlVerificarEmitirInformePreventa.php');
     $objForm = new controlVerificarEmitirInformePreventa;
     $objForm = $objForm->mostrarAgregarRecursosPreventa($idPedido, $idDetallePedido);

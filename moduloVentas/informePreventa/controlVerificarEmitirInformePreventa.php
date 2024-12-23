@@ -3,13 +3,13 @@ class controlVerificarEmitirInformePreventa
 {
     public function mostrarEmitirInformePreventa($idPedido)
     {
-        include_once('../modelo/pedidos.php');
+        include_once('../../modelo/pedidos.php');
         $OBJTipos = new pedidos;
         $pedido = $OBJTipos->obtenerPedidoPreventa($idPedido);
-        include_once('../modelo/detalles_pedido.php');
+        include_once('../../modelo/detalles_pedido.php');
         $OBJTipos = new detalles_pedido;
         $detallesPedido = $OBJTipos->obtenerDetallesPedidoPreventa($idPedido);
-        include_once('../moduloVentas/formEmitirInformePreventa.php');
+        include_once('../../moduloVentas/informePreventa/formEmitirInformePreventa.php');
         $OBJForm = new formEmitirInformePreventa;
         $OBJForm = $OBJForm->formEmitirInformePreventaShow($pedido, $detallesPedido);
     }
@@ -27,20 +27,17 @@ class controlVerificarEmitirInformePreventa
     }
     public function mostrarAgregarRecursosPreventa($idPedido, $idDetallePedido)
     {
-        include_once('../modelo/detalles_pedido.php');
+        include_once('../../modelo/detalles_pedido.php');
         $OBJDetalles = new detalles_pedido;
         $detalle_pedido = $OBJDetalles->obtenerDetallePedidoPreventa($idDetallePedido);
-        include_once('../modelo/recursos.php');
+        include_once('../../modelo/recursos.php');
         $OBJRecursos = new recursos;
         $recursos = $OBJRecursos->obtenerRecursos();
-        include_once('../modelo/tipos_recurso.php');
-        $OBJTipos = new tipos_recurso;
-        $tiposRecurso = $OBJTipos->obtenerTiposRecurso();
-        include_once('../modelo/distribuidores.php');
+        include_once('../../modelo/distribuidores.php');
         $OBJTipos = new distribuidores;
         $distribuidores = $OBJTipos->obtenerDistribuidoresPreventa();
-        include_once('../moduloVentas/formAgregarRecursosPreventa.php');
+        include_once('../../moduloVentas/informePreventa/formAgregarRecursosPreventa.php');
         $OBJForm = new formAgregarRecursosPreventa;
-        $OBJForm = $OBJForm->formAgregarRecursosPreventaShow($idPedido, $detalle_pedido, $recursos, $tiposRecurso, $distribuidores);
+        $OBJForm = $OBJForm->formAgregarRecursosPreventaShow($idPedido, $detalle_pedido, $recursos, $distribuidores);
     }
 }

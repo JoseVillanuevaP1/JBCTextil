@@ -118,12 +118,12 @@ class detalles_pedido
 
         $valores = [];
         foreach ($arrayProductos as $producto) {
-            $idDetallePedido = $producto["id_detalle_pedido"];
+            $idDetallePedido = $producto["id_detalle_pedido"] ?? null;
             $idProducto = $producto["idProducto"];
             $descripcion = $producto["descripcion"];
             $cantidad = $producto["cantidad"];
 
-            if ($idDetallePedido === null) {
+            if ($idDetallePedido == null) {
                 $valores[] = "('$idPedido', '$idProducto', '$descripcion', '$cantidad')";
             } else {
                 $consultaUpdate = "
@@ -136,14 +136,12 @@ class detalles_pedido
             }
         }
 
-        // Insertar nuevos detalles
         if (!empty($valores)) {
             $consultaInsert = "INSERT INTO detalles_pedido (id_producto, descripcion, cantidad) VALUES " . implode(', ', $valores);
             mysqli_query($conexion, $consultaInsert);
             $aciertos += mysqli_affected_rows($conexion);
         }
 
-        // Eliminar los detalles que ya no están en el array
         foreach ($detallesExistentes as $idDetalleExistente => $value) {
             if (!in_array($idDetalleExistente, array_column($arrayProductos, 'id_detalle_pedido'))) {
                 $consultaDelete = "DELETE FROM detalles_pedido WHERE id_detalle_pedido = '$idDetalleExistente'";
