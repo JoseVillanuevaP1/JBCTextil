@@ -18,6 +18,10 @@ function validarCamposUsuario($txtUsuario, $txtContrasenia, $txtNombre, $txtCorr
 }
 
 $btnBuscarUsuario = $_POST['btnBuscarUsuario'] ?? null;
+$txtBuscarNombre = $_POST['txtBuscarNombre'] ?? null;
+$txtBuscarUsername = $_POST['txtBuscarUsername'] ?? null;
+
+
 $btnEditarUsuario = $_POST['btnEditarUsuario'] ?? null;
 $btnConfirmarEditarUsuario = $_POST['btnConfirmarEditarUsuario'] ?? null;
 $btnRegresar = $_POST['btnRegresar'] ?? null;
@@ -25,7 +29,7 @@ $btnRegresar = $_POST['btnRegresar'] ?? null;
 if (validarBoton($btnBuscarUsuario)) {
     include_once('../moduloUsuario/controlVerificarEditarUsuario.php');
     $objForm = new controlVerificarEditarUsuario;
-    $objForm = $objForm->mostrarListarUsuario();
+    $objForm = $objForm->mostrarListarUsuario($txtBuscarNombre, $txtBuscarUsername);
 } else if (validarBoton($btnEditarUsuario) || validarBoton($btnRegresar)) {
     $idUsuario = $_POST['idUsuario'];
     include_once('./controlVerificarEditarUsuario.php');

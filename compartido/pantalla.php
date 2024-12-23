@@ -146,7 +146,7 @@ class Pantalla
                                 </ul>
                             </div>
                         <?php } ?>
-                        <?php if (in_array(9, $ids)) { ?>
+                        <?php if (in_array(10, $ids)) { ?>
                             <div>
                                 <h3 class="mb-4 ml-4 text-base font-medium text-white">Reportes</h3>
 

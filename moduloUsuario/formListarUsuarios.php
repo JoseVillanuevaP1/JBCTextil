@@ -77,7 +77,7 @@ class formListarUsuarios extends Pantalla
 
                                             </div>
                                         </div>
-                                        <table class="w-full table-auto min-h-[70vh] h-full">
+                                        <table class="w-full table-auto h-full">
                                             <thead>
                                                 <tr class="bg-gray-100 text-left">
                                                     <th class="min-w-[220px] px-4 py-4 font-medium text-black xl:pl-11">

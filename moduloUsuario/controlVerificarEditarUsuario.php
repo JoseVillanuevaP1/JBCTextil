@@ -1,11 +1,11 @@
 <?php
 class controlVerificarEditarUsuario
 {
-    public function mostrarListarUsuario()
+    public function mostrarListarUsuario($txtBuscarNombre, $txtBuscarUsername)
     {
         include_once('../modelo/usuarios.php');
         $objuser = new usuarios;
-        $usuarioArray = $objuser->obtenerUsuarios();
+        $usuarioArray = $objuser->obtenerUsuarios($txtBuscarNombre, $txtBuscarUsername);
         include_once('../moduloUsuario/formListarUsuarios.php');
         $objForm = new formListarUsuarios;
         $objForm = $objForm->formListarUsuariosShow($usuarioArray);

@@ -59,23 +59,28 @@ class usuarios
 	}
 	// /****************************************************/
 	// /****************************************************/
-	public function obtenerUsuarios()
+	public function obtenerUsuarios($txtBuscarNombre, $txtBuscarUsername)
 	{
 		$conexion = $this->EjecutarConexion();
-		// Consulta con filtro OR para nombre y username
-		$consulta = "SELECT id_usuario, nombre, correo, username 
-					FROM usuarios ORDER BY nombre";
-		// Ejecutar la consulta
+		$consulta = "SELECT id_usuario, nombre, correo, username FROM usuarios";
+		$filtros = [];
+		if (!empty($txtBuscarNombre)) {
+			$filtros[] = "nombre LIKE '%" . mysqli_real_escape_string($conexion, $txtBuscarNombre) . "%'";
+		}
+		if (!empty($txtBuscarUsername)) {
+			$filtros[] = "username LIKE '%" . mysqli_real_escape_string($conexion, $txtBuscarUsername) . "%'";
+		}
+		if (!empty($filtros)) {
+			$consulta .= " WHERE " . implode(' AND ', $filtros);
+		}
+		$consulta .= " ORDER BY nombre";
 		$resultado = mysqli_query($conexion, $consulta);
-
 		$usuarios = [];
 		if ($resultado && mysqli_num_rows($resultado) > 0) {
 			while ($fila = mysqli_fetch_assoc($resultado)) {
 				$usuarios[] = $fila;
 			}
 		}
-
-		// Cerrar la conexión
 		mysqli_close($conexion);
 		return $usuarios;
 	}
@@ -115,7 +120,7 @@ class usuarios
 		$resultado = mysqli_query($conexion, $consulta);
 		//privilegios
 		$consultaEliminarPrivilegios = "DELETE FROM usuario_privilegios WHERE id_usuario = $idUsuario";
-    	mysqli_query($conexion, $consultaEliminarPrivilegios);
+		mysqli_query($conexion, $consultaEliminarPrivilegios);
 
 		// Insertar nuevos privilegios
 		foreach ($nuevosPrivilegios as $idprivilegio) {
