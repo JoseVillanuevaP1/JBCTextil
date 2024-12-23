@@ -135,8 +135,23 @@ class pedidos
         mysqli_close($conexion);
         return $pedidoPreventa;
     }
-    function editarPedido()
+    function actualizarPedidoPreventa($idPedido, $estado)
     {
-        return 1;
+        // Establecer la conexión a la base de datos
+        $conexion = $this->EjecutarConexion();
+
+        // Crear la consulta SQL para actualizar el estado del pedido
+        $sql = "UPDATE pedidos SET estado = '$estado' WHERE id_pedido = $idPedido";
+
+        // Ejecutar la consulta
+        if (mysqli_query($conexion, $sql)) {
+            // Cerrar la conexión
+            mysqli_close($conexion);
+            return true;  // Si la consulta se ejecutó correctamente
+        } else {
+            // Cerrar la conexión en caso de error
+            mysqli_close($conexion);
+            return false;  // Si hubo algún error al ejecutar la consulta
+        }
     }
 }

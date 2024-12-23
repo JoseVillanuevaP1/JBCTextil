@@ -60,13 +60,18 @@ class detalles_pedido
                         dp.descripcion AS detalle_descripcion,
                         dp.cantidad AS detalle_cantidad,
                         pr.id_producto,
-                        pr.nombre AS producto_nombre
-                     FROM 
+                        pr.nombre AS producto_nombre,
+                        SUM(rdp.precio) AS costo
+                    FROM 
                         detalles_pedido dp  
-                     JOIN 
-                        productos pr ON dp.id_producto = pr.id_producto 
-                     WHERE 
-                        dp.id_pedido = $id_pedido";
+                    JOIN 
+                        productos pr ON dp.id_producto = pr.id_producto
+                    JOIN
+                        recursos_detalle_pedido rdp ON dp.id_detalle_pedido = rdp.id_detalle_pedido
+                    WHERE 
+                        dp.id_pedido = $id_pedido
+                    GROUP BY 
+                        dp.id_detalle_pedido";
 
         $resultado = mysqli_query($conexion, $consulta);
         $detallesPedido = [];
@@ -152,5 +157,24 @@ class detalles_pedido
 
         mysqli_close($conexion);
         return $aciertos > 0 ? 1 : 0;
+    }
+    function actualizarDetallesPedido($arrayActualizar)
+    {
+        $conexion = $this->EjecutarConexion();
+
+        foreach ($arrayActualizar as $detalle) {
+            $id_detalle_pedido = $detalle['id_detalle_pedido'];
+            $costo_unitario = $detalle['costo_unitario'];
+
+            // Consulta para actualizar el campo 'costo_unitario' en la tabla 'detalles_pedido'
+            $consulta = "UPDATE detalles_pedido 
+                         SET costo_unitario = $costo_unitario 
+                         WHERE id_detalle_pedido = $id_detalle_pedido";
+
+            // Ejecutar la consulta
+            mysqli_query($conexion, $consulta);
+        }
+
+        mysqli_close($conexion);
     }
 }

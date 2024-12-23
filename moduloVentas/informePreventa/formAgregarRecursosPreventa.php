@@ -2,7 +2,7 @@
 include_once("../../compartido/pantalla.php");
 class formAgregarRecursosPreventa extends Pantalla
 {
-    public function formAgregarRecursosPreventaShow($idPedido, $detallePedido, $recursos, $distribuidores)
+    public function formAgregarRecursosPreventaShow($idPedido, $detallePedido, $recursosDetallePedido, $recursos, $distribuidores)
     {
         session_start();
         $privilegiosUser = $_SESSION["privilegios"];
@@ -83,7 +83,9 @@ class formAgregarRecursosPreventa extends Pantalla
                                                     </div>
                                                 </div>
                                                 <form action="/jbctextil/moduloVentas/informePreventa/getVerificarEmitirInformePreventa.php" method="post" class="min-w-full">
-                                                    <input type="text" name="idPedido" value="<?= $idPedido ?>" hidden>
+                                                    <input type="hidden" name="idPedido" value="<?= $idPedido ?>">
+                                                    <input type="hidden" name="intIdDetallePedido" value="<?= $detallePedido["id_detalle_pedido"] ?>">
+                                                    <input type="hidden" id="deleteField" name="idsRecursosEliminar" value="[]">
                                                     <div class="container my-5 min-w-full">
 
                                                         <table class="min-w-full border-collapse border border-gray-300">
@@ -96,7 +98,50 @@ class formAgregarRecursosPreventa extends Pantalla
                                                                 </tr>
                                                             </thead>
                                                             <tbody id="table-body">
+                                                                <?php if (!empty($recursosDetallePedido)): ?>
+                                                                    <?php foreach ($recursosDetallePedido as $recursoDetalle): ?>
+                                                                        <tr>
+                                                                            <input type="hidden" name="arrayIdRecurso[]" value="<?= ($recursoDetalle['id_recurso_detalle_pedido']); ?>">
+                                                                            <td class="border border-gray-300 px-4 py-2">
+                                                                                <select name="arrayRecursos[]" class="w-full rounded border border-gray-300 px-2 py-1" required>
+                                                                                    <?php foreach ($recursos as $recurso): ?>
+                                                                                        <option
+                                                                                            value="<?= ($recurso['id_recurso']); ?>"
+                                                                                            <?= $recurso['id_recurso'] == $recursoDetalle['id_recurso'] ? 'selected' : ''; ?>>
+                                                                                            <?= ($recurso['nombre']); ?>
+                                                                                        </option>
+                                                                                    <?php endforeach; ?>
+                                                                                </select>
+                                                                            </td>
+
+                                                                            <td class="border border-gray-300 px-4 py-2">
+                                                                                <select name="arrayDistribuidores[]" class="w-full rounded border border-gray-300 px-2 py-1" required>
+                                                                                    <?php foreach ($distribuidores as $distribuidor): ?>
+                                                                                        <option
+                                                                                            value="<?= ($distribuidor['id_distribuidor']); ?>"
+                                                                                            <?= $distribuidor['id_distribuidor'] == $recursoDetalle['id_distribuidor'] ? 'selected' : ''; ?>>
+                                                                                            <?= ($distribuidor['nombre']); ?>
+                                                                                        </option>
+                                                                                    <?php endforeach; ?>
+                                                                                </select>
+                                                                            </td>
+
+                                                                            <td class="border border-gray-300 px-4 py-2">
+                                                                                <input type="number" name="arrayPrecios[]" class="w-full rounded border border-gray-300 px-2 py-1"
+                                                                                    value="<?= ($recursoDetalle['precio'] ?? 0); ?>"
+                                                                                    placeholder="Precio" required min="0" step="any">
+                                                                            </td>
+
+                                                                            <td class="border border-gray-300 px-4 py-2 text-center">
+                                                                                <button type="button" class="text-red-500 hover:text-red-700" onclick="removeRow(this)">
+                                                                                    Eliminar
+                                                                                </button>
+                                                                            </td>
+                                                                        </tr>
+                                                                    <?php endforeach; ?>
+                                                                <?php endif; ?>
                                                             </tbody>
+
                                                         </table>
                                                         <div class="mt-4">
                                                             <button type="button" class="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600" onclick="addRow()">
@@ -106,7 +151,7 @@ class formAgregarRecursosPreventa extends Pantalla
 
                                                     </div>
 
-                                                    <button name="btnEmitirInformePreventa" type="submit" class="flex w-full justify-center rounded bg-blue-500 p-3 font-medium text-white hover:bg-opacity-90">
+                                                    <button name="btnConfirmarRecursosPreventa" type="submit" class="flex w-full justify-center rounded bg-blue-500 p-3 font-medium text-white hover:bg-opacity-90">
                                                         Confirmar
                                                     </button>
                                                 </form>
@@ -158,13 +203,20 @@ class formAgregarRecursosPreventa extends Pantalla
                     </td>
                 `;
 
-                // Agrega el nuevo <tr> al cuerpo de la tabla
                 const tableBody = document.getElementById('table-body');
                 tableBody.appendChild(newRow);
             }
 
             function removeRow(button) {
                 const row = button.closest('tr');
+                const idField = row.querySelector('input[name="arrayIdRecurso[]"]');
+
+                if (idField && idField.value) {
+                    const idsToDelete = JSON.parse(document.getElementById('deleteField').value || '[]');
+                    idsToDelete.push(idField.value);
+                    document.getElementById('deleteField').value = JSON.stringify(idsToDelete);
+                }
+
                 row.remove();
             }
         </script>
