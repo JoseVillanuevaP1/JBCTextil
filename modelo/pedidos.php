@@ -29,41 +29,84 @@ class pedidos
 
     public function obtenerPedidos($txtBuscarCliente, $txtBuscarDesde, $txtBuscarHasta, $txtBuscarEstado)
     {
-        // Establecer la conexión a la base de datos
         $conexion = $this->EjecutarConexion();
 
-        // Consulta SQL para obtener los pedidos
+        // Sanitizar las entradas
+        $txtBuscarCliente = mysqli_real_escape_string($conexion, $txtBuscarCliente);
+        $txtBuscarDesde = mysqli_real_escape_string($conexion, $txtBuscarDesde);
+        $txtBuscarHasta = mysqli_real_escape_string($conexion, $txtBuscarHasta);
+        $txtBuscarEstado = mysqli_real_escape_string($conexion, $txtBuscarEstado);
+
+        // Iniciar la consulta básica
         $consulta = "SELECT 
-                        p.id_pedido,
-                        p.fecha_emision,
-                        CONCAT(c.nombre, ' ', c.apellido) AS cliente,
-                        p.estado
-                     FROM 
-                        pedidos p
-                     JOIN
-                        clientes c ON p.id_cliente = c.id_cliente
-                    WHERE
-                        p.fecha_emision BETWEEN '$txtBuscarDesde' AND '$txtBuscarHasta'
-                        AND ('$txtBuscarCliente' = '' OR CONCAT(c.nombre, ' ', c.apellido) LIKE '%$txtBuscarCliente%')
-                        AND ('$txtBuscarEstado' = '' OR p.estado LIKE '%$txtBuscarEstado%');";
+                    p.id_pedido,
+                    p.fecha_emision,
+                    CONCAT(c.nombre, ' ', c.apellido) AS cliente,
+                    p.estado
+                 FROM 
+                    pedidos p
+                 JOIN
+                    clientes c ON p.id_cliente = c.id_cliente
+                 WHERE 1";
+
+        // Filtro por cliente
+        if (!empty($txtBuscarCliente)) {
+            $consulta .= " AND CONCAT(c.nombre, ' ', c.apellido) LIKE '%$txtBuscarCliente%'";
+        }
+
+        // Filtro por fecha desde
+        if (!empty($txtBuscarDesde)) {
+            $consulta .= " AND p.fecha_emision >= '$txtBuscarDesde'";
+        }
+
+        // Filtro por fecha hasta
+        if (!empty($txtBuscarHasta)) {
+            $consulta .= " AND p.fecha_emision <= '$txtBuscarHasta'";
+        }
+
+        // Filtro por estado
+        if (!empty($txtBuscarEstado)) {
+            $consulta .= " AND p.estado LIKE '%$txtBuscarEstado%'";
+        }
+
         // Ejecutar la consulta
         $resultado = mysqli_query($conexion, $consulta);
-        if ($resultado) {
-            // Crear un array para almacenar los resultados
-            $pedidos = [];
 
-            // Recorrer los resultados y agregarlos al array
+        // Verificar si se obtienen resultados
+        if ($resultado) {
+            $pedidos = [];
             while ($row = mysqli_fetch_assoc($resultado)) {
                 $pedidos[] = $row;
             }
-
-            // Cerrar la conexión
             mysqli_close($conexion);
             return $pedidos;
         } else {
             mysqli_close($conexion);
             return [];
         }
+    }
+    function obtenerPedido($idPedido)
+    {
+        $conexion = $this->EjecutarConexion($idPedido);
+        $consulta = "SELECT
+                        p.id_pedido,
+                        p.id_cliente,
+                        p.fecha_entrega,
+                        p.lugar_entrega
+                     FROM
+                        pedidos p
+                     JOIN 
+                        clientes c ON c.id_cliente = p.id_cliente
+                     WHERE 
+                        p.id_pedido = $idPedido";
+
+        $resultado = mysqli_query($conexion, $consulta);
+        $pedido = [];
+        if ($resultado && mysqli_num_rows($resultado) > 0) {
+            $pedido = mysqli_fetch_assoc($resultado);
+        }
+        mysqli_close($conexion);
+        return $pedido;
     }
     public function obtenerPedidoPreventa($id_pedido)
     {
@@ -91,5 +134,9 @@ class pedidos
         }
         mysqli_close($conexion);
         return $pedidoPreventa;
+    }
+    function editarPedido()
+    {
+        return 1;
     }
 }

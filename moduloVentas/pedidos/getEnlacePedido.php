@@ -16,7 +16,7 @@ if (validarBoton($btnPedidos) || validarBoton($btnRegresar)) {
     $objForm = new controlEnlacePedido;
     $objForm = $objForm->mostrarListarPedidos();
 } else {
-    include_once('../compartido/mensajeSistema.php');
+    include_once('../../compartido/mensajeSistema.php');
     $objMsj = new mensajeSistema;
     $objMsj->mensajeSistemaShow("Error: Se ha detectado un acceso no autorizado<br>", "../index.php");
 }

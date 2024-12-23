@@ -7,6 +7,7 @@ function addRow() {
     const tableBody = document.getElementById('table-body');
     const newRow = `
         <tr>
+        <input type="hidden" name="arrayIdDetallePedido[]">
         <td class="border border-gray-300 px-4 py-2">
         <select name="producto[]" class="w-full rounded border border-gray-300 px-2 py-1">
         <option value="">Selecciona</option>

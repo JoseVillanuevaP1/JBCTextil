@@ -1,8 +1,8 @@
 <?php
-include_once("../compartido/pantalla.php");
+include_once("../../compartido/pantalla.php");
 class formListarPedidos extends Pantalla
 {
-    public function formListarPedidosShow($pedidoArray = [], $txtBuscarCliente = null, $txtBuscarDesde = null, $txtBuscarHasta = null, $txtBuscarEstado = null)
+    public function formListarPedidosShow($pedidoArray = [])
     {
         session_start();
         $privilegios = $_SESSION["privilegios"];
@@ -40,27 +40,27 @@ class formListarPedidos extends Pantalla
                                         <div class="row mb-4">
                                             <!-- Filtros y botones en una sola fila -->
                                             <div class="flex gap-2 mb-4 items-center">
-                                                <form action="../moduloVentas/getVerificarEditarPedido.php" method="post" class="flex gap-4 mb-4 items-center w-full">
+                                                <form action="/jbctextil/moduloVentas/pedidos/getVerificarEditarPedido.php" method="post" class="flex gap-4 mb-4 items-center w-full">
                                                     <div class="flex items-center gap-2 w-1/2">
                                                         <label for="txtBuscarCliente" class="text-lg font-medium text-gray-700">Cliente</label>
-                                                        <input type="text" id="txtBuscarCliente" value="<?= $txtBuscarCliente ?>" name="txtBuscarCliente" placeholder="Nombre" class="ml-3 px-4 py-2 border rounded-lg w-full" />
+                                                        <input type="text" id="txtBuscarCliente" name="txtBuscarCliente" placeholder="Nombre" class="ml-3 px-4 py-2 border rounded-lg w-full" />
                                                     </div>
 
                                                     <!-- Filtro 2 -->
                                                     <div class="flex items-center gap-2 w-1/2">
                                                         <label for="dateBuscarDesde" class="text-lg font-medium text-gray-700">Desde</label>
-                                                        <input type="date" id="txtBuscarDesde" value="<?= $txtBuscarDesde ?>" name="txtBuscarDesde" placeholder="Username" class="ml-3 px-4 py-2 border rounded-lg w-full" />
+                                                        <input type="date" id="txtBuscarDesde" name="txtBuscarDesde" placeholder="Username" class="ml-3 px-4 py-2 border rounded-lg w-full" />
                                                     </div>
 
                                                     <!-- Filtro 3 -->
                                                     <div class="flex items-center gap-2 w-1/2">
                                                         <label for="dateBuscarHasta" class="text-lg font-medium text-gray-700">Hasta</label>
-                                                        <input type="date" id="txtBuscarHasta" value="<?= $txtBuscarHasta ?>" name="txtBuscarHasta" placeholder="Username" class="ml-3 px-4 py-2 border rounded-lg w-full" />
+                                                        <input type="date" id="txtBuscarHasta" name="txtBuscarHasta" placeholder="Username" class="ml-3 px-4 py-2 border rounded-lg w-full" />
                                                     </div>
 
                                                     <div class="flex items-center gap-2 w-1/2">
                                                         <label for="txtEstado" class="text-lg font-medium text-gray-700">Estado</label>
-                                                        <select id="txtEstado" name="txtEstado" value="<?= $txtBuscarEstado ?>" class="ml-3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                                                        <select id="txtEstado" name="txtBuscarEstado" class="ml-3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
                                                             <option value=""></option>
                                                             <option value="pagado">Pagado</option>
                                                             <option value="preventa">Preventa</option>
@@ -69,8 +69,6 @@ class formListarPedidos extends Pantalla
                                                         </select>
                                                     </div>
 
-
-                                                    <!-- Botón de Buscar -->
                                                     <div class="flex items-center gap-2 w-1/6">
                                                         <button name="btnBuscarPedido" type="submit" class="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-200 flex items-center w-full text-center">
                                                             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
@@ -82,7 +80,7 @@ class formListarPedidos extends Pantalla
                                                     </div>
                                                 </form>
 
-                                                <form action="../moduloVentas/getVerificarRegistrarPedido.php" method="post" class="flex gap-1 mb-4 items-center">
+                                                <form action="/jbctextil/moduloVentas/pedidos/getVerificarRegistrarPedido.php" method="post" class="flex gap-1 mb-4 items-center">
                                                     <div class="flex items-center gap-2 w-full">
                                                         <button name="btnRegistrarPedido" type="submit" class="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-200 flex items-center w-full text-center">
                                                             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
@@ -95,10 +93,10 @@ class formListarPedidos extends Pantalla
 
                                             </div>
                                         </div>
-                                        <table class="w-full table-auto min-h-[70vh] h-full">
+                                        <table class="w-full table-auto h-full">
                                             <thead>
                                                 <tr class="bg-gray-100 text-left">
-                                                    <th class="min-w-[220px] px-4 py-4 font-medium text-black">
+                                                    <th class="min-w-[150px] px-4 py-4 font-medium text-black">
                                                         N°
                                                     </th>
                                                     <th class="min-w-[150px] px-4 py-4 font-medium text-black">
@@ -149,7 +147,7 @@ class formListarPedidos extends Pantalla
                                                             </td>
                                                             <td class="border-b border-[#eee] px-4 py-4 border-strokedark">
                                                                 <div class="flex items-center space-x-3">
-                                                                    <form action="../moduloVentas/getVerificarEditarPedido.php" method="post">
+                                                                    <form action="/jbctextil/moduloVentas/pedidos/getVerificarEditarPedido.php" method="post">
                                                                         <input name="idPedido" value="<?= $pedido['id_pedido'] ?>" type="text" hidden>
                                                                         <button name="btnEditarPedido" type="submit" class="hover:text-blue-700">
                                                                             <svg xmlns="http://www.w3.org/2000/svg" class="fill-current" width="20" height="20" viewBox="0 0 576 512">
@@ -161,7 +159,7 @@ class formListarPedidos extends Pantalla
                                                             </td>
                                                             <td class="border-b border-[#eee] px-4 py-4 dark:border-strokedark">
                                                                 <div class="flex items-center space-x-3">
-                                                                    <form action="../moduloVentas/getVerificarEmitirInformePreventa.php" method="post">
+                                                                    <form action="/jbctextil/moduloVentas/informePreventa/getVerificarEmitirInformePreventa.php" method="post">
                                                                         <input name="idPedido" value="<?= $pedido['id_pedido'] ?>" type="text" hidden>
                                                                         <button name="btnEmitirInformePreventa" type="submit" class="hover:text-blue-700">
                                                                             <svg xmlns="http://www.w3.org/2000/svg" class="fill-current" width="20" height="20" viewBox="0 0 384 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -185,14 +183,11 @@ class formListarPedidos extends Pantalla
                                         </table>
                                     </div>
                                 </div>
-
-                                <!-- ====== Table-->
                             </div>
 
                             </table>
                         </div>
                     </main>
-                    <!-- ===== Main ===== -->
 
                 </div>
             </div>
@@ -200,9 +195,6 @@ class formListarPedidos extends Pantalla
         </body>
         <script>
             <?php include_once("../js/toggleHeader.js"); ?>
-        </script>
-        <script>
-            <?php include_once("../js/listarPedidosScript.js"); ?>
         </script>
 
         </html>

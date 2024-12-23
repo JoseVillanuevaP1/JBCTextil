@@ -1,8 +1,8 @@
 <?php
-include_once("../compartido/pantalla.php");
-class formEditarPedido extends Pantalla
+include_once("../../compartido/pantalla.php");
+class formRegistrarPedido extends Pantalla
 {
-    public function formEditarPedidoShow($productos, $clientes)
+    public function formRegistrarPedidoShow($productos, $clientes)
     {
         session_start();
         $privilegiosUser = $_SESSION["privilegios"];
@@ -55,7 +55,7 @@ class formEditarPedido extends Pantalla
                                     <div class="rounded-lg border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark p-5">
                                         <div class="border-b border-stroke px-6.5 py-2 dark:border-strokedark text-center mb-6">
                                         </div>
-                                        <form action="../moduloVentas/getVerificarRegistrarPedido.php" method="post">
+                                        <form action="/jbctextil/moduloVentas/pedidos/getVerificarRegistrarPedido.php" method="post">
                                             <div class="p-6.5">
                                                 <div class="flex flex-wrap gap-4 mb-5">
                                                     <!-- Cliente -->

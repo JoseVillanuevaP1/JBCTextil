@@ -25,6 +25,33 @@ class detalles_pedido
         mysqli_close($conexion);
         return $aciertos > 0 ? 1 : 0;
     }
+    function obtenerDetallesPedido($idPedido)
+    {
+        $conexion = $this->EjecutarConexion();
+        $consulta = "SELECT
+                        dp.id_detalle_pedido, 
+                        dp.descripcion AS detalle_descripcion,
+                        dp.cantidad AS detalle_cantidad,
+                        dp.id_producto,
+                        pr.nombre AS producto_nombre
+                     FROM 
+                        detalles_pedido dp  
+                     JOIN 
+                        productos pr ON dp.id_producto = pr.id_producto 
+                     WHERE 
+                        dp.id_pedido = $idPedido";
+
+        $resultado = mysqli_query($conexion, $consulta);
+        $detallesPedido = [];
+        if ($resultado) {
+            while ($detalle = mysqli_fetch_assoc($resultado)) {
+                $detallesPedido[] = $detalle;
+            }
+        }
+        mysqli_close($conexion);
+        return $detallesPedido;
+    }
+
     public function obtenerDetallesPedidoPreventa($id_pedido)
     {
         $conexion = $this->EjecutarConexion();
@@ -76,5 +103,56 @@ class detalles_pedido
 
         mysqli_close($conexion);
         return $detallePedido;
+    }
+
+    public function editarDetallesPedido($idPedido, $arrayProductos)
+    {
+        $conexion = $this->EjecutarConexion();
+        $aciertos = 0;
+        $detallesExistentes = [];
+        $consulta = "SELECT id_detalle_pedido FROM detalles_pedido WHERE id_pedido = '$idPedido'";
+        $resultados = mysqli_query($conexion, $consulta);
+        while ($detalle = mysqli_fetch_assoc($resultados)) {
+            $detallesExistentes[$detalle['id_detalle_pedido']] = true;
+        }
+
+        $valores = [];
+        foreach ($arrayProductos as $producto) {
+            $idDetallePedido = $producto["id_detalle_pedido"];
+            $idProducto = $producto["idProducto"];
+            $descripcion = $producto["descripcion"];
+            $cantidad = $producto["cantidad"];
+
+            if ($idDetallePedido === null) {
+                $valores[] = "('$idPedido', '$idProducto', '$descripcion', '$cantidad')";
+            } else {
+                $consultaUpdate = "
+                UPDATE detalles_pedido 
+                SET id_producto = '$idProducto', descripcion = '$descripcion', cantidad = '$cantidad'
+                WHERE id_detalle_pedido = '$idDetallePedido';
+            ";
+                mysqli_query($conexion, $consultaUpdate);
+                $aciertos++;
+            }
+        }
+
+        // Insertar nuevos detalles
+        if (!empty($valores)) {
+            $consultaInsert = "INSERT INTO detalles_pedido (id_producto, descripcion, cantidad) VALUES " . implode(', ', $valores);
+            mysqli_query($conexion, $consultaInsert);
+            $aciertos += mysqli_affected_rows($conexion);
+        }
+
+        // Eliminar los detalles que ya no están en el array
+        foreach ($detallesExistentes as $idDetalleExistente => $value) {
+            if (!in_array($idDetalleExistente, array_column($arrayProductos, 'id_detalle_pedido'))) {
+                $consultaDelete = "DELETE FROM detalles_pedido WHERE id_detalle_pedido = '$idDetalleExistente'";
+                mysqli_query($conexion, $consultaDelete);
+                $aciertos++;
+            }
+        }
+
+        mysqli_close($conexion);
+        return $aciertos > 0 ? 1 : 0;
     }
 }

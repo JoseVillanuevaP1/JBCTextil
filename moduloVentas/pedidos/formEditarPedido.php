@@ -1,8 +1,8 @@
 <?php
-include_once("../compartido/pantalla.php");
-class formRegistrarPedido extends Pantalla
+include_once("../../compartido/pantalla.php");
+class formEditarPedido extends Pantalla
 {
-    public function formRegistrarPedidoShow($productos, $clientes)
+    public function formEditarPedidoShow($pedido, $detallesPedido, $productos, $clientes)
     {
         session_start();
         $privilegiosUser = $_SESSION["privilegios"];
@@ -55,8 +55,9 @@ class formRegistrarPedido extends Pantalla
                                     <div class="rounded-lg border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark p-5">
                                         <div class="border-b border-stroke px-6.5 py-2 dark:border-strokedark text-center mb-6">
                                         </div>
-                                        <form action="../moduloVentas/getVerificarRegistrarPedido.php" method="post">
+                                        <form action="/jbctextil/moduloVentas/pedidos/getVerificarEditarPedido.php" method="post">
                                             <div class="p-6.5">
+                                                <input type="hidden" name="idPedido" value="<?= $pedido["id_pedido"] ?>">
                                                 <div class="flex flex-wrap gap-4 mb-5">
                                                     <!-- Cliente -->
                                                     <div class="flex-1">
@@ -65,12 +66,10 @@ class formRegistrarPedido extends Pantalla
                                                         </label>
                                                         <div class="relative z-20 bg-transparent dark:bg-form-input">
                                                             <select name="txtCliente" class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent px-5 py-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
-                                                                <option value="" class="text-body">
-                                                                    Selecciona
-                                                                </option>
                                                                 <?php foreach ($clientes as $cliente): ?>
-                                                                    <option value="<?= htmlspecialchars($cliente['id_cliente']); ?>" class="text-body">
-                                                                        <?= htmlspecialchars($cliente['nombre']); ?>
+                                                                    <option value="<?= $cliente['id_cliente'] ?>" class="text-body"
+                                                                        <?= ($cliente['id_cliente'] == $pedido['id_cliente']) ? 'selected' : ''; ?>>
+                                                                        <?= $cliente['nombre'] ?>
                                                                     </option>
                                                                 <?php endforeach; ?>
                                                             </select>
@@ -89,7 +88,7 @@ class formRegistrarPedido extends Pantalla
                                                         <label class="mb-3 block text-lg font-medium text-black">
                                                             Fecha de Entrega
                                                         </label>
-                                                        <input id="txtFechaEntrega" name="txtFechaEntrega" type="date" placeholder="" class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+                                                        <input id="txtFechaEntrega" value="<?= $pedido['fecha_entrega'] ?>" name="txtFechaEntrega" type="date" class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" readonly>
                                                     </div>
 
                                                     <!-- Lugar de Entrega -->
@@ -97,7 +96,7 @@ class formRegistrarPedido extends Pantalla
                                                         <label class="mb-3 block text-lg font-medium text-black">
                                                             Lugar de Entrega
                                                         </label>
-                                                        <input id="txtLugarEntrega" name="txtLugarEntrega" type="text" placeholder="Ingrese lugar" class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
+                                                        <input id="txtLugarEntrega" value="<?= $pedido['lugar_entrega'] ?>" name="txtLugarEntrega" type="text" placeholder="Ingrese lugar" class="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
                                                     </div>
                                                 </div>
 
@@ -112,29 +111,32 @@ class formRegistrarPedido extends Pantalla
                                                             </tr>
                                                         </thead>
                                                         <tbody id="table-body">
-                                                            <tr>
-                                                                <td class="border border-gray-300 px-4 py-2">
-                                                                    <select name="arrayIdProductos[]" class="w-full rounded border border-gray-300 px-2 py-1">
-                                                                        <option value="">Selecciona</option>
-                                                                        <?php foreach ($productos as $producto): ?>
-                                                                            <option value="<?= htmlspecialchars($producto['id_producto']); ?>" class="text-body">
-                                                                                <?= htmlspecialchars($producto['nombre']); ?>
-                                                                            </option>
-                                                                        <?php endforeach; ?>
-                                                                    </select>
-                                                                </td>
-                                                                <td class="border border-gray-300 px-4 py-2">
-                                                                    <input type="text" name="arrayDescripcion[]" class="w-full rounded border border-gray-300 px-2 py-1" placeholder="Descripción">
-                                                                </td>
-                                                                <td class="border border-gray-300 px-4 py-2">
-                                                                    <input type="number" name="arrayCantidad[]" class="w-full rounded border border-gray-300 px-2 py-1" placeholder="Cantidad">
-                                                                </td>
-                                                                <td class="border border-gray-300 px-4 py-2 text-center">
-                                                                    <button type="button" class="text-red-500 hover:text-red-700" onclick="removeRow(this)">
-                                                                        Eliminar
-                                                                    </button>
-                                                                </td>
-                                                            </tr>
+                                                            <?php foreach ($detallesPedido as $detallePedido): ?>
+                                                                <tr>
+                                                                    <input type="hidden" name="arrayIdDetallePedido[]" value="<?= $detallePedido["id_detalle_pedido"] ?>">
+                                                                    <td class="border border-gray-300 px-4 py-2">
+                                                                        <select name="arrayIdProductos[]" class="w-full rounded border border-gray-300 px-2 py-1">
+                                                                            <?php foreach ($productos as $producto): ?>
+                                                                                <option value="<?= $producto['id_producto'] ?>"
+                                                                                    <?= ($producto['id_producto'] == $detallePedido['id_producto']) ? 'selected' : ''; ?>>
+                                                                                    <?= $producto['nombre'] ?>
+                                                                                </option>
+                                                                            <?php endforeach; ?>
+                                                                        </select>
+                                                                    </td>
+                                                                    <td class="border border-gray-300 px-4 py-2">
+                                                                        <input value="<?= $detallePedido["detalle_descripcion"] ?>" type="text" name="arrayDescripcion[]" class="w-full rounded border border-gray-300 px-2 py-1" placeholder="Descripción">
+                                                                    </td>
+                                                                    <td class="border border-gray-300 px-4 py-2">
+                                                                        <input value="<?= $detallePedido["detalle_cantidad"] ?>" type="number" name="arrayCantidad[]" class="w-full rounded border border-gray-300 px-2 py-1" placeholder="Cantidad">
+                                                                    </td>
+                                                                    <td class="border border-gray-300 px-4 py-2 text-center">
+                                                                        <button type="button" class="text-red-500 hover:text-red-700" onclick="removeRow(this)">
+                                                                            Eliminar
+                                                                        </button>
+                                                                    </td>
+                                                                </tr>
+                                                            <?php endforeach; ?>
                                                         </tbody>
                                                     </table>
                                                     <div class="mt-4">
@@ -145,7 +147,7 @@ class formRegistrarPedido extends Pantalla
                                                 </div>
 
 
-                                                <button name="btnConfirmarRegistrarPedido" type="submit" class="flex w-full justify-center rounded bg-blue-500 p-3 font-medium text-white hover:bg-opacity-90">
+                                                <button name="btnConfirmarEditarPedido" type="submit" class="flex w-full justify-center rounded bg-blue-500 p-3 font-medium text-white hover:bg-opacity-90">
                                                     Confirmar
                                                 </button>
                                             </div>
@@ -164,11 +166,11 @@ class formRegistrarPedido extends Pantalla
 
         </body>
         <script>
-            <?php include_once("../js/toggleHeader.js"); ?>
+            <?php include_once("../../js/toggleHeader.js"); ?>
         </script>
         <script>
             const productos = <?= json_encode($productos); ?>;
-            <?php include_once("../js/registrarPedidos.js"); ?>
+            <?php include_once("../../js/registrarPedidos.js"); ?>
         </script>
 
         </html>

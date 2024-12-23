@@ -13,7 +13,7 @@ class usuarios
 	{
 		// Realizar la conexión
 		$conexion = $this->EjecutarConexion();
-		$consulta = "SELECT id_usuario FROM usuarios WHERE username = '$username' AND password = '$password'";
+		$consulta = "SELECT id_usuario FROM usuarios WHERE username = '$username' AND password = '$password' AND status = 1";
 		$resultado = mysqli_query($conexion, $consulta);
 
 		// Comprobar si se encontraron resultados

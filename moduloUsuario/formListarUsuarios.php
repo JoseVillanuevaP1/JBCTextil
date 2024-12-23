@@ -80,7 +80,7 @@ class formListarUsuarios extends Pantalla
                                         <table class="w-full table-auto h-full">
                                             <thead>
                                                 <tr class="bg-gray-100 text-left">
-                                                    <th class="min-w-[220px] px-4 py-4 font-medium text-black xl:pl-11">
+                                                    <th class="min-w-[100px] px-4 py-4 font-medium text-black">
                                                         ID
                                                     </th>
                                                     <th class="min-w-[150px] px-4 py-4 font-medium text-black">

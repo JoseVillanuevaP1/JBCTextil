@@ -82,7 +82,7 @@ class mensajeSistema extends pantalla
 		</body>
 
 		</html>
-	<?php
+<?php
 	}
 }
 ?>

@@ -33,31 +33,31 @@ class clientes
         return $clientes;
     }
     public function obtenerCliente($idCliente)
-	{
-		$conexion = $this->EjecutarConexion();
-		$consulta = "SELECT id_cliente, nombre, apellido,documento,id_tipo_documento,telefono,correo_electronico,direccion
+    {
+        $conexion = $this->EjecutarConexion();
+        $consulta = "SELECT id_cliente, nombre, apellido,documento,id_tipo_documento,telefono,correo_electronico,direccion
 					FROM clientes WHERE id_cliente = $idCliente";
-		$resultado = mysqli_query($conexion, $consulta);
+        $resultado = mysqli_query($conexion, $consulta);
 
-		$clientes = [];
-		if ($resultado && mysqli_num_rows($resultado) > 0) {
-			while ($fila = mysqli_fetch_assoc($resultado)) {
-				$clientes[] = $fila;
-			}
-		}
+        $clientes = [];
+        if ($resultado && mysqli_num_rows($resultado) > 0) {
+            while ($fila = mysqli_fetch_assoc($resultado)) {
+                $clientes[] = $fila;
+            }
+        }
 
-		// Cerrar la conexión
-		mysqli_close($conexion);
+        // Cerrar la conexión
+        mysqli_close($conexion);
 
-		return $clientes;
-	}
+        return $clientes;
+    }
 
-	public function editarCliente($idCliente, $nombre, $apellido, $id_tipo_documento, $documento, $telefono, $correo_electronico, $direccion)
-	{
-		$conexion = $this->EjecutarConexion();
+    public function editarCliente($idCliente, $nombre, $apellido, $id_tipo_documento, $documento, $telefono, $correo_electronico, $direccion)
+    {
+        $conexion = $this->EjecutarConexion();
 
-		// Construir la consulta
-		$consulta = "UPDATE clientes 
+        // Construir la consulta
+        $consulta = "UPDATE clientes 
 					SET nombre = '$nombre',
                         apellido = '$apellido',
                         id_tipo_documento = '$id_tipo_documento',
@@ -67,18 +67,18 @@ class clientes
                         direccion = '$direccion'
 				
 						WHERE id_cliente = $idCliente";
-		// Ejecutar la consulta
-		$resultado = mysqli_query($conexion, $consulta);
-		// Cerrar la conexión
-		mysqli_close($conexion);
+        // Ejecutar la consulta
+        $resultado = mysqli_query($conexion, $consulta);
+        // Cerrar la conexión
+        mysqli_close($conexion);
 
-		return $resultado ? true : false;
-	}
+        return $resultado ? true : false;
+    }
     public function obtenerClientesPedido()
     {
         $conexion = $this->EjecutarConexion();
-        
-        $consulta = "SELECT * FROM clientes";
+
+        $consulta = "SELECT id_cliente, CONCAT(nombre, ' ', apellido) AS nombre FROM clientes";
         $resultado = mysqli_query($conexion, $consulta);
         mysqli_close($conexion);
         $clientes = [];
