@@ -154,7 +154,7 @@ class formListarClientes extends Pantalla
 
         </body>
         <script>
-            <?php include_once("../js/toggleHeader.js"); ?>
+            <?php include_once("../../js/toggleHeader.js"); ?>
         </script>
 
         </html>
