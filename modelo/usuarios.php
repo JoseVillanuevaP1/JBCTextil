@@ -9,6 +9,37 @@ class usuarios
 	}
 
 	/********************************************/
+	public function verificarUsuario($intIdUsuario, $txt_password)
+	{
+		$conexion = $this->EjecutarConexion();
+	
+		$consulta = "SELECT id_usuario FROM usuarios WHERE id_usuario = ? AND password = ? AND status = 1";
+	
+		$stmt = mysqli_prepare($conexion, $consulta);
+	
+		if ($stmt) {
+			// Vincular los parámetros
+			mysqli_stmt_bind_param($stmt, 'is', $intIdUsuario, $txt_password);
+
+			mysqli_stmt_execute($stmt);
+	
+			$resultado = mysqli_stmt_get_result($stmt);
+
+        // Verificar si se encontró el usuario
+        $usuarioValido = mysqli_fetch_assoc($resultado) ? true : false;
+
+        // Cerrar la consulta preparada
+        mysqli_stmt_close($stmt);
+		} else {
+			$usuarioValido = false;
+		}
+	
+		// Cerrar la conexión
+		mysqli_close($conexion);
+	
+		return $usuarioValido;
+	}
+	
 	public function verificarUser($username, $password)
 	{
 		// Realizar la conexión

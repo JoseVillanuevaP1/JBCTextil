@@ -7,6 +7,46 @@ class pedidos
         $OBJConexion = new conexion;
         return $OBJConexion->ConectaBD();
     }
+ 
+    public function cambiarEstadoPedidoPorCotizacion($idCotizacion)
+    {
+        // Realizar la conexión
+        $conexion = $this->EjecutarConexion();
+    
+        // Preparar la consulta SQL para actualizar el estado del pedido
+        $consulta = "UPDATE pedidos 
+                     SET estado = 'pagado' 
+                     WHERE id_pedido = (
+                         SELECT id_pedido 
+                         FROM cotizaciones 
+                         WHERE id_cotizacion = ?
+                     )";
+    
+        // Usar sentencias preparadas
+        $stmt = mysqli_prepare($conexion, $consulta);
+    
+        if ($stmt) {
+            // Vincular los parámetros (i para integer)
+            mysqli_stmt_bind_param($stmt, 'i', $idCotizacion);
+    
+            // Ejecutar la consulta
+            mysqli_stmt_execute($stmt);
+    
+            // Verificar si se afectó alguna fila
+            $aciertos = mysqli_stmt_affected_rows($stmt);
+    
+            // Cerrar la consulta preparada
+            mysqli_stmt_close($stmt);
+        } else {
+            $aciertos = 0;
+        }
+    
+        // Cerrar la conexión
+        mysqli_close($conexion);
+    
+        // Retornar 1 si se actualizó al menos una fila, 0 en caso contrario
+        return $aciertos > 0 ? 1 : 0;
+    }
 
     public function registrarPedido($txtCliente, $txtFechaEntrega, $txtLugarEntrega, $txtFechaEmision, $txtEstado, $txtIdUsuario)
     {
@@ -139,4 +179,64 @@ class pedidos
     {
         return 1;
     }
+
+    public function obtenerPedidosCotizados($txtBuscarCliente, $txtBuscarDesde, $txtBuscarHasta)
+    {
+        $conexion = $this->EjecutarConexion();
+
+        // Sanitizar las entradas
+        $txtBuscarCliente = mysqli_real_escape_string($conexion, $txtBuscarCliente);
+        $txtBuscarDesde = mysqli_real_escape_string($conexion, $txtBuscarDesde);
+        $txtBuscarHasta = mysqli_real_escape_string($conexion, $txtBuscarHasta);
+
+        // Iniciar la consulta básica
+        $consulta = "SELECT 
+                        CONCAT(c.nombre, ' ', c.apellido) AS nombre_cliente,
+                        p.id_pedido,
+                        p.fecha_emision,
+                        p.estado,
+                        co.precio_final,
+                        co.id_cotizacion
+                    FROM 
+                        pedidos p
+                    JOIN 
+                        clientes c ON p.id_cliente = c.id_cliente
+                    JOIN 
+                        cotizaciones co ON p.id_pedido = co.id_pedido
+                    WHERE 
+                        p.estado = 'cotizado'";
+
+        // Filtro por cliente
+        if (!empty($txtBuscarCliente)) {
+            $consulta .= " AND CONCAT(c.nombre, ' ', c.apellido) LIKE '%$txtBuscarCliente%'";
+        }
+
+        // Filtro por fecha desde
+        if (!empty($txtBuscarDesde)) {
+            $consulta .= " AND p.fecha_emision >= '$txtBuscarDesde'";
+        }
+
+        // Filtro por fecha hasta
+        if (!empty($txtBuscarHasta)) {
+            $consulta .= " AND p.fecha_emision <= '$txtBuscarHasta'";
+        }
+
+        // Ejecutar la consulta
+        $resultado = mysqli_query($conexion, $consulta);
+
+        // Verificar si se obtienen resultados
+        if ($resultado) {
+            $pedidos = [];
+            while ($row = mysqli_fetch_assoc($resultado)) {
+                $pedidos[] = $row;
+            }
+            mysqli_close($conexion);
+            return $pedidos;
+        } else {
+            mysqli_close($conexion);
+            return [];
+        }
+    }
+
+
 }
